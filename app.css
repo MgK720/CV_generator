@@ -1,0 +1,44 @@
+
+@font-face {
+    font-family: mainFontMedium;
+    src: url(fonts/Roboto/Roboto-Medium.ttf);
+}
+body{
+    font-family: mainFontMedium;
+}
+
+
+input + span {
+    padding-right: 30px;
+  }
+  
+input:invalid + span::after {
+    position: absolute;
+    content: "✖";
+    padding-left: 5px;
+  }
+  
+input:valid + span::after {
+    position: absolute;
+    content: "✓";
+    padding-left: 5px;
+  }
+#school-type-select{
+    display:none;
+    /*display:inline-block*/;
+}
+select + span {
+    padding-right: 30px;
+  }
+  
+select:invalid + span::after {
+    position: absolute;
+    content: "✖";
+    padding-left: 5px;
+  }
+  
+select:valid + span::after {
+    position: absolute;
+    content: "✓";
+    padding-left: 5px;
+  }

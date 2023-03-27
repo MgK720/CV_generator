@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="app.css">
+    <title>Form</title>
+</head>
+<body>
+    <header>
+        <h1>CV Generator</h1>
+    </header>
+    <main>
+        <form action="done.html">
+        <section id="myform">
+            <section id="name">
+                <label for="firstname">Firstname:</label>
+                <input type="text" name="firstname" id="firstname" minlength="1" maxlength="30" required>
+                <span class="validity"></span>
+                <label for="lastname">Lastname:</label>
+                <input type="text" name="lastname" id="lastname" minlength="1" maxlength="30" required>
+                <span class="validity"></span>
+            </section>
+            <section id="education0">
+                <label for="school">Knowledge:</label>
+                <input type="text" name="school" id="school" minlength="1" maxlength="45" required>
+                <span class="validity"></span>
+                <label for="knowledge-type">Type: </label>
+                <select name="knowledge-type" id="knowledge-type" onchange="schoolTypeShow()" required>
+                    <option value="">--Choose an option--</option>
+                    <option value="school">School</option>
+                    <option value="course">Course</option>
+                </select>
+                <span class="validity"></span>
+                    <div id="school-type-select">
+                    <label for="school-type">"SchoolType": </label>
+                    <select name="school-type" id="school-type" required>
+                        <option value="">--Choose an option--</option>
+                        <option value="school">Primary</option>
+                        <option value="course">MidSchool</option>
+                        <option value="course">HighSchool</option>
+                    </select>
+                    <span class="validity"></span>
+                </div>
+                <label for="startyear">From:</label>
+                <input type="date" name="startyear" id="startyear" min="1900-01-01" max="2023-03-27" value="2000-01-01" required>
+                <span class="validity"></span>
+                <label for="endyear">To:</label>
+                <input type="date" name="endyear" id="endyear" min="1900-01-01" max="2023-03-27" value="2000-01-01" required>
+                <span class="validity"></span>
+                <label for="education-description">Description:</label>
+                <input type="text" name="education-description" id="education-description" placeholder="---Write something---">
+
+                <input type="button" id="addEducation" value="ADD">
+            </section>
+                <input type="submit" value="SUBMIT">
+        </section>
+        </form>
+    </main>
+    <footer>
+        <p>Copyright &copy Igor Ciesielski 2023</p>
+    </footer>
+    <script src="actions.js"></script>
+
+</body>
+</html>
