@@ -117,6 +117,36 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
 
 
 
+    var startYearLabel = document.createElement("label");
+    setAttributes(startYearLabel, {"for": "startyear" + addEducationCount});
+    startYearLabel.textContent = "From:";
+
+    var startYear = document.createElement("input");
+    //TODO walidacja dat (czy data zakonczenia jest pozniej niz data rozpoczecia)
+    setAttributes(startYear, {"type": "date", "name": "startyear" + addEducationCount, "id": "startyear" + addEducationCount, "min": "1900-01-01", "max": "2023-03-27", "value": "2100-01-01", "required": "true"});
+
+    var spanValidity3 = createSpanValidity();
+
+    var endYearLabel = document.createElement("label");
+    setAttributes(endYearLabel, {"for": "endyear" + addEducationCount});
+    endYearLabel.textContent = "To:";
+
+    var endYear = document.createElement("input");
+    setAttributes(endYear, {"type": "date", "name": "endyear" + addEducationCount, "id": "endyear" + addEducationCount, "min": "1900-01-01", "max": "2023-03-27", "value": "2100-01-01", "required": "true"});
+
+    var spanValidity4 = createSpanValidity();
+
+
+
+    var educationDescriptionLabel = document.createElement("label");
+    setAttributes(educationDescriptionLabel, {"for": "education-description" + addEducationCount});
+    educationDescriptionLabel.textContent = "Description:";
+
+    var educationDescription = document.createElement("input");
+    setAttributes(educationDescription, {"type": "text", "name": "education-description" + addEducationCount, "id": "education-description" + addEducationCount, "placeholder": "---Write something---"});
+
+
+
 
     newSection.appendChild(knowledgeLabel);
     newSection.appendChild(knowledge);
@@ -125,6 +155,14 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
     newSection.appendChild(knowledgeType);
     newSection.appendChild(spanValidity1);
     newSection.appendChild(divForSchoolTypeSelect);
+    newSection.appendChild(startYearLabel);
+    newSection.appendChild(startYear);
+    newSection.appendChild(spanValidity3);
+    newSection.appendChild(endYearLabel);
+    newSection.appendChild(endYear);
+    newSection.appendChild(spanValidity4);
+    newSection.appendChild(educationDescriptionLabel);
+    newSection.appendChild(educationDescription);
 
     //document.getElementById("myform").appendChild(newSection);
     place.parentNode.insertBefore(newSection, place.nextSibling);
