@@ -5,14 +5,17 @@ function setAttributes(attrib, values){
 }
 
 
-function schoolTypeShow() {
-    var knowledge = document.getElementById("knowledge-type").value;
-    if (knowledge == "school") {
-        document.getElementById("school-type-select").style.display = "inline-block";
+function schoolTypeShow(addEducationCount) {
+    console.log(addEducationCount);
+    for(var x = 0; x<=addEducationCount;x+=1){
+        var knowledge = document.getElementById("knowledge-type" + x).value;
+        if (knowledge == "school") {
+            document.getElementById("school-type-select" + x).style.display = "inline-block";
+        }
+        else{
+            document.getElementById("school-type-select" + x).style.display = "none";
     }
-    else{
-        document.getElementById("school-type-select").style.display = "none";
-    }
+}
 };
 function createSpanValidity(){
     var spanValidity = document.createElement("span");
@@ -44,12 +47,49 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
 
     var spanValidity = createSpanValidity();
 
-    
+    //<label for="knowledge-type">Type: </label>
+   // <select name="knowledge-type" id="knowledge-type" onchange="schoolTypeShow()" required>
+    //<option value="">--Choose an option--</option>
+    //<option value="school">School</option>
+   // <option value="course">Course</option>
+    //</select>
+    //<span class="validity"></span>
+
+
+    var knowledgeTypeLabel = document.createElement("label");
+    setAttributes(knowledgeTypeLabel, {"for": "knowledge-type" + addEducationCount});
+    knowledgeTypeLabel.textContent = "Type:";
+
+    var knowledgeType = document.createElement("select");
+    setAttributes(knowledgeType, {"name": "knowledge-type" + addEducationCount, "id": "knowledge-type" + addEducationCount, "onchange": "schoolTypeShow(addEducationCount)", "required": "true"});
+
+    var blankType = document.createElement("option");
+    setAttributes(blankType,{"value": "one"});
+    blankType.textContent = "--Choose an option--";
+
+    var firstKnowledgeType = document.createElement("option");
+    setAttributes(firstKnowledgeType,{"value": "school"});
+    firstKnowledgeType.textContent = "School";
+
+    var secondKnowledgeType = document.createElement("option");
+    setAttributes(secondKnowledgeType,{"value": "course"});
+    secondKnowledgeType.textContent = "Course";
+
+    knowledgeType.appendChild(blankType);
+    knowledgeType.appendChild(firstKnowledgeType);
+    knowledgeType.appendChild(secondKnowledgeType);
+
+    var spanValidity2 = createSpanValidity();
+
+
+
 
     newSection.appendChild(knowledgeLabel);
     newSection.appendChild(knowledge);
     newSection.appendChild(spanValidity);
-
+    newSection.appendChild(knowledgeTypeLabel);
+    newSection.appendChild(knowledgeType);
+    newSection.appendChild(spanValidity2);
 
     //document.getElementById("myform").appendChild(newSection);
     place.parentNode.insertBefore(newSection, place.nextSibling);
