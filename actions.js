@@ -45,17 +45,10 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
     setAttributes(knowledge, {"type": "text", "name": "school" + addEducationCount, "id" : "school" + addEducationCount, 
     "class" : "school", "minlength" : "1", "maxlength" : "45", "required": "true"});
 
-    var spanValidity = createSpanValidity();
-
-    //<label for="knowledge-type">Type: </label>
-   // <select name="knowledge-type" id="knowledge-type" onchange="schoolTypeShow()" required>
-    //<option value="">--Choose an option--</option>
-    //<option value="school">School</option>
-   // <option value="course">Course</option>
-    //</select>
-    //<span class="validity"></span>
+    var spanValidity0 = createSpanValidity();
 
 
+    
     var knowledgeTypeLabel = document.createElement("label");
     setAttributes(knowledgeTypeLabel, {"for": "knowledge-type" + addEducationCount});
     knowledgeTypeLabel.textContent = "Type:";
@@ -63,9 +56,9 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
     var knowledgeType = document.createElement("select");
     setAttributes(knowledgeType, {"name": "knowledge-type" + addEducationCount, "id": "knowledge-type" + addEducationCount, "onchange": "schoolTypeShow(addEducationCount)", "required": "true"});
 
-    var blankType = document.createElement("option");
-    setAttributes(blankType,{"value": "one"});
-    blankType.textContent = "--Choose an option--";
+    var blankType0 = document.createElement("option");
+    setAttributes(blankType0,{"value": ""});
+    blankType0.textContent = "--Choose an option--";
 
     var firstKnowledgeType = document.createElement("option");
     setAttributes(firstKnowledgeType,{"value": "school"});
@@ -75,21 +68,62 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
     setAttributes(secondKnowledgeType,{"value": "course"});
     secondKnowledgeType.textContent = "Course";
 
-    knowledgeType.appendChild(blankType);
+    knowledgeType.appendChild(blankType0);
     knowledgeType.appendChild(firstKnowledgeType);
     knowledgeType.appendChild(secondKnowledgeType);
 
+    var spanValidity1 = createSpanValidity();
+
+
+
+    var divForSchoolTypeSelect = document.createElement("div");
+    setAttributes(divForSchoolTypeSelect, {"id": "school-type-select" + addEducationCount, "class": "school-type-select"});
+
+    var schoolTypeLabel = document.createElement("label")
+    setAttributes(schoolTypeLabel, {"for": "school-type" + addEducationCount});
+    schoolTypeLabel.textContent = "SchoolType:";
+
+    var schoolType = document.createElement("select")
+    setAttributes(schoolType, {"name": "school-type" + addEducationCount, "id": "school-type" + addEducationCount, "required": "true"});
+
+
+    var blankType1 = document.createElement("option");
+    setAttributes(blankType1,{"value": ""});
+    blankType1.textContent = "--Choose an option--";
+
+    var firstSchoolType = document.createElement("option");
+    setAttributes(firstSchoolType, {"value": "school"});
+    firstSchoolType.textContent = "Primary";
+
+    var secondSchoolType = document.createElement("option");
+    setAttributes(secondSchoolType, {"value": "mid-school"});
+    secondSchoolType.textContent = "MidSchool";
+
+    var thirdSchoolType = document.createElement("option");
+    setAttributes(thirdSchoolType, {"value": "high-school"});
+    thirdSchoolType.textContent = "HighSchool";
+
     var spanValidity2 = createSpanValidity();
+
+    schoolType.appendChild(blankType1);
+    schoolType.appendChild(firstSchoolType);
+    schoolType.appendChild(secondSchoolType);
+    schoolType.appendChild(thirdSchoolType);
+
+    divForSchoolTypeSelect.appendChild(schoolTypeLabel);
+    divForSchoolTypeSelect.appendChild(schoolType);
+    divForSchoolTypeSelect.appendChild(spanValidity2);
 
 
 
 
     newSection.appendChild(knowledgeLabel);
     newSection.appendChild(knowledge);
-    newSection.appendChild(spanValidity);
+    newSection.appendChild(spanValidity0);
     newSection.appendChild(knowledgeTypeLabel);
     newSection.appendChild(knowledgeType);
-    newSection.appendChild(spanValidity2);
+    newSection.appendChild(spanValidity1);
+    newSection.appendChild(divForSchoolTypeSelect);
 
     //document.getElementById("myform").appendChild(newSection);
     place.parentNode.insertBefore(newSection, place.nextSibling);
