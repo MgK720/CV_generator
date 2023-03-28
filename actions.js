@@ -10,7 +10,8 @@ function schoolTypeShow(addEducationCount) {
     for(var x = 0; x<=addEducationCount;x+=1){
         var knowledge = document.getElementById("knowledge-type" + x).value;
         if (knowledge == "school") {
-            document.getElementById("school-type-select" + x).style.display = "inline-block";
+            //inline-block
+            document.getElementById("school-type-select" + x).style.display = "flex";
         }
         else{
             document.getElementById("school-type-select" + x).style.display = "none";
@@ -48,7 +49,7 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
     var spanValidity0 = createSpanValidity();
 
 
-    
+
     var knowledgeTypeLabel = document.createElement("label");
     setAttributes(knowledgeTypeLabel, {"for": "knowledge-type" + addEducationCount});
     knowledgeTypeLabel.textContent = "Type:";
