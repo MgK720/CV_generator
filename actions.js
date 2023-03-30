@@ -1,6 +1,12 @@
 var EDU_LIMIT = 5;
 var JOB_LIMIT = 10;
 
+const CURRENT_DATE = new Date();
+
+let day = date.getDate();
+let month = date.getMonth();
+let year = date.getFullYear();
+
 var addEducationCount = 0;
 var addExperienceCount = 0;
 
