@@ -7,6 +7,8 @@ let day = date.getDate();
 let month = date.getMonth();
 let year = date.getFullYear();
 
+let currentDate = `${year}-${month}-${day}`;
+
 var addEducationCount = 0;
 var addExperienceCount = 0;
 
@@ -16,7 +18,17 @@ function setAttributes(attrib, values){
     }
 }
 
+function today(){
+    const date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth();
+    let year = date.getFullYear();
 
+    let currentDate = `${year}-${month}-${day}`;
+
+    return currentDate;
+
+}
 function schoolTypeShow(addEducationCount) {
     console.log(addEducationCount);
     for(var x = 0; x<=addEducationCount;x+=1){
