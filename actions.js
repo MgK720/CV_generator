@@ -1,4 +1,8 @@
 var EDU_LIMIT = 5;
+var JOB_LIMIT = 10;
+
+var addEducationCount = 0;
+var addExperienceCount = 0;
 
 function setAttributes(attrib, values){
     for(var key in values){
@@ -26,7 +30,7 @@ function createSpanValidity(){
     return spanValidity;
 }
 
-var addEducationCount = 0;
+
 //Naprawic zeby dzialalo zawsze
 window.onload = document.getElementById("addEducation").addEventListener("click", function() {
     if(addEducationCount == EDU_LIMIT){
@@ -36,11 +40,12 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
     console.log("You clicked addEducation");
     var place = document.getElementById("education" + addEducationCount);
     addEducationCount = addEducationCount +1;
-    console.log("education"+addEducationCount+" added")
 
-    var newSection = document.createElement("section")
+    var newSection = document.createElement("section");
     newSection.setAttribute("id", "education" + addEducationCount);
     newSection.setAttribute("class", "education");
+
+    console.log("education"+addEducationCount+" added");
 
     //Tutaj musi sie zrobic caly form education
     var knowledgeLabel = document.createElement("label");
@@ -185,4 +190,91 @@ window.onload = document.getElementById("deleteEducation").addEventListener("cli
     }else{
         console.log("all additional education records deleted");
     }
+});
+
+window.onload = document.getElementById("addjob").addEventListener("click", function() {
+    if(addExperienceCount == JOB_LIMIT){
+        console.log("Too much experience records (LIMIT IS " + JOB_LIMIT + " )");
+        return;
+    }
+    console.log("You clicked addjob");
+    if(document.getElementById("experience" + addExperienceCount) == null){
+        var place = document.getElementById("education" + addEducationCount);
+    }else{
+        var place = document.getElementById("experience" + addExperienceCount);
+    }
+    addExperienceCount = addExperienceCount +1;
+
+    var newSection = document.createElement("section");
+    newSection.setAttribute("id", "experience" + addExperienceCount);
+    newSection.setAttribute("class", "experience");
+    console.log("experience"+addExperienceCount+" added")
+
+    //<label for="job0">Job:</label>
+    //<input type="text" name="job0" id="job0" minlength="1" maxlength="40" required>
+    //<span class="validity"></span>
+    //<label for="startyear-job0">From:</label>
+    //<input type="date" name="startyear-job0" id="startyear-job0" min="1900-01-01" max="2023-03-27" value="2100-01-01" required>
+    //<span class="validity"></span>
+    //<label for="endyear-job0">to:</label>
+    //<input type="date" name="endyear-job0" id="endyear-job0" min="1900-01-01" max="2023-03-27" value="2100-01-01" required>
+    //<span class="validity"></span>
+    //<input type="button" id="addjob" value="ADDJob">
+    //<input type="button" id="deletejob" value="DELJob">
+
+    var jobLabel = document.createElement("label");
+    setAttributes(jobLabel,{"for": "job"+addExperienceCount});
+    jobLabel.textContent = "Job:";
+
+    var job = document.createElement("input");
+    setAttributes(job, {"type": "text", "name": "job" + addExperienceCount, "id": "job" + addExperienceCount, "minlength": "1", "maxlength": "40", "required": "true"});
+
+    var spanValidity0 = createSpanValidity();
+
+    var startYearJobLabel = document.createElement("label");
+    setAttributes(startYearJobLabel, {"for": "startyear-job" + addExperienceCount});
+    startYearJobLabel.textContent = "From:";
+
+    var startYearJob = document.createElement("input");
+    setAttributes(startYearJob, {"type": "date", "name": "startyear-job" + addExperienceCount, "id": "startyear-job" + addExperienceCount, "min": "1900-01-01", "max": "2023-03-27", "value": "2100-01-01", "required": "true"});
+
+    var spanValidity1 = createSpanValidity();
+
+    var endYearJobLabel = document.createElement("label");
+    setAttributes(endYearJobLabel, {"for": "endyear-job" + addExperienceCount});
+    endYearJobLabel.textContent = "To:";
+
+    var endYearJob = document.createElement("input");
+    setAttributes(endYearJob, {"type": "date", "name": "endyear-job" + addExperienceCount, "id": "endyear-job" + addExperienceCount, "min": "1900-01-01", "max": "2023-03-27", "value": "2100-01-01", "required": "true"});
+
+    var spanValidity2 = createSpanValidity();
+
+
+    newSection.appendChild(jobLabel);
+    newSection.appendChild(job);
+    newSection.appendChild(spanValidity0);
+
+    newSection.appendChild(startYearJobLabel);
+    newSection.appendChild(startYearJob);
+    newSection.appendChild(spanValidity1);
+
+    newSection.appendChild(endYearJobLabel);
+    newSection.appendChild(endYearJob);
+    newSection.appendChild(spanValidity2);
+
+    place.parentNode.insertBefore(newSection, place.nextSibling);
+});
+
+window.onload = document.getElementById("deletejob").addEventListener("click", function() {
+        console.log("You clicked deleteJob");
+        if(document.getElementById("experience" + addExperienceCount) == null){
+            console.log("all experience records deleted");
+            return;
+        }
+        var deleteSection = document.getElementById("experience" + addExperienceCount);
+        console.log("experience"+addExperienceCount+" deleted")
+        deleteSection.remove();
+        if(addExperienceCount >= 0 ){
+            addExperienceCount -=1;
+        };
 });
