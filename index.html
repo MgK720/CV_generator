@@ -23,9 +23,15 @@
                 <span class="validity"></span>
             </section>
             <section id="contact">
-                <label for="myihoto">Choose your image:</label>
+                <label for="myimage">Choose your image:</label>
                 <!---TODO server side validation --->
                 <input type="file" name="myimage" id="myimage" accept=".png, .jpg, .jpeg" />
+                <span class="validity"></span>
+                <label for="myemail">Email:</label>
+                <input type="email" id="myemail" name="myemail" required>
+                <span class="validity"></span>
+                <label for="myphone-number">Phone:</label>
+                <input type="tel" id="myphone-number" name="myphone-number" pattern="[0-9]{9}" required>
                 <span class="validity"></span>
             </section>
             <section id="education0" class="education">
