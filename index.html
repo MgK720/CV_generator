@@ -22,6 +22,12 @@
                 <input type="text" name="lastname" id="lastname" minlength="1" maxlength="30" required>
                 <span class="validity"></span>
             </section>
+            <section id="contact">
+                <label for="myihoto">Choose your image:</label>
+                <!---TODO server side validation --->
+                <input type="file" name="myimage" id="myimage" accept=".png, .jpg, .jpeg" />
+                <span class="validity"></span>
+            </section>
             <section id="education0" class="education">
                 <label for="school0">Knowledge:</label>
                 <input type="text" name="school0" id="school0" class="school" minlength="1" maxlength="45" required>

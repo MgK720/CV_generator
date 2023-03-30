@@ -7,7 +7,7 @@ body{
     font-family: mainFontMedium;
 }
 
-.education, .experience{
+.education, .experience, .contact{
   display:flex;
 }
 input + span {
