@@ -148,7 +148,7 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
     startYearLabel.textContent = "From:";
 
     var startYear = document.createElement("input");
-    //TODO walidacja dat (czy data zakonczenia jest pozniej niz data rozpoczecia)
+    //TODO walidacja dat (czy data zakonczenia jest pozniej niz data rozpoczecia) "max": today()
     setAttributes(startYear, {"type": "date", "name": "startyear" + addEducationCount, "id": "startyear" + addEducationCount, "min": "1900-01-01", "max": "2023-03-27", "value": "2100-01-01", "required": "true"});
 
     var spanValidity3 = createSpanValidity();
