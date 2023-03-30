@@ -30,13 +30,13 @@ var addEducationCount = 0;
 //Naprawic zeby dzialalo zawsze
 window.onload = document.getElementById("addEducation").addEventListener("click", function() {
     if(addEducationCount == EDU_LIMIT){
+        console.log("Too much education records (LIMIT IS " + EDU_LIMIT + " )");
         return;
     }
     console.log("You clicked addEducation");
-
     var place = document.getElementById("education" + addEducationCount);
     addEducationCount = addEducationCount +1;
-
+    console.log("education"+addEducationCount+" added")
 
     var newSection = document.createElement("section")
     newSection.setAttribute("id", "education" + addEducationCount);
@@ -179,7 +179,10 @@ window.onload = document.getElementById("deleteEducation").addEventListener("cli
     console.log("You clicked deleteEducation");
     if(addEducationCount != 0 ){
         var deleteSection = document.getElementById("education" + addEducationCount);
+        console.log("education"+addEducationCount+" deleted")
         addEducationCount -=1;
         deleteSection.remove();
+    }else{
+        console.log("all additional education records deleted");
     }
 });
