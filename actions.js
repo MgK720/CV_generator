@@ -31,7 +31,6 @@ function createSpanValidity(){
 }
 
 
-//Naprawic zeby dzialalo zawsze
 window.onload = document.getElementById("addEducation").addEventListener("click", function() {
     if(addEducationCount == EDU_LIMIT){
         console.log("Too much education records (LIMIT IS " + EDU_LIMIT + " )");
@@ -47,7 +46,6 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
 
     console.log("education"+addEducationCount+" added");
 
-    //Tutaj musi sie zrobic caly form education
     var knowledgeLabel = document.createElement("label");
     setAttributes(knowledgeLabel, {"for": "school" + addEducationCount})
     knowledgeLabel.textContent = "Knowledge:";
@@ -209,18 +207,6 @@ window.onload = document.getElementById("addjob").addEventListener("click", func
     newSection.setAttribute("id", "experience" + addExperienceCount);
     newSection.setAttribute("class", "experience");
     console.log("experience"+addExperienceCount+" added")
-
-    //<label for="job0">Job:</label>
-    //<input type="text" name="job0" id="job0" minlength="1" maxlength="40" required>
-    //<span class="validity"></span>
-    //<label for="startyear-job0">From:</label>
-    //<input type="date" name="startyear-job0" id="startyear-job0" min="1900-01-01" max="2023-03-27" value="2100-01-01" required>
-    //<span class="validity"></span>
-    //<label for="endyear-job0">to:</label>
-    //<input type="date" name="endyear-job0" id="endyear-job0" min="1900-01-01" max="2023-03-27" value="2100-01-01" required>
-    //<span class="validity"></span>
-    //<input type="button" id="addjob" value="ADDJob">
-    //<input type="button" id="deletejob" value="DELJob">
 
     var jobLabel = document.createElement("label");
     setAttributes(jobLabel,{"for": "job"+addExperienceCount});
