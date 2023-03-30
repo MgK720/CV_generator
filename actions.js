@@ -1,3 +1,5 @@
+var EDU_LIMIT = 5;
+
 function setAttributes(attrib, values){
     for(var key in values){
         attrib.setAttribute(key,values[key]);
@@ -27,7 +29,10 @@ function createSpanValidity(){
 var addEducationCount = 0;
 //Naprawic zeby dzialalo zawsze
 window.onload = document.getElementById("addEducation").addEventListener("click", function() {
-    console.log("You clicked me");
+    if(addEducationCount == EDU_LIMIT){
+        return;
+    }
+    console.log("You clicked addEducation");
 
     var place = document.getElementById("education" + addEducationCount);
     addEducationCount = addEducationCount +1;
@@ -167,4 +172,14 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
     //document.getElementById("myform").appendChild(newSection);
     place.parentNode.insertBefore(newSection, place.nextSibling);
 
+});
+
+
+window.onload = document.getElementById("deleteEducation").addEventListener("click", function() {
+    console.log("You clicked deleteEducation");
+    if(addEducationCount != 0 ){
+        var deleteSection = document.getElementById("education" + addEducationCount);
+        addEducationCount -=1;
+        deleteSection.remove();
+    }
 });
