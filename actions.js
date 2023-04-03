@@ -45,15 +45,15 @@ function maxDate(){
         myExpDateInputTo.setAttribute("value", today());
 
 }
-/* TODO funkcja sprawdzajaca czy from jest przed to */
+/* TODO funkcja sprawdzajaca czy from jest przed to jak ustawie from - > ustaw To.min=from.actualValue*/
 function isStartEduBeforeEnd(){
-    for(var i; i<=addEducationCount; i++){
+    for(var i = 0; i<=addEducationCount; i+=1){
         var myStartDate = document.getElementById("startyear" + i);
         var myEndDate = document.getElementById("endyear" + i);
         var mySubmit = document.getElementById("submit");
         if(myEndDate < myStartDate){
             console.log("Startyear must be before Endyear");
-            mySubmit.disabled = true;
+            mySubmit.style.display = "none";
             return 0;
         }else{
             mySubmit.disabled = false;
@@ -326,4 +326,11 @@ window.onload = document.getElementById("deletejob").addEventListener("click", f
         if(addExperienceCount >= 0 ){
             addExperienceCount -=1;
         };
+});
+
+window.onload = document.getElementById("validationCheckbox").addEventListener("click", function() {
+    var checkBox = document.getElementById("validationCheckbox");
+    if (checkBox.checked == true){
+        isStartEduBeforeEnd();
+    }
 });
