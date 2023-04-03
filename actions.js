@@ -68,11 +68,12 @@ function schoolTypeShow(addEducationCount) {
         var knowledge = document.getElementById("knowledge-type" + x).value;
         if (knowledge == "school") {
             //inline-block
-            document.getElementById("school-type" + x).setAttribute("required", "true");
+            document.getElementById("school-type" + x).required = true
             document.getElementById("school-type-select" + x).style.display = "flex";
         }
         else{
-            document.getElementById("school-type" + x).setAttribute("required", "false");
+            document.getElementById("school-type" + x).required = false;
+            document.getElementById("school-type" + x).value = "";
             document.getElementById("school-type-select" + x).style.display = "none";
             
     }
@@ -106,7 +107,8 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
 
     var knowledge = document.createElement("INPUT");
     setAttributes(knowledge, {"type": "text", "name": "school" + addEducationCount, "id" : "school" + addEducationCount, 
-    "class" : "school", "minlength" : "1", "maxlength" : "45", "required": "true"});
+    "class" : "school", "minlength" : "1", "maxlength" : "45"});
+    knowledge.required = true;
 
     var spanValidity0 = createSpanValidity();
 
@@ -117,7 +119,8 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
     knowledgeTypeLabel.textContent = "Type:";
 
     var knowledgeType = document.createElement("select");
-    setAttributes(knowledgeType, {"name": "knowledge-type" + addEducationCount, "id": "knowledge-type" + addEducationCount, "onchange": "schoolTypeShow(addEducationCount)", "required": "true"});
+    setAttributes(knowledgeType, {"name": "knowledge-type" + addEducationCount, "id": "knowledge-type" + addEducationCount, "onchange": "schoolTypeShow(addEducationCount)"});
+    knowledgeType.required = true;
 
     var blankType0 = document.createElement("option");
     setAttributes(blankType0,{"value": ""});
@@ -147,7 +150,8 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
     schoolTypeLabel.textContent = "SchoolType:";
 
     var schoolType = document.createElement("select")
-    setAttributes(schoolType, {"name": "school-type" + addEducationCount, "id": "school-type" + addEducationCount, "required": "true"});
+    setAttributes(schoolType, {"name": "school-type" + addEducationCount, "id": "school-type" + addEducationCount});
+    schoolType.required = true;
 
 
     var blankType1 = document.createElement("option");
@@ -185,7 +189,8 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
 
     var startYear = document.createElement("input");
     //TODO walidacja dat (czy data zakonczenia jest pozniej niz data rozpoczecia) "max": today()
-    setAttributes(startYear, {"type": "date", "name": "startyear" + addEducationCount, "id": "startyear" + addEducationCount, "min": "1900-01-01", "max": today(), "value": today(), "required": "true"});
+    setAttributes(startYear, {"type": "date", "name": "startyear" + addEducationCount, "id": "startyear" + addEducationCount, "min": "1900-01-01", "max": today(), "value": today()});
+    startYear.required = true;
 
     var spanValidity3 = createSpanValidity();
 
@@ -194,7 +199,8 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
     endYearLabel.textContent = "To:";
 
     var endYear = document.createElement("input");
-    setAttributes(endYear, {"type": "date", "name": "endyear" + addEducationCount, "id": "endyear" + addEducationCount, "min": "1900-01-01", "max": today(), "value": today(), "required": "true"});
+    setAttributes(endYear, {"type": "date", "name": "endyear" + addEducationCount, "id": "endyear" + addEducationCount, "min": "1900-01-01", "max": today(), "value": today()});
+    endYear.required = true;
 
     var spanValidity4 = createSpanValidity();
 
@@ -267,7 +273,8 @@ window.onload = document.getElementById("addjob").addEventListener("click", func
     jobLabel.textContent = "Job:";
 
     var job = document.createElement("input");
-    setAttributes(job, {"type": "text", "name": "job" + addExperienceCount, "id": "job" + addExperienceCount, "minlength": "1", "maxlength": "40", "required": "true"});
+    setAttributes(job, {"type": "text", "name": "job" + addExperienceCount, "id": "job" + addExperienceCount, "minlength": "1", "maxlength": "40"});
+    job.required = true;
 
     var spanValidity0 = createSpanValidity();
 
@@ -276,7 +283,8 @@ window.onload = document.getElementById("addjob").addEventListener("click", func
     startYearJobLabel.textContent = "From:";
 
     var startYearJob = document.createElement("input");
-    setAttributes(startYearJob, {"type": "date", "name": "startyear-job" + addExperienceCount, "id": "startyear-job" + addExperienceCount, "min": "1900-01-01", "max": today(), "value": today(), "required": "true"});
+    setAttributes(startYearJob, {"type": "date", "name": "startyear-job" + addExperienceCount, "id": "startyear-job" + addExperienceCount, "min": "1900-01-01", "max": today(), "value": today()});
+    startYearJob.required = true;
 
     var spanValidity1 = createSpanValidity();
 
@@ -285,7 +293,8 @@ window.onload = document.getElementById("addjob").addEventListener("click", func
     endYearJobLabel.textContent = "To:";
 
     var endYearJob = document.createElement("input");
-    setAttributes(endYearJob, {"type": "date", "name": "endyear-job" + addExperienceCount, "id": "endyear-job" + addExperienceCount, "min": "1900-01-01", "max": today(), "value": today(), "required": "true"});
+    setAttributes(endYearJob, {"type": "date", "name": "endyear-job" + addExperienceCount, "id": "endyear-job" + addExperienceCount, "min": "1900-01-01", "max": today(), "value": today()});
+    endYearJob.required = true;
 
     var spanValidity2 = createSpanValidity();
 
