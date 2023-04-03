@@ -46,6 +46,7 @@ function maxDate(){
 
 }
 /* TODO funkcja sprawdzajaca czy from jest przed to jak ustawie from - > ustaw To.min=from.actualValue*/
+/* get id from clicked element -> odseparowanie podstawy od cyfry - > zastosowanie do To jako minvalue */
 function isStartEduBeforeEnd(){
     for(var i = 0; i<=addEducationCount; i+=1){
         var myStartDate = document.getElementById("startyear" + i);
@@ -59,6 +60,10 @@ function isStartEduBeforeEnd(){
             mySubmit.disabled = false;
         }
     }
+}
+
+function StartDateBeforeEnd(){
+;
 }
 
 
@@ -327,6 +332,7 @@ window.onload = document.getElementById("deletejob").addEventListener("click", f
             addExperienceCount -=1;
         };
 });
+
 
 window.onload = document.getElementById("validationCheckbox").addEventListener("click", function() {
     var checkBox = document.getElementById("validationCheckbox");
