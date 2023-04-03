@@ -1,16 +1,13 @@
 var EDU_LIMIT = 5;
 var JOB_LIMIT = 10;
 
-const CURRENT_DATE = new Date();
-
-let day = date.getDate();
-let month = date.getMonth();
-let year = date.getFullYear();
-
-let currentDate = `${year}-${month}-${day}`;
-
 var addEducationCount = 0;
 var addExperienceCount = 0;
+
+window.addEventListener("load", (event) => {
+    maxDate();
+  });
+
 
 function setAttributes(attrib, values){
     for(var key in values){
@@ -21,24 +18,63 @@ function setAttributes(attrib, values){
 function today(){
     const date = new Date();
     let day = date.getDate();
-    let month = date.getMonth();
+    let month = date.getMonth()+1;
     let year = date.getFullYear();
 
-    let currentDate = `${year}-${month}-${day}`;
-
+    let currentDate = `${year}-0${month}-0${day}`;
+    console.log(currentDate);
     return currentDate;
 
 }
+function maxDate(){
+        var myEduDateInputFrom = document.getElementById("startyear0");
+        var myEduDateInputTo = document.getElementById("endyear0");
+        var myExpDateInputFrom = document.getElementById("startyear-job0");
+        var myExpDateInputTo = document.getElementById("endyear-job0");
+
+
+        myEduDateInputFrom.setAttribute("max",today());
+        myEduDateInputFrom.setAttribute("value", today());
+
+        myEduDateInputTo.setAttribute("max",today());
+        myEduDateInputTo.setAttribute("value", today());
+
+        myExpDateInputFrom.setAttribute("max",today());
+        myExpDateInputFrom.setAttribute("value", today());
+
+        myExpDateInputTo.setAttribute("max",today());
+        myExpDateInputTo.setAttribute("value", today());
+
+}
+
+function isStartEduBeforeEnd(){
+    for(var i; i<=addEducationCount; i++){
+        var myStartDate = document.getElementById("startyear" + i);
+        var myEndDate = document.getElementById("endyear" + i);
+        var mySubmit = document.getElementById("submit");
+        if(myEndDate < myStartDate){
+            console.log("Startyear must be before Endyear");
+            return 0;
+        }else{
+            mySubmit.disabled = false;
+        }
+    }
+}
+
+
 function schoolTypeShow(addEducationCount) {
     console.log(addEducationCount);
     for(var x = 0; x<=addEducationCount;x+=1){
         var knowledge = document.getElementById("knowledge-type" + x).value;
         if (knowledge == "school") {
             //inline-block
+            document.getElementById("school-type" + x).setAttribute("required", "true");
             document.getElementById("school-type-select" + x).style.display = "flex";
         }
         else{
+            document.getElementById("school-type" + x).setAttribute("required", "false");
             document.getElementById("school-type-select" + x).style.display = "none";
+            
     }
 }
 };
@@ -149,7 +185,7 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
 
     var startYear = document.createElement("input");
     //TODO walidacja dat (czy data zakonczenia jest pozniej niz data rozpoczecia) "max": today()
-    setAttributes(startYear, {"type": "date", "name": "startyear" + addEducationCount, "id": "startyear" + addEducationCount, "min": "1900-01-01", "max": "2023-03-27", "value": "2100-01-01", "required": "true"});
+    setAttributes(startYear, {"type": "date", "name": "startyear" + addEducationCount, "id": "startyear" + addEducationCount, "min": "1900-01-01", "max": today(), "value": today(), "required": "true"});
 
     var spanValidity3 = createSpanValidity();
 
@@ -158,7 +194,7 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
     endYearLabel.textContent = "To:";
 
     var endYear = document.createElement("input");
-    setAttributes(endYear, {"type": "date", "name": "endyear" + addEducationCount, "id": "endyear" + addEducationCount, "min": "1900-01-01", "max": "2023-03-27", "value": "2100-01-01", "required": "true"});
+    setAttributes(endYear, {"type": "date", "name": "endyear" + addEducationCount, "id": "endyear" + addEducationCount, "min": "1900-01-01", "max": today(), "value": today(), "required": "true"});
 
     var spanValidity4 = createSpanValidity();
 
@@ -240,7 +276,7 @@ window.onload = document.getElementById("addjob").addEventListener("click", func
     startYearJobLabel.textContent = "From:";
 
     var startYearJob = document.createElement("input");
-    setAttributes(startYearJob, {"type": "date", "name": "startyear-job" + addExperienceCount, "id": "startyear-job" + addExperienceCount, "min": "1900-01-01", "max": "2023-03-27", "value": "2100-01-01", "required": "true"});
+    setAttributes(startYearJob, {"type": "date", "name": "startyear-job" + addExperienceCount, "id": "startyear-job" + addExperienceCount, "min": "1900-01-01", "max": today(), "value": today(), "required": "true"});
 
     var spanValidity1 = createSpanValidity();
 
@@ -249,7 +285,7 @@ window.onload = document.getElementById("addjob").addEventListener("click", func
     endYearJobLabel.textContent = "To:";
 
     var endYearJob = document.createElement("input");
-    setAttributes(endYearJob, {"type": "date", "name": "endyear-job" + addExperienceCount, "id": "endyear-job" + addExperienceCount, "min": "1900-01-01", "max": "2023-03-27", "value": "2100-01-01", "required": "true"});
+    setAttributes(endYearJob, {"type": "date", "name": "endyear-job" + addExperienceCount, "id": "endyear-job" + addExperienceCount, "min": "1900-01-01", "max": today(), "value": today(), "required": "true"});
 
     var spanValidity2 = createSpanValidity();
 
