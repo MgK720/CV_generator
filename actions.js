@@ -8,7 +8,6 @@ window.addEventListener("load", (event) => {
     maxDate();
   });
 
-
 function setAttributes(attrib, values){
     for(var key in values){
         attrib.setAttribute(key,values[key]);
@@ -46,7 +45,7 @@ function maxDate(){
         myExpDateInputTo.setAttribute("value", today());
 
 }
-
+/* TODO funkcja sprawdzajaca czy from jest przed to */
 function isStartEduBeforeEnd(){
     for(var i; i<=addEducationCount; i++){
         var myStartDate = document.getElementById("startyear" + i);
@@ -54,6 +53,7 @@ function isStartEduBeforeEnd(){
         var mySubmit = document.getElementById("submit");
         if(myEndDate < myStartDate){
             console.log("Startyear must be before Endyear");
+            mySubmit.disabled = true;
             return 0;
         }else{
             mySubmit.disabled = false;
@@ -159,7 +159,7 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
     blankType1.textContent = "--Choose an option--";
 
     var firstSchoolType = document.createElement("option");
-    setAttributes(firstSchoolType, {"value": "school"});
+    setAttributes(firstSchoolType, {"value": "primary"});
     firstSchoolType.textContent = "Primary";
 
     var secondSchoolType = document.createElement("option");
