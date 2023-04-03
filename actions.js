@@ -1,5 +1,5 @@
 var EDU_LIMIT = 5;
-var JOB_LIMIT = 10;
+var JOB_LIMIT = 9;
 
 var addEducationCount = 0;
 var addExperienceCount = 0;
@@ -46,7 +46,8 @@ function maxDate(){
 
 }
 /* TODO funkcja sprawdzajaca czy from jest przed to jak ustawie from - > ustaw To.min=from.actualValue*/
-/* get id from clicked element -> odseparowanie podstawy od cyfry - > zastosowanie do To jako minvalue */
+/* get id from clicked element -> odseparowanie podstawy od cyfry - > zastosowanie do input[To] jako minvalue */
+/* get ostatnia cyfra from string ID */
 function isStartEduBeforeEnd(){
     for(var i = 0; i<=addEducationCount; i+=1){
         var myStartDate = document.getElementById("startyear" + i);
