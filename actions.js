@@ -47,8 +47,7 @@ function maxDate(){
 }
 
 /* jquery */
-$( document ).on( "change", "input",function(){
-    $("input[type='date']").on('click',function(event) {
+$( document ).on( "click", "input",function(event){
         var idOfClickedElement = event.target.id;
         if(idOfClickedElement.includes("endyear")){
             return;
@@ -75,7 +74,6 @@ $( document ).on( "change", "input",function(){
             $("input[name='"+ idEndDate + "']").attr("min",$(this).val());
         })
     })
-});
 
 
 function schoolTypeShow(addEducationCount) {
