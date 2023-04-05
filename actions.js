@@ -49,11 +49,23 @@ function maxDate(){
 /* jquery */
 $(document).ready(function() {
     $("input[type='date']").click(function(event) {
-        console.log(event.target.id);
         var idOfClickedElement = event.target.id;
+        if(idOfClickedElement.includes("endyear")){
+            return;
+        }
         console.log(idOfClickedElement);
         //var idNumberOfClickedElement = idOfClickedElement.charAt(idOfClickedElement.length - 1);
         //console.log("my number = " + idNumberOfClickedElement);
+        /*$( "select" )
+                IMPORTANT
+            .change(function () {
+                var str = "";
+                $( "select option:selected" ).each(function() {
+                str += $( this ).text() + " ";
+                });
+                $( "div" ).text( str );
+            })
+            .change();*/
         var idEndDate = idOfClickedElement.replace("start", "end");
         console.log("my replaced id = " + idEndDate);
 
