@@ -45,27 +45,25 @@ function maxDate(){
         myExpDateInputTo.setAttribute("value", today());
 
 }
-/* TODO funkcja sprawdzajaca czy from jest przed to jak ustawie from - > ustaw To.min=from.actualValue*/
-/* get id from clicked element -> odseparowanie podstawy od cyfry - > zastosowanie do input[To] jako minvalue */
-/* get ostatnia cyfra from string ID */
-function isStartEduBeforeEnd(){
-    for(var i = 0; i<=addEducationCount; i+=1){
-        var myStartDate = document.getElementById("startyear" + i);
-        var myEndDate = document.getElementById("endyear" + i);
-        var mySubmit = document.getElementById("submit");
-        if(myEndDate < myStartDate){
-            console.log("Startyear must be before Endyear");
-            mySubmit.style.display = "none";
-            return 0;
-        }else{
-            mySubmit.disabled = false;
-        }
-    }
-}
 
-function StartDateBeforeEnd(){
-;
-}
+/* jquery */
+$(document).ready(function() {
+    $("input[type='date']").click(function(event) {
+        console.log(event.target.id);
+        var idOfClickedElement = event.target.id;
+        console.log(idOfClickedElement);
+        //var idNumberOfClickedElement = idOfClickedElement.charAt(idOfClickedElement.length - 1);
+        //console.log("my number = " + idNumberOfClickedElement);
+        var idEndDate = idOfClickedElement.replace("start", "end");
+        console.log("my replaced id = " + idEndDate);
+
+        //$("input[name='startyear" + idBaseOfClickedelement + "']").change(function() {
+        //    $("input[name='endyear" + idBaseOfClickedelement + "']").attr("min",$(this).val());
+        $("input[name='"+ idOfClickedElement + "']").change(function() {
+            $("input[name='"+ idEndDate + "']").attr("min",$(this).val());
+        })
+    })
+})
 
 
 function schoolTypeShow(addEducationCount) {
@@ -335,9 +333,3 @@ window.onload = document.getElementById("deletejob").addEventListener("click", f
 });
 
 
-window.onload = document.getElementById("validationCheckbox").addEventListener("click", function() {
-    var checkBox = document.getElementById("validationCheckbox");
-    if (checkBox.checked == true){
-        isStartEduBeforeEnd();
-    }
-});
