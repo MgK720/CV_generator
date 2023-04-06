@@ -47,7 +47,7 @@ function maxDate(){
 }
 
 /* jquery */
-$( document ).on( "click", "input",function(event){
+$( document ).on( "click", "input[type='date']",function(event){
         var idOfClickedElement = event.target.id;
         if(idOfClickedElement.includes("endyear")){
             return;
