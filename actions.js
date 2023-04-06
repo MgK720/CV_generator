@@ -46,30 +46,16 @@ function maxDate(){
 
 }
 
-/* jquery */
+/* jquery CLS score of 0.1 or less - > myscore: 0.00004937*/
 $( document ).on( "click", "input[type='date']",function(event){
         var idOfClickedElement = event.target.id;
         if(idOfClickedElement.includes("endyear")){
             return;
         }
         console.log(idOfClickedElement);
-        //var idNumberOfClickedElement = idOfClickedElement.charAt(idOfClickedElement.length - 1);
-        //console.log("my number = " + idNumberOfClickedElement);
-        /*$( "select" )
-                IMPORTANT
-            .change(function () {
-                var str = "";
-                $( "select option:selected" ).each(function() {
-                str += $( this ).text() + " ";
-                });
-                $( "div" ).text( str );
-            })
-            .change();*/
         var idEndDate = idOfClickedElement.replace("start", "end");
         console.log("my replaced id = " + idEndDate);
-
-        //$("input[name='startyear" + idBaseOfClickedelement + "']").change(function() {
-        //    $("input[name='endyear" + idBaseOfClickedelement + "']").attr("min",$(this).val());
+        
         $("input[name='"+ idOfClickedElement + "']").change(function() {
             $("input[name='"+ idEndDate + "']").attr("min",$(this).val());
         })
