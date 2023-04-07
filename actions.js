@@ -61,19 +61,19 @@ $( document ).on( "click", "input[type='date']",function(event){
         })
     })
 function showLogMsg(message){
-    var logElement = document.getElementById("log");
-    var logSection = document.getElementById("log-section");
-    logElement.textContent = message;
-    logSection.style.display = "inline-block";
-
+        var logElement = document.getElementById("log");
+        var logSection = document.getElementById("log-section");
+        logElement.textContent = message;
+        logSection.style.display = "inline-block";
+    
 }
-
 window.onload = document.getElementById("remove-log").addEventListener("click", function(){
     var logElement = document.getElementById("log");
     var logSection = document.getElementById("log-section");
     logElement.textContent = "";
     logSection.style.display = "none";
 });
+
 
 function schoolTypeShow(addEducationCount) {
     console.log(addEducationCount);
