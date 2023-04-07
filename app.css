@@ -6,6 +6,33 @@
 body{
     font-family: mainFontMedium;
 }
+aside{
+  display:none;
+  text-align: center;
+  position:fixed;
+  margin-left:85%;
+  color:rgba(0, 0, 0, 0.4);
+  border:1px solid rgba(0, 0, 0, 0.4);
+  max-width:10%;
+  border-radius:15%;
+}
+
+aside:hover{
+  color:rgba(0, 0, 0);
+  border:1px solid rgba(0, 0, 0);
+}
+aside button{
+  position:absolute;
+  margin-left:30%;
+  background-color: crimson;
+  border-radius:50%;
+  width:2em;
+  height:2em;
+  padding:0.3em;
+}
+aside p{
+  margin:2em;
+}
 
 .education, .experience, .contact{
   display:flex;

@@ -60,7 +60,20 @@ $( document ).on( "click", "input[type='date']",function(event){
             $("input[name='"+ idEndDate + "']").attr("min",$(this).val());
         })
     })
+function showLogMsg(message){
+    var logElement = document.getElementById("log");
+    var logSection = document.getElementById("log-section");
+    logElement.textContent = message;
+    logSection.style.display = "inline-block";
 
+}
+
+window.onload = document.getElementById("remove-log").addEventListener("click", function(){
+    var logElement = document.getElementById("log");
+    var logSection = document.getElementById("log-section");
+    logElement.textContent = "";
+    logSection.style.display = "none";
+});
 
 function schoolTypeShow(addEducationCount) {
     console.log(addEducationCount);
@@ -88,7 +101,8 @@ function createSpanValidity(){
 
 window.onload = document.getElementById("addEducation").addEventListener("click", function() {
     if(addEducationCount == EDU_LIMIT){
-        console.log("Too much education records (LIMIT IS " + EDU_LIMIT + " )");
+        console.log("Too much education records (LIMIT IS " + EDU_LIMIT  + " )");
+        showLogMsg("Too much education records");
         return;
     }
     console.log("You clicked addEducation");
@@ -247,12 +261,14 @@ window.onload = document.getElementById("deleteEducation").addEventListener("cli
         deleteSection.remove();
     }else{
         console.log("all additional education records deleted");
+        showLogMsg("all additional education records deleted");
     }
 });
 
 window.onload = document.getElementById("addjob").addEventListener("click", function() {
     if(addExperienceCount == JOB_LIMIT){
         console.log("Too much experience records (LIMIT IS " + JOB_LIMIT + " )");
+        showLogMsg("Too much job records");
         return;
     }
     console.log("You clicked addjob");
@@ -318,6 +334,7 @@ window.onload = document.getElementById("deletejob").addEventListener("click", f
         console.log("You clicked deleteJob");
         if(document.getElementById("experience" + addExperienceCount) == null){
             console.log("all experience records deleted");
+            showLogMsg("all jobs records deleted");
             return;
         }
         var deleteSection = document.getElementById("experience" + addExperienceCount);

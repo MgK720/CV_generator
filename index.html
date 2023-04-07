@@ -12,6 +12,11 @@
     <header>
         <h1>CV Generator</h1>
     </header>
+
+    <aside id="log-section">
+        <button id="remove-log">X</button>
+        <p id="log">My log</p>
+    </aside>
     <main>
         <form action="done.html">
         <section id="myform">
@@ -31,7 +36,11 @@
                 <label for="myemail">Email:</label>
                 <input type="email" id="myemail" name="myemail" required>
                 <span class="validity"></span>
-                <label for="myphone-number">Phone:</label>
+                <label for="calling-code">Calling code:</label>
+                <span>+</span>
+                <input type="number" id="calling-code" name="calling-code" min="1" max="999" placeholder="+48" required>
+                <span class="validity"></span>
+                <label for="myphone-number">Phone</label>
                 <input type="tel" id="myphone-number" name="myphone-number" pattern="[0-9]{9}" required>
                 <span class="validity"></span>
             </section>
