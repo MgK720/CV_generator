@@ -60,7 +60,7 @@ h1{
 #myform > *{
   box-sizing: border-box;
   border:1px solid red;
-  padding:1em;
+  padding:0.7em;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -129,10 +129,66 @@ footer{
   text-align: center;
   margin-bottom:0.5em;
 }
-input + span {
-    padding-right: 30px;
-  }
+
+
+input[type=text],input[type=email] {
+  min-height: 40px;
+  font-size: 0.9em;
+  font-family: mainFontMedium;
+  /*border: none;*/
+}
+label{
+  font-size: 1em;
+  text-align: right;
+  padding-right: 1px;
   
+}
+#name *{
+  border:1px solid pink;
+}
+
+/*mobile device 360 - 460*/
+#name label{
+  flex:0 1.5 60px;
+  max-width: 120px;
+  min-width: 105px;
+  margin:auto;
+}
+#name input{
+  flex:1 1.5 185px;
+  min-width: 80px;
+  max-width: 400px;
+}
+#name span{
+  flex:0 1 5px; 
+  max-width: 20px;
+  margin:auto;
+}
+
+/*small mobile device*/
+@media (max-width:380px){
+  #name input{
+    flex-basis: 90px;
+  }
+  input[type=text]{
+    min-height: 30px;
+    font-size: 0.75em;
+    font-family: mainFontMedium;
+    /*border: none;*/
+  }
+  label{
+    font-size: 0.85em;
+  }
+
+}
+
+/*medium mobile device*/
+@media (min-width:480px){
+  /*rest*/
+}
+
+
+
 input:invalid + span::after {
     
     content: "✖";
@@ -147,10 +203,6 @@ input:valid + span::after {
     display:none;
     /*display:inline-block*/;
 }
-select + span {
-    padding-right: 30px;
-  }
-  
 select:invalid + span::after {
     content: "✖";
     padding-left: 5px;
