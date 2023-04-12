@@ -141,7 +141,11 @@ label{
   font-size: 1em;
   text-align: right;
   padding-right: 1px;
+  margin:auto;
   
+}
+span{
+  margin:auto;
 }
 #name *{
   border:1px solid pink;
@@ -149,20 +153,12 @@ label{
 
 /*mobile device 360 - 460*/
 #name label{
-  flex:0 1.5 60px;
-  max-width: 120px;
-  min-width: 105px;
-  margin:auto;
+  width: 105px;
 }
 #name input{
-  flex:1 1.5 185px;
+  flex:1 1 185px;
   min-width: 80px;
   max-width: 400px;
-}
-#name span{
-  flex:0 1 5px; 
-  max-width: 20px;
-  margin:auto;
 }
 
 /*small mobile device*/
