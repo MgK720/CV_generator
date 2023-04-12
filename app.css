@@ -3,6 +3,13 @@
     font-family: mainFontMedium;
     src: url(fonts/Roboto/Roboto-Medium.ttf);
 }
+#myform > *{
+  box-sizing: border-box;
+  border:1px solid red;
+  padding:1em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
 body{
     font-family: mainFontMedium;
 }
@@ -50,9 +57,17 @@ aside button{
 aside p{
   margin:2em;
 }
-
-.education, .experience, .contact{
+#myform{
   display:flex;
+  width:80%;
+  flex-direction: row;
+  flex-wrap:wrap;
+}
+.education, .experience, .contact, #experience-buttons, #education-buttons,#submit-div, #name, #contact{
+  display:flex;
+  flex-direction: column;
+  margin:3rem;
+  flex:1 1200px;
 }
 input + span {
     padding-right: 30px;
