@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="app.css">
     <title>Form</title>
 </head>
+
 <body>
     <header>
         <h1>CV Generator</h1>
@@ -19,88 +21,108 @@
     </aside>
     <main>
         <form action="done.html">
-        <section id="myform">
-            <section id="name">
-                <label for="firstname">Firstname:</label>
-                <input type="text" name="firstname" id="firstname" minlength="1" maxlength="30" required>
-                <span class="validity"></span>
-                <label for="lastname">Lastname:</label>
-                <input type="text" name="lastname" id="lastname" minlength="1" maxlength="30" required>
-                <span class="validity"></span>
-            </section>
-            <section id="contact">
-                <label for="myimage">Choose your image:</label>
-                <!---TODO server side validation --->
-                <input type="file" name="myimage" id="myimage" accept=".png, .jpg, .jpeg" />
-                <span class="validity"></span>
-                <label for="myemail">Email:</label>
-                <input type="email" id="myemail" name="myemail" required>
-                <span class="validity"></span>
-                <label for="calling-code">Calling code:</label>
-                <span>+</span>
-                <input type="number" id="calling-code" name="calling-code" min="1" max="999" placeholder="+48" required>
-                <span class="validity"></span>
-                <label for="myphone-number">Phone</label>
-                <input type="tel" id="myphone-number" name="myphone-number" pattern="[0-9]{9}" required>
-                <span class="validity"></span>
-            </section>
-            <section id="education0" class="education">
-                <label for="school0">Knowledge:</label>
-                <input type="text" name="school0" id="school0" class="school" minlength="1" maxlength="45" required>
-                <span class="validity"></span>
-                <label for="knowledge-type0">Type: </label>
-                <select name="knowledge-type0" id="knowledge-type0" onchange="schoolTypeShow(addEducationCount)" required>
-                    <option value="">--Choose an option--</option>
-                    <option value="school">School</option>
-                    <option value="course">Course</option>
-                </select>
-                <span class="validity"></span>
-                <div id="school-type-select0" class="school-type-select">
-                    <label for="school-type0">SchoolType:</label>
-                    <select name="school-type0" id="school-type0">
+            <section id="myform">
+                <section id="name">
+                    <ul>
+                        <li>
+                            <label for="firstname">Firstname:</label>
+                            <input type="text" name="firstname" id="firstname" minlength="1" maxlength="30" required>
+                            <span class="validity"></span>
+                        </li>
+                        <li>
+                            <label for="lastname">Lastname:</label>
+                            <input type="text" name="lastname" id="lastname" minlength="1" maxlength="30" required>
+                            <span class="validity"></span>
+                        </li>
+                    </ul>
+                </section>
+                <section id="contact">
+                    <ul>
+                        <li>
+                            <label for="myimage">Your image:</label>
+                            <!---TODO server side validation --->
+                            <input type="file" name="myimage" id="myimage" accept=".png, .jpg, .jpeg" />
+                            <span class="validity"></span>
+                        </li>
+                        <li>
+                            <label for="myemail">Email:</label>
+                            <input type="email" id="myemail" name="myemail" required>
+                            <span class="validity"></span>
+                        </li>
+                        <li>
+                            <label for="calling-code">Calling code:</label>
+                            <span>+</span>
+                            <input type="number" id="calling-code" name="calling-code" min="1" max="999"
+                                placeholder="48" required>
+                            <span class="validity"></span>
+                            <label for="myphone-number">Phone</label>
+                            <input type="tel" id="myphone-number" name="myphone-number" pattern="[0-9]{9}" required>
+                            <span class="validity"></span>
+                        </li>
+                    </ul>
+                </section>
+                <section id="education0" class="education">
+                    <label for="school0">Knowledge:</label>
+                    <input type="text" name="school0" id="school0" class="school" minlength="1" maxlength="45" required>
+                    <span class="validity"></span>
+                    <label for="knowledge-type0">Type: </label>
+                    <select name="knowledge-type0" id="knowledge-type0" onchange="schoolTypeShow(addEducationCount)"
+                        required>
                         <option value="">--Choose an option--</option>
-                        <option value="primary">Primary</option>
-                        <option value="mid-school">MidSchool</option>
-                        <option value="high-school">HighSchool</option>
+                        <option value="school">School</option>
+                        <option value="course">Course</option>
                     </select>
                     <span class="validity"></span>
-                </div>
-                <label for="startyear0">From:</label>
-                <input type="date" name="startyear0" id="startyear0" min="1900-01-01" value="2100-01-01" required>
-                <span class="validity"></span>
-                <label for="endyear0">To:</label>
-                <input type="date" name="endyear0" id="endyear0" min="1900-01-01" max="2023-03-27" value="2100-01-01" required>
-                <span class="validity"></span>
-                <label for="education-description0">Description:</label>
-                <input type="text" name="education-description0" id="education-description0" placeholder="---Write something---">
-            </section>
-            <div id="education-buttons" class="education-buttons">
-                <input type="button" id="addEducation" value="ADD">
-                <input type="button" id="deleteEducation" value="DEL">
-            </div>
-            <section id="experience0" class="experience">
-                <label for="job0">Job:</label>
-                <input type="text" name="job0" id="job0" minlength="1" maxlength="40" required>
-                <span class="validity"></span>
-                <label for="startyear-job0">From:</label>
-                <input type="date" name="startyear-job0" id="startyear-job0" min="1900-01-01" max="2023-03-27" value="2100-01-01" required>
-                <span class="validity"></span>
-                <label for="endyear-job0">To:</label>
-                <input type="date" name="endyear-job0" id="endyear-job0" min="1900-01-01" max="2023-03-27" value="2100-01-01" required>
-                <span class="validity"></span>
-            </section>
-            <div id="experience-buttons" class="experience-buttons">
-                <input type="button" id="addjob" value="ADDJob">
-                <input type="button" id="deletejob" value="DELJob">
-            </div>
-            <!-- TODO Umiejetnosci nazwa + range; Linki do portali (input url) display as: "xxx",  -->
-            <section id="NEXT"></section>
-            <section id="submit-div">
-                <label for="validationCheckbox">DONE</label>
-                <input type="checkbox" id="validationCheckbox" name="validationCheckbox" required>
-                <input type="submit" id="submit" value="SUBMIT">
+                    <div id="school-type-select0" class="school-type-select">
+                        <label for="school-type0">SchoolType:</label>
+                        <select name="school-type0" id="school-type0">
+                            <option value="">--Choose an option--</option>
+                            <option value="primary">Primary</option>
+                            <option value="mid-school">MidSchool</option>
+                            <option value="high-school">HighSchool</option>
+                        </select>
+                        <span class="validity"></span>
+                    </div>
+                    <label for="startyear0">From:</label>
+                    <input type="date" name="startyear0" id="startyear0" min="1900-01-01" value="2100-01-01" required>
+                    <span class="validity"></span>
+                    <label for="endyear0">To:</label>
+                    <input type="date" name="endyear0" id="endyear0" min="1900-01-01" max="2023-03-27"
+                        value="2100-01-01" required>
+                    <span class="validity"></span>
+                    <label for="education-description0">Description:</label>
+                    <input type="text" name="education-description0" id="education-description0"
+                        placeholder="---Write something---">
                 </section>
-        </section>
+                <div id="education-buttons" class="education-buttons">
+                    <input type="button" id="addEducation" value="ADD">
+                    <input type="button" id="deleteEducation" value="DEL">
+                </div>
+                <section id="experience0" class="experience">
+                    <label for="job0">Job:</label>
+                    <input type="text" name="job0" id="job0" minlength="1" maxlength="40" required>
+                    <span class="validity"></span>
+                    <label for="startyear-job0">From:</label>
+                    <input type="date" name="startyear-job0" id="startyear-job0" min="1900-01-01" max="2023-03-27"
+                        value="2100-01-01" required>
+                    <span class="validity"></span>
+                    <label for="endyear-job0">To:</label>
+                    <input type="date" name="endyear-job0" id="endyear-job0" min="1900-01-01" max="2023-03-27"
+                        value="2100-01-01" required>
+                    <span class="validity"></span>
+                </section>
+                <div id="experience-buttons" class="experience-buttons">
+                    <input type="button" id="addjob" value="ADDJob">
+                    <input type="button" id="deletejob" value="DELJob">
+                </div>
+                <!-- TODO Umiejetnosci nazwa + range; Linki do portali (input url) display as: "xxx",  -->
+                <section id="NEXT"></section>
+                <section id="submit-div">
+                    <label for="validationCheckbox">DONE</label>
+                    <input type="checkbox" id="validationCheckbox" name="validationCheckbox" required>
+                    <input type="submit" id="submit" value="SUBMIT">
+                </section>
+            </section>
         </form>
     </main>
     <footer>
@@ -109,4 +131,5 @@
     <script src="actions.js"></script>
 
 </body>
+
 </html>
