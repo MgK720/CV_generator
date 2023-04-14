@@ -218,11 +218,8 @@ label[for=myphone-number]{
   max-width: 60px;
 }
 @media (max-width:500px){
-  #name{
+  #name, #contact{
     width:100%;
-  }
-  #contact{
-    width: 100%;
   }
 }
 @media (max-width:435px){
