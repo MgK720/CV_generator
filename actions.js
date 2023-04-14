@@ -273,7 +273,7 @@ window.onload = document.getElementById("addjob").addEventListener("click", func
     }
     console.log("You clicked addjob");
     if(document.getElementById("experience" + addExperienceCount) == null){
-        var place = document.getElementById("education" + addEducationCount);
+        var place = document.getElementById("education-buttons");
     }else{
         var place = document.getElementById("experience" + addExperienceCount);
     }

@@ -141,22 +141,17 @@ footer{
 }
 
 
-input[type=text],input[type=email] {
+input[type=text],input[type=email],input[type=tel],input[type=email] {
   min-height: 40px;
   font-size: 0.9em;
   font-family: mainFontMedium;
   /*border: none;*/
 }
-input[type=file]{
-  margin:auto;
-  max-width: 200px;
-}
 label{
   font-size: 1em;
   text-align: right;
   padding-right: 1px;
-  margin:auto;
-  
+  margin:auto; 
 }
 span{
   margin:auto;
@@ -184,8 +179,57 @@ span{
 #name ul li input{
   flex:1;
 }
+#contact *{
+  border:1px solid pink;
+}
+#contact li{
+  display:flex;
+}
+#contact ul{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin:0.5rem;
+  flex:1 1200px;
+  max-width: 700px;
+}
+#contact ul li{
+  flex:1 1 200px;
+}
+#contact ul li label{
+  width:120px;
+}
+#contact ul li input{
+  flex-shrink: 1;
+  flex:1;
+}
+label[for=myemail]{
+  max-width:60px;
+}
+label[for=calling-code]{
+  max-width: 70px;
+}
+#calling-code{
+  max-width: 50px;
+  flex-shrink: 1;
+  flex-grow: 0;
+}
+label[for=myphone-number]{
+  max-width: 60px;
+}
+
+@media (max-width:425px){
+  #contact ul li input{
+    width:100px;
+  }
+}
+@media (max-width:350px){
+  #contact ul li input{
+    width:50px;
+  }
+}
 @media (max-width:300px){
-  input[type=text],input[type=email] {
+  input[type=text],input[type=email],input[type=number],input[type="tel"] {
     min-height: 30px;
     font-size: 0.75em;
   }
