@@ -217,18 +217,20 @@ label[for=calling-code]{
 label[for=myphone-number]{
   max-width: 60px;
 }
-
-@media (max-width:425px){
+@media (max-width:500px){
+  #name{
+    width:100%;
+  }
+  #contact{
+    width: 100%;
+  }
+}
+@media (max-width:435px){
   #contact ul li input{
     width:100px;
   }
 }
-@media (max-width:350px){
-  #contact ul li input{
-    width:50px;
-  }
-}
-@media (max-width:300px){
+@media (max-width:355px){
   input[type=text],input[type=email],input[type=number],input[type="tel"] {
     min-height: 30px;
     font-size: 0.75em;
@@ -236,6 +238,9 @@ label[for=myphone-number]{
   label{
     font-size: 0.9em;
     
+  }
+  #contact ul li input{
+    width:60px;
   }
 }
 
