@@ -179,6 +179,7 @@ span{
 #name ul li input{
   flex:1;
 }
+
 #contact *{
   border:1px solid pink;
 }
@@ -203,31 +204,41 @@ span{
   flex-shrink: 1;
   flex:1;
 }
+input[type=file]{
+  min-width: 150px;
+
+}
 label[for=myemail]{
   max-width:60px;
+}
+input[id=myemail]{
+  min-width: 210px;
 }
 label[for=calling-code]{
   max-width: 70px;
 }
-#calling-code{
+input[id=calling-code]{
   max-width: 50px;
-  flex-shrink: 1;
-  flex-grow: 0;
 }
 label[for=myphone-number]{
   max-width: 60px;
+}
+input[id=calling-code]{
+  min-width: 20px;
+}
+input[type=tel]{
+  min-width: 60px;
+  max-width: 300px;
 }
 @media (max-width:500px){
   #name, #contact{
     width:100%;
   }
-}
-@media (max-width:435px){
   #contact ul li input{
-    width:100px;
+    width:100%;
   }
 }
-@media (max-width:355px){
+@media (max-width:400px){
   input[type=text],input[type=email],input[type=number],input[type="tel"] {
     min-height: 30px;
     font-size: 0.75em;
@@ -235,9 +246,6 @@ label[for=myphone-number]{
   label{
     font-size: 0.9em;
     
-  }
-  #contact ul li input{
-    width:60px;
   }
 }
 
