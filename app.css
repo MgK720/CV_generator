@@ -59,15 +59,26 @@ h1{
 
 #myform > *{
   box-sizing: border-box;
-  border:1px solid red;
+  /*border:1px solid red;*/
   padding:0.7em;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 body{
+    background-color: rgba(28, 56, 121,0.9);
+    color:#F9F5EB;
     font-family: mainFontMedium;
 }
+/*STYLE SECTION*/
+input[type=button]{
+  font-family: mainFontMedium;
+  font-size:1.5em;
+  width:50%;
+  height:50px;
+}
 
+
+/*END STYLE SECTION */
 aside{
   display:none;
   text-align: center;
@@ -121,6 +132,9 @@ aside p{
 }
 /* TODO WAZNE do przerobienia */
 .education, .experience, .contact, #experience-buttons, #education-buttons,#submit-div, #name, #contact, .skill, #skill-buttons, .hobby,.hobby-buttons,.link,.link-buttons{
+  background-color: #1C3879;
+  border-radius: 15px;
+  border:1px solid #F9F5EB;
   display:flex;
   flex-direction: row;
   justify-content: space-around;
@@ -169,7 +183,7 @@ span{
   margin:auto;
 }
 #name *{
-  border:1px solid pink;
+  /*border:1px solid pink;*/
 }
 #name li{
   display:flex;
@@ -193,7 +207,7 @@ span{
 }
 
 #contact *{
-  border:1px solid pink;
+  /*border:1px solid pink;*/
 }
 #contact li{
   display:flex;

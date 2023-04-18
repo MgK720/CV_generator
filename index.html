@@ -133,34 +133,50 @@
                 </div>
                 <!-- TODO Umiejetnosci nazwa + range; Linki do portali (input url) display as: "xxx",  -->
                 <section id="skill0" class="skill">
-                    <label for="skill-name0">Skill:</label>
-                    <input type="text" name="skill-name0" id="skill-name0" minlength="1" maxlength="25" required>
-                    <span class="validity"></span>
-                    <label for="skill-level0"></label>
-                    <input type="range" min="1" max="5" default="3" step="1" list="skill-level-value">
-                    <p id="skill-level-value">Medium</p>
+                    <ul>
+                        <li>
+                            <label for="skill-name0">Skill:</label>
+                            <input type="text" name="skill-name0" id="skill-name0" minlength="1" maxlength="25" required>
+                            <span class="validity"></span>
+                        </li>
+                        <li>
+                            <label for="skill-level0"></label>
+                            <input type="range" min="1" max="5" default="3" step="1" list="skill-level-value">
+                            <p id="skill-level-value">Medium</p>
+                        </li>
+                    </ul>
                 </section>
                 <div id="skill-buttons" class="skill-buttons">
                     <input type="button" id="addskill" value="ADDSkill">
                     <input type="button" id="deleteskill" value="DELSkill">
                 </div>
                 <section id="hobby0" class="hobby">
-                    <label for="hobby-name0">Hobby:</label>
-                    <input type="text" name="hobby-name0" id="hobby-name0" minlength="1" maxlength="25" required>
-                    <span class="validity"></span>
+                    <ul>
+                        <li>
+                            <label for="hobby-name0">Hobby:</label>
+                            <input type="text" name="hobby-name0" id="hobby-name0" minlength="1" maxlength="25" required>
+                            <span class="validity"></span>
+                        </li>
+                    </ul>
                 </section>
                 <div id="hobby-buttons" class="hobby-buttons">
                     <input type="button" id="addhobby" value="ADDHobby">
                     <input type="button" id="delhobby" value="DELHobby">
                 </div>
                 <section id="link0" class="link">
-                    <label for="link-url0">Link(URL):</label>
-                    <!--db schemat do zmiany-->
-                    <input type="url" name="link-url0" id="link-url0" placeholder="https://pl.linkedin.com/in/(profile)" pattern="https://.*" maxlength="100" required>
-                    <span class="validity"></span>
-                    <label for="link-name0">Display as:</label>
-                    <input type="text" name="link-name0" id="link-name0" placeholder="linkedin" minlength="1" maxlength="25" required>
-                    <span class="validity"></span>    
+                    <ul>
+                        <li>
+                            <label for="link-url0">Link(URL):</label>
+                            <!--db schemat do zmiany-->
+                            <input type="url" name="link-url0" id="link-url0" placeholder="https://pl.linkedin.com/in/(profile)" pattern="https://.*" maxlength="100" required>
+                            <span class="validity"></span>
+                        </li>
+                        <li>
+                            <label for="link-name0">Display as:</label>
+                            <input type="text" name="link-name0" id="link-name0" placeholder="linkedin" minlength="1" maxlength="25" required>
+                            <span class="validity"></span> 
+                        </li>
+                    </ul>   
                 </section>
                 <div id="link-buttons" class="link-buttons">
                     <input type="button" id="addlink" value="ADDLink">
@@ -168,8 +184,8 @@
                 </div>
                 <!-- <section id="NEXT"></section> -->
                 <section id="submit-div">
-                    <label for="validationCheckbox">DONE</label>
-                    <input type="checkbox" id="validationCheckbox" name="validationCheckbox" required>
+                    <!--<label for="validationCheckbox">DONE</label>
+                    <input type="checkbox" id="validationCheckbox" name="validationCheckbox" required>-->
                     <input type="submit" id="submit" value="SUBMIT">
                 </section>
             </section>
