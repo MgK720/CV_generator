@@ -119,7 +119,8 @@ aside p{
   flex-direction: row;
   flex-wrap:wrap;
 }
-.education, .experience, .contact, #experience-buttons, #education-buttons,#submit-div,#name, #contact{
+/* TODO WAZNE do przerobienia */
+.education, .experience, .contact, #experience-buttons, #education-buttons,#submit-div, #name, #contact, .skill, #skill-buttons, .hobby,.hobby-buttons,.link,.link-buttons{
   display:flex;
   flex-direction: row;
   justify-content: space-around;
@@ -141,11 +142,22 @@ footer{
 }
 
 
-input[type=text],input[type=email],input[type=tel],input[type=email] {
+input[type=text],input[type=email],input[type=tel],input[type=email], input[type=date], select{
   min-height: 40px;
   font-size: 0.9em;
   font-family: mainFontMedium;
   /*border: none;*/
+}
+select{
+  margin:0;
+  padding:0.6em;
+  text-align:center;
+}
+p[id="skill-level-value"]{
+  margin:auto;
+}
+li{
+  display:flex;
 }
 label{
   font-size: 1em;

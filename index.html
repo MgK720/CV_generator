@@ -62,37 +62,47 @@
                     </ul>
                 </section>
                 <section id="education0" class="education">
-                    <label for="school0">Knowledge:</label>
-                    <input type="text" name="school0" id="school0" class="school" minlength="1" maxlength="45" required>
-                    <span class="validity"></span>
-                    <label for="knowledge-type0">Type: </label>
-                    <select name="knowledge-type0" id="knowledge-type0" onchange="schoolTypeShow(addEducationCount)"
-                        required>
-                        <option value="">--Choose an option--</option>
-                        <option value="school">School</option>
-                        <option value="course">Course</option>
-                    </select>
-                    <span class="validity"></span>
-                    <div id="school-type-select0" class="school-type-select">
-                        <label for="school-type0">SchoolType:</label>
-                        <select name="school-type0" id="school-type0">
-                            <option value="">--Choose an option--</option>
-                            <option value="primary">Primary</option>
-                            <option value="mid-school">MidSchool</option>
-                            <option value="high-school">HighSchool</option>
-                        </select>
-                        <span class="validity"></span>
-                    </div>
-                    <label for="startyear0">From:</label>
-                    <input type="date" name="startyear0" id="startyear0" min="1900-01-01" value="2100-01-01" required>
-                    <span class="validity"></span>
-                    <label for="endyear0">To:</label>
-                    <input type="date" name="endyear0" id="endyear0" min="1900-01-01" max="2023-03-27"
-                        value="2100-01-01" required>
-                    <span class="validity"></span>
-                    <label for="education-description0">Description:</label>
-                    <input type="text" name="education-description0" id="education-description0"
-                        placeholder="---Write something---">
+                    <ul>
+                        <li>
+                            <label for="school0">Knowledge:</label>
+                            <input type="text" name="school0" id="school0" class="school" minlength="1" maxlength="45" required>
+                            <span class="validity"></span>
+                        </li>
+                        <li>
+                            <label for="knowledge-type0">Type: </label>
+                            <select name="knowledge-type0" id="knowledge-type0" onchange="schoolTypeShow(addEducationCount)"
+                                required>
+                                <option value="">--option--</option>
+                                <option value="school">School</option>
+                                <option value="course">Course</option>
+                            </select>
+                            <span class="validity"></span>
+                            <div id="school-type-select0" class="school-type-select">
+                                <label for="school-type0">SchoolType:</label>
+                                <select name="school-type0" id="school-type0">
+                                    <option value="">--option--</option>
+                                    <option value="primary">Primary</option>
+                                    <option value="mid-school">MidSchool</option>
+                                    <option value="high-school">HighSchool</option>
+                                </select>
+                                <span class="validity"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="startyear0">From:</label>
+                            <input type="date" name="startyear0" id="startyear0" min="1900-01-01" value="2100-01-01" onload="max='today()'"required>
+                            <span class="validity"></span>
+                            <label for="endyear0">To:</label>
+                            <input type="date" name="endyear0" id="endyear0" min="1900-01-01" max="2023-03-27"
+                                value="2100-01-01" required>
+                            <span class="validity"></span>
+                        </li>
+                        <li>
+                            <label for="education-description0">Description:</label>
+                            <input type="text" name="education-description0" id="education-description0"
+                                placeholder="---Write something---">
+                        </li>
+                    </ul>
                 </section>
                 <div id="education-buttons" class="education-buttons">
                     <input type="button" id="addEducation" value="ADD">
@@ -116,7 +126,41 @@
                     <input type="button" id="deletejob" value="DELJob">
                 </div>
                 <!-- TODO Umiejetnosci nazwa + range; Linki do portali (input url) display as: "xxx",  -->
-                <section id="NEXT"></section>
+                <section id="skill0" class="skill">
+                    <label for="skill-name0">Skill:</label>
+                    <input type="text" name="skill-name0" id="skill-name0" minlength="1" maxlength="25" required>
+                    <span class="validity"></span>
+                    <label for="skill-level0"></label>
+                    <input type="range" min="1" max="5" default="3" step="1" list="skill-level-value">
+                    <p id="skill-level-value">Medium</p>
+                </section>
+                <div id="skill-buttons" class="skill-buttons">
+                    <input type="button" id="addskill" value="ADDSkill">
+                    <input type="button" id="deleteskill" value="DELSkill">
+                </div>
+                <section id="hobby0" class="hobby">
+                    <label for="hobby-name0">Hobby:</label>
+                    <input type="text" name="hobby-name0" id="hobby-name0" minlength="1" maxlength="25" required>
+                    <span class="validity"></span>
+                </section>
+                <div id="hobby-buttons" class="hobby-buttons">
+                    <input type="button" id="addhobby" value="ADDHobby">
+                    <input type="button" id="delhobby" value="DELHobby">
+                </div>
+                <section id="link0" class="link">
+                    <label for="link-url0">Link(URL):</label>
+                    <!--db schemat do zmiany-->
+                    <input type="url" name="link-url0" id="link-url0" placeholder="https://pl.linkedin.com/in/(profile)" pattern="https://.*" maxlength="100" required>
+                    <span class="validity"></span>
+                    <label for="link-name0">Display as:</label>
+                    <input type="text" name="link-name0" id="link-name0" placeholder="linkedin" minlength="1" maxlength="25" required>
+                    <span class="validity"></span>    
+                </section>
+                <div id="link-buttons" class="link-buttons">
+                    <input type="button" id="addlink" value="ADDLink">
+                    <input type="button" id="dellink" value="DELLink">
+                </div>
+                <!-- <section id="NEXT"></section> -->
                 <section id="submit-div">
                     <label for="validationCheckbox">DONE</label>
                     <input type="checkbox" id="validationCheckbox" name="validationCheckbox" required>

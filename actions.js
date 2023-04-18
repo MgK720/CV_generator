@@ -20,7 +20,10 @@ function today(){
     let month = date.getMonth()+1;
     let year = date.getFullYear();
 
-    let currentDate = `${year}-0${month}-0${day}`;
+    var currentDate;
+    if(day > 9){currentDate = `${year}-0${month}-${day}`;}
+    else{currentDate = `${year}-0${month}-0${day}`;}
+
     console.log(currentDate);
     return currentDate;
 
@@ -115,6 +118,13 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
 
     console.log("education"+addEducationCount+" added");
 
+    var educationUl = document.createElement("ul");
+    var knowledgeLi = document.createElement("li");
+    var knowledgeTypeLi = document.createElement("li");
+    var knowledgeDateLi = document.createElement("li");
+    var knowledgeDescriptionLi = document.createElement("li");
+
+
     var knowledgeLabel = document.createElement("label");
     setAttributes(knowledgeLabel, {"for": "school" + addEducationCount})
     knowledgeLabel.textContent = "Knowledge:";
@@ -138,7 +148,7 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
 
     var blankType0 = document.createElement("option");
     setAttributes(blankType0,{"value": ""});
-    blankType0.textContent = "--Choose an option--";
+    blankType0.textContent = "--option--";
 
     var firstKnowledgeType = document.createElement("option");
     setAttributes(firstKnowledgeType,{"value": "school"});
@@ -170,7 +180,7 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
 
     var blankType1 = document.createElement("option");
     setAttributes(blankType1,{"value": ""});
-    blankType1.textContent = "--Choose an option--";
+    blankType1.textContent = "--option--";
 
     var firstSchoolType = document.createElement("option");
     setAttributes(firstSchoolType, {"value": "primary"});
@@ -227,24 +237,32 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
     var educationDescription = document.createElement("input");
     setAttributes(educationDescription, {"type": "text", "name": "education-description" + addEducationCount, "id": "education-description" + addEducationCount, "placeholder": "---Write something---"});
 
+    knowledgeLi.appendChild(knowledgeLabel);
+    knowledgeLi.appendChild(knowledge);
+    knowledgeLi.appendChild(spanValidity0);
+
+    knowledgeTypeLi.appendChild(knowledgeTypeLabel);
+    knowledgeTypeLi.appendChild(knowledgeType);
+    knowledgeTypeLi.appendChild(spanValidity1);
+    knowledgeTypeLi.appendChild(divForSchoolTypeSelect);
+
+    knowledgeDateLi.appendChild(startYearLabel);
+    knowledgeDateLi.appendChild(startYear);
+    knowledgeDateLi.appendChild(spanValidity3);
+    knowledgeDateLi.appendChild(endYearLabel);
+    knowledgeDateLi.appendChild(endYear);
+    knowledgeDateLi.appendChild(spanValidity4);    
+
+    knowledgeDescriptionLi.appendChild(educationDescriptionLabel);
+    knowledgeDescriptionLi.appendChild(educationDescription);
 
 
+    educationUl.appendChild(knowledgeLi);
+    educationUl.appendChild(knowledgeTypeLi);
+    educationUl.appendChild(knowledgeDateLi);
+    educationUl.appendChild(knowledgeDescriptionLi);
 
-    newSection.appendChild(knowledgeLabel);
-    newSection.appendChild(knowledge);
-    newSection.appendChild(spanValidity0);
-    newSection.appendChild(knowledgeTypeLabel);
-    newSection.appendChild(knowledgeType);
-    newSection.appendChild(spanValidity1);
-    newSection.appendChild(divForSchoolTypeSelect);
-    newSection.appendChild(startYearLabel);
-    newSection.appendChild(startYear);
-    newSection.appendChild(spanValidity3);
-    newSection.appendChild(endYearLabel);
-    newSection.appendChild(endYear);
-    newSection.appendChild(spanValidity4);
-    newSection.appendChild(educationDescriptionLabel);
-    newSection.appendChild(educationDescription);
+    newSection.appendChild(educationUl);
 
     //document.getElementById("myform").appendChild(newSection);
     place.parentNode.insertBefore(newSection, place.nextSibling);
