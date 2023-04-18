@@ -56,7 +56,9 @@ h1{
   font-size:3em;
   text-align: center;
 }
-
+*{
+  box-sizing: border-box;
+}
 #myform > *{
   box-sizing: border-box;
   /*border:1px solid red;*/
@@ -65,17 +67,47 @@ h1{
   letter-spacing: 1px;
 }
 body{
-    background-color: rgba(28, 56, 121,0.9);
+    background-color: #061735;
     color:#F9F5EB;
     font-family: mainFontMedium;
 }
+/*https://pl.pinterest.com/pin/597852919284156707/*/
 /*https://colorhunt.co/palette/1c3879607eaaeae3d2f9f5eb*/
 /*STYLE SECTION*/
 input[type=button]{
   font-family: mainFontMedium;
-  font-size:1.5em;
-  width:50%;
+  font-size:1.4em;
+  background-color: #061735;
+  color:white;
+  border:3px solid white;
+  margin-right:2px;
+  width:49%;
   height:50px;
+  transition: all 0.25s;
+}
+input[type=button]:hover{
+  background-color: #07264e;
+  color:#F9F5EB;
+  border-color: #AF0000;
+  box-shadow: 0 0.5em 0.5em -0.4em #AF0000;
+  transform: translateY(-0.24em);
+  cursor:pointer;
+}
+
+input{
+  font-family: mainFontMedium;
+  letter-spacing: 1px;
+  padding-left:10px;
+  transition: all 0.25s;
+}
+input:focus{
+  border-width: 2px;
+  background-color: #07264e;
+  color:#F9F5EB;
+  border-color: #AF0000;
+  box-shadow: 0 0.5em 0.5em -0.4em #AF0000;
+  transform: translateY(-0.24em);
+  outline:none;
 }
 
 
@@ -133,8 +165,8 @@ aside p{
 }
 /* TODO WAZNE do przerobienia */
 .education, .experience, .contact, #experience-buttons, #education-buttons,#submit-div, #name, #contact, .skill, #skill-buttons, .hobby,.hobby-buttons,.link,.link-buttons{
-  background-color: #1C3879;
-  border-radius: 15px;
+  background-color: #07264e;
+  border-radius: 10px;
   border:1px solid #F9F5EB;
   display:flex;
   flex-direction: row;
@@ -158,8 +190,8 @@ footer{
 
 
 input[type=text],input[type=email],input[type=tel],input[type=email], input[type=date], select{
-  min-height: 40px;
-  font-size: 0.9em;
+  min-height: 50px;
+  font-size: 1.2em;
   font-family: mainFontMedium;
   /*border: none;*/
 }
@@ -173,6 +205,7 @@ p[id="skill-level-value"]{
 }
 li{
   display:flex;
+  margin-bottom:10px;
 }
 label{
   font-size: 1em;
@@ -183,11 +216,13 @@ label{
 span{
   margin:auto;
 }
+/*
 #name *{
-  /*border:1px solid pink;*/
-}
+  border:1px solid pink;
+}*/
 #name li{
   display:flex;
+  margin-bottom:10px;
 }
 #name ul{
   display: flex;
@@ -206,10 +241,10 @@ span{
 #name ul li input{
   flex:1;
 }
-
+/*
 #contact *{
-  /*border:1px solid pink;*/
-}
+  border:1px solid pink;
+}*/
 #contact li{
   display:flex;
 }
@@ -257,9 +292,9 @@ input[type=tel]{
   min-width: 60px;
   max-width: 300px;
 }
-@media (max-width:500px){
+@media (max-width:540px){
   #name, #contact{
-    width:100%;
+    width:99%;
   }
   #contact ul li input{
     width:100%;
@@ -267,15 +302,15 @@ input[type=tel]{
 }
 @media (max-width:400px){
   input[type=text],input[type=email],input[type=number],input[type="tel"] {
-    min-height: 30px;
+    min-height: 50px;
     font-size: 0.75em;
+    padding-left:5px;
   }
   label{
     font-size: 0.9em;
     
   }
 }
-
 
 
 input:invalid + span::after {
