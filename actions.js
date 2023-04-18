@@ -300,7 +300,12 @@ window.onload = document.getElementById("addjob").addEventListener("click", func
     var newSection = document.createElement("section");
     newSection.setAttribute("id", "experience" + addExperienceCount);
     newSection.setAttribute("class", "experience");
+
     console.log("experience"+addExperienceCount+" added")
+
+    var experienceUl = document.createElement("ul");
+    var jobLi = document.createElement("li");
+    var jobDateLi = document.createElement("li");
 
     var jobLabel = document.createElement("label");
     setAttributes(jobLabel,{"for": "job"+addExperienceCount});
@@ -332,18 +337,22 @@ window.onload = document.getElementById("addjob").addEventListener("click", func
 
     var spanValidity2 = createSpanValidity();
 
+    jobLi.appendChild(jobLabel);
+    jobLi.appendChild(job);
+    jobLi.appendChild(spanValidity0);
 
-    newSection.appendChild(jobLabel);
-    newSection.appendChild(job);
-    newSection.appendChild(spanValidity0);
+    jobDateLi.appendChild(startYearJobLabel);
+    jobDateLi.appendChild(startYearJob);
+    jobDateLi.appendChild(spanValidity1);
 
-    newSection.appendChild(startYearJobLabel);
-    newSection.appendChild(startYearJob);
-    newSection.appendChild(spanValidity1);
+    jobDateLi.appendChild(endYearJobLabel);
+    jobDateLi.appendChild(endYearJob);
+    jobDateLi.appendChild(spanValidity2);
 
-    newSection.appendChild(endYearJobLabel);
-    newSection.appendChild(endYearJob);
-    newSection.appendChild(spanValidity2);
+    experienceUl.appendChild(jobLi);
+    experienceUl.appendChild(jobDateLi);
+
+    newSection.appendChild(experienceUl);
 
     place.parentNode.insertBefore(newSection, place.nextSibling);
 });
