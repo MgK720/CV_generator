@@ -63,6 +63,8 @@ $( document ).on( "click", "input[type='date']",function(event){
             $("input[name='"+ idEndDate + "']").attr("min",$(this).val());
         })
     })
+/*
+--------------------LEGACY-----------------------------
 function showLogMsg(message){
         var logElement = document.getElementById("log");
         var logSection = document.getElementById("log-section");
@@ -75,7 +77,7 @@ window.onload = document.getElementById("remove-log").addEventListener("click", 
     var logSection = document.getElementById("log-section");
     logElement.textContent = "";
     logSection.style.display = "none";
-});
+});*/
 
 
 function schoolTypeShow(addEducationCount) {
