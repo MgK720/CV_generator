@@ -183,6 +183,9 @@ aside p{
   min-width: none;
   max-width: 700px;
 }
+.education, .experience{
+  max-width: 700px;
+}
 footer{
   text-align: center;
   margin-bottom:0.5em;
@@ -191,7 +194,7 @@ footer{
 
 input[type=text],input[type=email],input[type=tel],input[type=email], input[type=date], select{
   min-height: 50px;
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-family: mainFontMedium;
   /*border: none;*/
 }
@@ -293,7 +296,7 @@ input[type=tel]{
   max-width: 300px;
 }
 @media (max-width:540px){
-  #name, #contact{
+  section, div[class='education-buttons']{
     width:99%;
   }
   #contact ul li input{

@@ -15,10 +15,10 @@
         <h1>CV Generator</h1>
     </header>
 
-    <aside id="log-section">
+    <!--<aside id="log-section">
         <button id="remove-log">X</button>
         <p id="log">My log</p>
-    </aside>
+    </aside>-->
     <main>
         <form action="done.html">
             <section id="myform">
@@ -65,13 +65,14 @@
                     <ul>
                         <li>
                             <label for="school0">Knowledge:</label>
-                            <input type="text" name="school0" id="school0" class="school" minlength="1" maxlength="45" required>
+                            <input type="text" name="school0" id="school0" class="school" minlength="1" maxlength="45"
+                                required>
                             <span class="validity"></span>
                         </li>
                         <li>
                             <label for="knowledge-type0">Type: </label>
-                            <select name="knowledge-type0" id="knowledge-type0" onchange="schoolTypeShow(addEducationCount)"
-                                required>
+                            <select name="knowledge-type0" id="knowledge-type0"
+                                onchange="schoolTypeShow(addEducationCount)" required>
                                 <option value="">--option--</option>
                                 <option value="school">School</option>
                                 <option value="course">Course</option>
@@ -90,7 +91,8 @@
                         </li>
                         <li>
                             <label for="startyear0">From:</label>
-                            <input type="date" name="startyear0" id="startyear0" min="1900-01-01" value="2100-01-01" onload="max='today()'"required>
+                            <input type="date" name="startyear0" id="startyear0" min="1900-01-01" value="2100-01-01"
+                                onload="max='today()'" required>
                             <span class="validity"></span>
                             <label for="endyear0">To:</label>
                             <input type="date" name="endyear0" id="endyear0" min="1900-01-01" max="2023-03-27"
@@ -117,8 +119,8 @@
                         </li>
                         <li>
                             <label for="startyear-job0">From:</label>
-                            <input type="date" name="startyear-job0" id="startyear-job0" min="1900-01-01" max="2023-03-27"
-                                value="2100-01-01" required>
+                            <input type="date" name="startyear-job0" id="startyear-job0" min="1900-01-01"
+                                max="2023-03-27" value="2100-01-01" required>
                             <span class="validity"></span>
                             <label for="endyear-job0">To:</label>
                             <input type="date" name="endyear-job0" id="endyear-job0" min="1900-01-01" max="2023-03-27"
@@ -136,7 +138,8 @@
                     <ul>
                         <li>
                             <label for="skill-name0">Skill:</label>
-                            <input type="text" name="skill-name0" id="skill-name0" minlength="1" maxlength="25" required>
+                            <input type="text" name="skill-name0" id="skill-name0" minlength="1" maxlength="25"
+                                required>
                             <span class="validity"></span>
                         </li>
                         <li>
@@ -154,7 +157,8 @@
                     <ul>
                         <li>
                             <label for="hobby-name0">Hobby:</label>
-                            <input type="text" name="hobby-name0" id="hobby-name0" minlength="1" maxlength="25" required>
+                            <input type="text" name="hobby-name0" id="hobby-name0" minlength="1" maxlength="25"
+                                required>
                             <span class="validity"></span>
                         </li>
                     </ul>
@@ -168,15 +172,18 @@
                         <li>
                             <label for="link-url0">Link(URL):</label>
                             <!--db schemat do zmiany-->
-                            <input type="url" name="link-url0" id="link-url0" placeholder="https://pl.linkedin.com/in/(profile)" pattern="https://.*" maxlength="100" required>
+                            <input type="url" name="link-url0" id="link-url0"
+                                placeholder="https://pl.linkedin.com/in/(profile)" pattern="https://.*" maxlength="100"
+                                required>
                             <span class="validity"></span>
                         </li>
                         <li>
                             <label for="link-name0">Display as:</label>
-                            <input type="text" name="link-name0" id="link-name0" placeholder="linkedin" minlength="1" maxlength="25" required>
-                            <span class="validity"></span> 
+                            <input type="text" name="link-name0" id="link-name0" placeholder="linkedin" minlength="1"
+                                maxlength="25" required>
+                            <span class="validity"></span>
                         </li>
-                    </ul>   
+                    </ul>
                 </section>
                 <div id="link-buttons" class="link-buttons">
                     <input type="button" id="addlink" value="ADDLink">
