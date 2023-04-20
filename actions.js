@@ -1,8 +1,10 @@
 var EDU_LIMIT = 5;
 var JOB_LIMIT = 9;
+var SKILL_LIMIT = 13;
 
 var addEducationCount = 0;
 var addExperienceCount = 0;
+var addSkillCount = 0;
 
 window.addEventListener("load", (event) => {
     maxDate();
@@ -63,6 +65,42 @@ $( document ).on( "click", "input[type='date']",function(event){
             $("input[name='"+ idEndDate + "']").attr("min",$(this).val());
         })
     })
+$( document ).on("input", "input[type='range']", function(event){
+        var idOfClickedElement = event.target.id;
+        var valueOfClickedElement = event.target.value;
+        console.log("my value = " + valueOfClickedElement);
+        console.log(idOfClickedElement);
+
+        var idNumber = idOfClickedElement.charAt(idOfClickedElement.length-1);
+        console.log(idNumber);
+
+        var idOfParagraph = "skill-level-value" + idNumber;
+        console.log("my replaced id = " + idOfParagraph);
+
+        var idOfParagraphSelector = $("p[id='" + idOfParagraph + "']");
+
+        if(valueOfClickedElement == 1){
+            idOfParagraphSelector.text("Very Low");
+            idOfParagraphSelector.css("color", "#ff0000")
+        }else if(valueOfClickedElement == 2){
+            idOfParagraphSelector.text("Low");
+            idOfParagraphSelector.css("color", "#ff4d00")
+        }else if(valueOfClickedElement == 3){
+            idOfParagraphSelector.text("Medium");
+            idOfParagraphSelector.css("color", "#ffa300")
+        }else if(valueOfClickedElement == 4){
+            idOfParagraphSelector.text("High");
+            idOfParagraphSelector.css("color", "#e3ff00")
+        }else if(valueOfClickedElement == 5){
+            idOfParagraphSelector.text("Very High");
+            idOfParagraphSelector.css("color", "#a3ff00")
+        }else{
+            return;
+        }
+
+
+
+})
 /*
 --------------------LEGACY-----------------------------
 function showLogMsg(message){
@@ -281,7 +319,7 @@ window.onload = document.getElementById("deleteEducation").addEventListener("cli
         deleteSection.remove();
     }else{
         console.log("all additional education records deleted");
-        showLogMsg("all additional education records deleted");
+        //showLogMsg("all additional education records deleted");
     }
 });
 
@@ -363,7 +401,7 @@ window.onload = document.getElementById("deletejob").addEventListener("click", f
         console.log("You clicked deleteJob");
         if(document.getElementById("experience" + addExperienceCount) == null){
             console.log("all experience records deleted");
-            showLogMsg("all jobs records deleted");
+            //showLogMsg("all jobs records deleted");
             return;
         }
         var deleteSection = document.getElementById("experience" + addExperienceCount);
@@ -373,3 +411,84 @@ window.onload = document.getElementById("deletejob").addEventListener("click", f
             addExperienceCount -=1;
         };
 });
+
+
+window.onload = document.getElementById("addskill").addEventListener("click", function() {
+    if(addSkillCount == SKILL_LIMIT){
+        console.log("Too much skill records (LIMIT IS " + SKILL_LIMIT + " )");
+        //showLogMsg("Too much skill records");
+        return;
+    }
+    console.log("You clicked addskill");
+    if(document.getElementById("skill" + addSkillCount) == null){
+        console.log(1);
+        var place = document.getElementById("experience-buttons");
+    }else{
+        var place = document.getElementById("skill" + addSkillCount);
+    }
+    addSkillCount = addSkillCount +1;
+
+    var newSection = document.createElement("section");
+    newSection.setAttribute("id", "skill" + addSkillCount);
+    newSection.setAttribute("class", "skill");
+
+    console.log("skill"+addSkillCount+" added");
+
+    var skillUl = document.createElement("ul");
+    var skillNameLi = document.createElement("li");
+    var skillLevelli = document.createElement("li");
+
+    var skillNameLabel = document.createElement("label")
+    skillNameLabel.setAttribute("for", "skill-name" + addSkillCount);
+    skillNameLabel.textContent = "Skill:"
+
+    var skillName = document.createElement("input")
+    setAttributes(skillName, {"type": "text", "name": "skill-name" + addSkillCount, "id": "skill-name" + addSkillCount, "minlength": "1", "maxlength": "25"});
+    skillName.required = true;
+
+    var spanValidity0 = createSpanValidity();
+
+    var skillLevelLabel = document.createElement("label");
+    skillLevelLabel.setAttribute("for", "skill-level" + addSkillCount);
+
+    var skillLevel = document.createElement("input");
+    setAttributes(skillLevel, {"type": "range","id": "skill-level" + addSkillCount, "name": "skill-level" + addSkillCount, "min": "1", "max": "5", "value": "3", "step": "1"});
+
+    var skillLevelValue = document.createElement("p");
+    skillLevelValue.setAttribute("id", "skill-level-value" + addSkillCount);
+    skillLevelValue.textContent = "Medium"
+
+    skillUl.appendChild(skillNameLi);
+    skillUl.appendChild(skillLevelli);
+
+    skillNameLi.appendChild(skillNameLabel);
+    skillNameLi.appendChild(skillName);
+    skillNameLi.appendChild(spanValidity0);
+
+    skillLevelli.appendChild(skillLevelLabel);
+    skillLevelli.appendChild(skillLevel);
+    skillLevelli.appendChild(skillLevelValue);
+
+    newSection.appendChild(skillUl);
+
+    place.parentNode.insertBefore(newSection, place.nextSibling);
+    
+
+});
+
+window.onload = document.getElementById("deleteskill").addEventListener("click", function() {
+    console.log("You clicked deleteskill");
+    if(document.getElementById("skill" + addSkillCount) == null){
+        console.log("all skill records deleted");
+        //showLogMsg("all skill records deleted");
+        return;
+    }
+    var deleteSection = document.getElementById("skill" + addSkillCount);
+    console.log("skill"+addSkillCount+" deleted")
+    deleteSection.remove();
+    if(addSkillCount >= 0 ){
+        addSkillCount -=1;
+    };
+});
+
+

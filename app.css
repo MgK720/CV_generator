@@ -74,19 +74,22 @@ body{
 /*https://pl.pinterest.com/pin/597852919284156707/*/
 /*https://colorhunt.co/palette/1c3879607eaaeae3d2f9f5eb*/
 /*STYLE SECTION*/
-input[type=button]{
+input[type=button], input[type=submit]{
   font-family: mainFontMedium;
   font-size:1.4em;
   background-color: #061735;
   color:white;
+  /*background-color: white;
+  color:black;*/
   border:3px solid white;
   margin-right:2px;
   width:49%;
   height:50px;
   transition: all 0.25s;
 }
-input[type=button]:hover{
+input[type=button]:hover, input[type=submit]:hover{
   background-color: #07264e;
+  /*background-color: #AF0000;*/
   color:#F9F5EB;
   border-color: #AF0000;
   box-shadow: 0 0.5em 0.5em -0.4em #AF0000;
@@ -164,7 +167,7 @@ aside p{
   flex-wrap:wrap;
 }
 /* TODO WAZNE do przerobienia */
-.education, .experience, .contact, #experience-buttons, #education-buttons,#submit-div, #name, #contact, .skill, #skill-buttons, .hobby,.hobby-buttons,.link,.link-buttons{
+.education, .experience, .contact, #experience-buttons, #education-buttons,#submit-div, #name, #contact, .skill, #skill-buttons, .hobby,.hobby-buttons,.link,.link-buttons, #submit-divm .link{
   background-color: #07264e;
   border-radius: 10px;
   border:1px solid #F9F5EB;
@@ -183,8 +186,19 @@ aside p{
   min-width: none;
   max-width: 700px;
 }
-.education, .experience{
+.education, .experience, .skill, .hobby, .link{
   max-width: 700px;
+}
+.skill{
+  min-width:none;
+  max-width:700px;
+}
+/*TEMP-----------------------------*/
+input[type=range]{
+  position:absolute;
+}
+.skill ul li p{
+  color:#ffa300;
 }
 footer{
   text-align: center;
@@ -304,7 +318,7 @@ input[type=tel]{
   }
 }
 @media (max-width:400px){
-  input[type=text],input[type=email],input[type=number],input[type="tel"] {
+  input[type=text],input[type=email],input[type=number],input[type="tel"], input[type="date"], input[type="range"] {
     min-height: 50px;
     font-size: 0.75em;
     padding-left:5px;
