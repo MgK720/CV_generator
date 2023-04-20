@@ -87,6 +87,7 @@ input[type=button], input[type=submit]{
   height:50px;
   transition: all 0.25s;
 }
+/*TODO hover doesnt work prop*/
 input[type=button]:hover, input[type=submit]:hover{
   background-color: #07264e;
   /*background-color: #AF0000;*/
