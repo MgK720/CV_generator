@@ -70,7 +70,7 @@
                             <span class="validity"></span>
                         </li>
                         <li>
-                            <label for="knowledge-type0">Type: </label>
+                            <label for="knowledge-type0" class="knowledge-type">Type: </label>
                             <select name="knowledge-type0" id="knowledge-type0"
                                 onchange="schoolTypeShow(addEducationCount)" required>
                                 <option value="">--option--</option>
@@ -79,7 +79,7 @@
                             </select>
                             <span class="validity"></span>
                             <div id="school-type-select0" class="school-type-select">
-                                <label for="school-type0">SchoolType:</label>
+                                <!--<label for="school-type0" class="school-type">School:</label>-->
                                 <select name="school-type0" id="school-type0">
                                     <option value="">--option--</option>
                                     <option value="primary">Primary</option>
@@ -90,18 +90,18 @@
                             </div>
                         </li>
                         <li>
-                            <label for="startyear0">From:</label>
+                            <label for="startyear0" class="startyear">From:</label>
                             <input type="date" name="startyear0" id="startyear0" min="1900-01-01" value="2100-01-01"
                                 onload="max='today()'" required>
                             <span class="validity"></span>
-                            <label for="endyear0">To:</label>
+                            <label for="endyear0" class="endyear">To:</label>
                             <input type="date" name="endyear0" id="endyear0" min="1900-01-01" max="2023-03-27"
                                 value="2100-01-01" required>
                             <span class="validity"></span>
                         </li>
                         <li>
                             <label for="education-description0">Description:</label>
-                            <input type="text" name="education-description0" id="education-description0"
+                            <input type="text" name="education-description0" id="education-description0" class="education-description"
                                 placeholder="---Write something---">
                         </li>
                     </ul>
@@ -118,11 +118,11 @@
                             <span class="validity"></span>
                         </li>
                         <li>
-                            <label for="startyear-job0">From:</label>
+                            <label for="startyear-job0" class="startyear">From:</label>
                             <input type="date" name="startyear-job0" id="startyear-job0" min="1900-01-01"
                                 max="2023-03-27" value="2100-01-01" required>
                             <span class="validity"></span>
-                            <label for="endyear-job0">To:</label>
+                            <label for="endyear-job0" class="endyear">To:</label>
                             <input type="date" name="endyear-job0" id="endyear-job0" min="1900-01-01" max="2023-03-27"
                                 value="2100-01-01" required>
                             <span class="validity"></span>

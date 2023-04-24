@@ -188,6 +188,7 @@ aside p{
   max-width: 700px;
 }
 .education, .experience, .skill, .hobby, .link{
+  min-width: none;
   max-width: 700px;
 }
 .skill{
@@ -207,11 +208,17 @@ footer{
 }
 
 
-input[type=text],input[type=email],input[type=tel],input[type=email], input[type=date], select{
+input[type=text],input[type=email],input[type=tel],input[type=email],input[type=url], select{
   min-height: 50px;
   font-size: 1.1em;
   font-family: mainFontMedium;
   /*border: none;*/
+}
+input[type=date]{
+  min-height: 50px;
+  letter-spacing: 0px;
+  font-size: 0.9em;
+  font-family: mainFontMedium;
 }
 select{
   margin:0;
@@ -234,6 +241,9 @@ label{
 span{
   margin:auto;
 }
+/*.education *{
+  border:1px solid pink;
+}*/
 /*
 #name *{
   border:1px solid pink;
@@ -310,23 +320,99 @@ input[type=tel]{
   min-width: 60px;
   max-width: 300px;
 }
+.education li{
+  display:flex;
+}
+.education ul{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin:0.5rem;
+  flex:1 1200px;
+  max-width: 700px;
+}
+.education ul li{
+  flex:1 1 200px;
+  width:100%;
+}
+.education ul li label{
+  width:120px;
+}
+.education ul li input{
+  flex:1;
+}
+.education ul li select{
+  flex-shrink: 1;
+  flex:1;
+  flex-basis:150px;
+}
+.education ul li select, .education ul li .school-type-select{
+  flex-shrink: 1;
+  flex:1;
+  flex-basis:200px;
+}
+.education ul li select{
+  max-width:300px;
+}
+.knowledge-type{
+  max-width:50px;
+}
+.school{
+  min-width:150px;
+}
+input[type=date]{
+  flex-shrink:1;
+  min-width:50px;
+  max-width:160px;
+}
+
+.startyear{
+  max-width:60px;
+}
+.endyear{
+  max-width:30px;
+}
+.experience li{
+  display:flex;
+}
+.experience ul{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin:0.5rem;
+  flex:1 1200px;
+  max-width: 700px;
+}
+.experience ul li{
+  flex:1 1 200px;
+  width:100%;
+}
+.experience ul li input{
+  flex:1;
+}
 @media (max-width:540px){
   section, div[class='education-buttons']{
     width:99%;
   }
-  #contact ul li input{
+  #contact ul li input, .education ul li input, .education ul li select{
     width:100%;
   }
 }
 @media (max-width:400px){
-  input[type=text],input[type=email],input[type=number],input[type="tel"], input[type="date"], input[type="range"] {
+  input[type=text],input[type=email],input[type=number],input[type="tel"], input[type="range"],input[type=url], select {
     min-height: 50px;
     font-size: 0.75em;
     padding-left:5px;
   }
+  input[type=date]{
+    font-size: 0.6em;
+  }
   label{
     font-size: 0.9em;
-    
+    margin:auto 0;
+  }
+  .education-description{
+    max-width:180px;
   }
 }
 

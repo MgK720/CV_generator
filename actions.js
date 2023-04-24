@@ -9,7 +9,6 @@ var addSkillCount = 0;
 window.addEventListener("load", (event) => {
     maxDate();
   });
-
 function setAttributes(attrib, values){
     for(var key in values){
         attrib.setAttribute(key,values[key]);
@@ -179,7 +178,7 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
 
 
     var knowledgeTypeLabel = document.createElement("label");
-    setAttributes(knowledgeTypeLabel, {"for": "knowledge-type" + addEducationCount});
+    setAttributes(knowledgeTypeLabel, {"for": "knowledge-type" + addEducationCount, "class": "knowledge-type"});
     knowledgeTypeLabel.textContent = "Type:";
 
     var knowledgeType = document.createElement("select");
@@ -209,9 +208,9 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
     var divForSchoolTypeSelect = document.createElement("div");
     setAttributes(divForSchoolTypeSelect, {"id": "school-type-select" + addEducationCount, "class": "school-type-select"});
 
-    var schoolTypeLabel = document.createElement("label")
+    /*var schoolTypeLabel = document.createElement("label")
     setAttributes(schoolTypeLabel, {"for": "school-type" + addEducationCount});
-    schoolTypeLabel.textContent = "SchoolType:";
+    schoolTypeLabel.textContent = "SchoolType:";*/
 
     var schoolType = document.createElement("select")
     setAttributes(schoolType, {"name": "school-type" + addEducationCount, "id": "school-type" + addEducationCount});
@@ -241,14 +240,14 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
     schoolType.appendChild(secondSchoolType);
     schoolType.appendChild(thirdSchoolType);
 
-    divForSchoolTypeSelect.appendChild(schoolTypeLabel);
+    /*divForSchoolTypeSelect.appendChild(schoolTypeLabel);*/
     divForSchoolTypeSelect.appendChild(schoolType);
     divForSchoolTypeSelect.appendChild(spanValidity2);
 
 
 
     var startYearLabel = document.createElement("label");
-    setAttributes(startYearLabel, {"for": "startyear" + addEducationCount});
+    setAttributes(startYearLabel, {"for": "startyear" + addEducationCount, class:"startyear"});
     startYearLabel.textContent = "From:";
 
     var startYear = document.createElement("input");
@@ -259,7 +258,7 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
     var spanValidity3 = createSpanValidity();
 
     var endYearLabel = document.createElement("label");
-    setAttributes(endYearLabel, {"for": "endyear" + addEducationCount});
+    setAttributes(endYearLabel, {"for": "endyear" + addEducationCount,class:"endyear"});
     endYearLabel.textContent = "To:";
 
     var endYear = document.createElement("input");
@@ -275,7 +274,7 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
     educationDescriptionLabel.textContent = "Description:";
 
     var educationDescription = document.createElement("input");
-    setAttributes(educationDescription, {"type": "text", "name": "education-description" + addEducationCount, "id": "education-description" + addEducationCount, "placeholder": "---Write something---"});
+    setAttributes(educationDescription, {"type": "text", "name": "education-description" + addEducationCount,"class": "education-description", "id": "education-description" + addEducationCount, "placeholder": "---Write something---"});
 
     knowledgeLi.appendChild(knowledgeLabel);
     knowledgeLi.appendChild(knowledge);
