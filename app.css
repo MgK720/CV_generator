@@ -98,13 +98,13 @@ input[type=button]:hover, input[type=submit]:hover{
   cursor:pointer;
 }
 
-input{
+input:not(input[type=range], input[type=date]){
   font-family: mainFontMedium;
   letter-spacing: 1px;
   padding-left:10px;
   transition: all 0.25s;
 }
-input:focus{
+input:focus:not(input[type=range], input[type=date]){
   border-width: 2px;
   background-color: #07264e;
   color:#F9F5EB;
@@ -112,6 +112,11 @@ input:focus{
   box-shadow: 0 0.5em 0.5em -0.4em #AF0000;
   transform: translateY(-0.24em);
   outline:none;
+}
+input[type=date]{
+  font-family: mainFontMedium;
+  letter-spacing: 1px;
+  padding-left:10px;
 }
 
 
@@ -195,10 +200,14 @@ aside p{
   min-width:none;
   max-width:700px;
 }
-/*TEMP-----------------------------*/
-input[type=range]{
-  position:absolute;
+.hobby{
+  min-width:none;
+  max-width:700px;
 }
+/*TEMP-----------------------------*/
+/*input[type=range]{
+  position:absolute;
+}*/
 .skill ul li p{
   color:#ffa300;
 }
@@ -390,18 +399,59 @@ input[type=date]{
 .experience ul li input{
   flex:1;
 }
+
+.skill li{
+  display:flex;
+}
+.skill ul{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin:0.5rem;
+  flex:1 1200px;
+  max-width: 700px;
+}
+.skill ul li{
+  flex:1 1 400px;
+  width:100%;
+}
+.skill ul li input{
+  flex:1;
+}
+.skill ul li input[type=range]{
+  flex:1;
+  margin-top:10px;
+  min-width:200px;
+}
+.skill ul li p{
+  margin-top:0.8em;
+  margin-left:10px;
+  min-width:100px;
+  max-width:100px;
+}
+
+.hobby ul li{
+  display:flex;
+}
+.hobby ul li input{
+  flex:1;
+  min-width:80px;
+}
 @media (max-width:540px){
   section, div[class='education-buttons']{
     width:99%;
   }
-  #contact ul li input, .education ul li input, .education ul li select{
+  input,select{
     width:100%;
   }
 }
-@media (max-width:400px){
-  input[type=text],input[type=email],input[type=number],input[type="tel"], input[type="range"],input[type=url], select {
+@media (max-width:410px){
+  input[type=text],input[type=email],input[type=number],input[type="tel"],input[type=url], select {
     min-height: 50px;
     font-size: 0.75em;
+    padding-left:5px;
+  }
+  input[type="range"]{
     padding-left:5px;
   }
   input[type=date]{
