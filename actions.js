@@ -1,10 +1,14 @@
 var EDU_LIMIT = 5;
 var JOB_LIMIT = 9;
 var SKILL_LIMIT = 13;
+var HOBBY_LIMIT = 7;
+var LINK_LIMIT = 7;
 
 var addEducationCount = 0;
 var addExperienceCount = 0;
 var addSkillCount = 0;
+var addHobbyCount = 0;
+var addLinkCount = 0;
 
 window.addEventListener("load", (event) => {
     maxDate();
@@ -14,6 +18,13 @@ function setAttributes(attrib, values){
         attrib.setAttribute(key,values[key]);
     }
 }
+function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+      currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+  }
 
 function today(){
     const date = new Date();
@@ -153,7 +164,7 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
 
     var newSection = document.createElement("section");
     newSection.setAttribute("id", "education" + addEducationCount);
-    newSection.setAttribute("class", "education");
+    newSection.setAttribute("class", "education added_element");
 
     console.log("education"+addEducationCount+" added");
 
@@ -338,7 +349,7 @@ window.onload = document.getElementById("addjob").addEventListener("click", func
 
     var newSection = document.createElement("section");
     newSection.setAttribute("id", "experience" + addExperienceCount);
-    newSection.setAttribute("class", "experience");
+    newSection.setAttribute("class", "experience added_element");
 
     console.log("experience"+addExperienceCount+" added")
 
@@ -429,7 +440,7 @@ window.onload = document.getElementById("addskill").addEventListener("click", fu
 
     var newSection = document.createElement("section");
     newSection.setAttribute("id", "skill" + addSkillCount);
-    newSection.setAttribute("class", "skill");
+    newSection.setAttribute("class", "skill added_element");
 
     console.log("skill"+addSkillCount+" added");
 
@@ -490,4 +501,148 @@ window.onload = document.getElementById("deleteskill").addEventListener("click",
     };
 });
 
+window.onload = document.getElementById("addhobby").addEventListener("click", function() {
+    if(addHobbyCount == HOBBY_LIMIT){
+        console.log("Too much hobby records (LIMIT IS " + HOBBY_LIMIT + " )");
+        //showLogMsg("Too much job records");
+        return;
+    }
+    console.log("You clicked addhobby");
+    if(document.getElementById("hobby" + addHobbyCount) == null){
+        var place = document.getElementById("skill-buttons");
+    }else{
+        var place = document.getElementById("hobby" + addHobbyCount);
+    }
+    addHobbyCount = addHobbyCount +1;
 
+    var newSection = document.createElement("section");
+    newSection.setAttribute("id", "hobby" + addHobbyCount);
+    newSection.setAttribute("class", "hobby added_element");
+
+    console.log("hobby"+addHobbyCount+" added")
+
+    var hobbyUl = document.createElement("ul");
+    var hobbyLi = document.createElement("li");
+
+    var hobbyLabel = document.createElement("label");
+    setAttributes(hobbyLabel, {"for": "hobby-name" + addHobbyCount});
+    hobbyLabel.textContent = "Hobby:"
+
+    var hobby = document.createElement("input");
+    setAttributes(hobby, {"type": "text", "name": "hobby-name" + addHobbyCount, "id": "hobby-name" + addHobbyCount, "minlength": "1", "maxlength": "25"});
+    hobby.required = true;
+
+    var spanValidity0 = createSpanValidity();
+
+    hobbyUl.appendChild(hobbyLi);
+
+    hobbyLi.appendChild(hobbyLabel);
+    hobbyLi.appendChild(hobby);
+    hobbyLi.appendChild(spanValidity0);
+
+    newSection.appendChild(hobbyUl);
+
+    place.parentNode.insertBefore(newSection, place.nextSibling);
+
+
+})
+
+window.onload = document.getElementById("deletehobby").addEventListener("click", function() {
+    console.log("You clicked deletehobby");
+    if(document.getElementById("hobby" + addHobbyCount) == null){
+        console.log("all hobby records deleted");
+        //showLogMsg("all skill records deleted");
+        return;
+    }
+    var deleteSection = document.getElementById("hobby" + addHobbyCount);
+    console.log("hobby"+addHobbyCount+" deleted")
+    deleteSection.remove();
+    if(addHobbyCount >= 0 ){
+        addHobbyCount -=1;
+    };
+});
+
+window.onload = document.getElementById("addlink").addEventListener("click", function() {
+    if(addLinkCount == LINK_LIMIT){
+        console.log("Too much link records (LIMIT IS " + LINK_LIMIT + " )");
+        //showLogMsg("Too much job records");
+        return;
+    }
+    console.log("You clicked addlink");
+    if(document.getElementById("link" + addLinkCount) == null){
+        var place = document.getElementById("hobby-buttons");
+    }else{
+        var place = document.getElementById("link" + addLinkCount);
+    }
+    addLinkCount = addLinkCount +1;
+
+    var newSection = document.createElement("section");
+    newSection.setAttribute("id", "link" + addLinkCount);
+    newSection.setAttribute("class", "link added_element");
+
+    console.log("link"+addLinkCount+" added")
+
+    var linkUl = document.createElement("ul");
+    var linkUrlLi = document.createElement("li");
+    var linkNameLi = document.createElement("li");
+
+    var linkUrlLabel = document.createElement("label");
+    setAttributes(linkUrlLabel, {"for": "link-url" + addLinkCount});
+    linkUrlLabel.textContent = "Link(URL):"
+
+    var linkUrl = document.createElement("input");
+    setAttributes(linkUrl, {"type": "text", "name": "link-url" + addLinkCount, "id": "link-url" + addLinkCount, "placeholder": "https://pl.linkedin.com/in/(profile)", "pattern": "https://.*", "maxlength": "100"});
+    linkUrl.required = true;
+
+    var spanValidity0 = createSpanValidity();
+
+    var linkNameLabel = document.createElement("label");
+    setAttributes(linkNameLabel, {"for": "link-name" + addLinkCount});
+    linkNameLabel.textContent = "Display as:"
+
+    var linkName = document.createElement("input");
+    setAttributes(linkName, {"type": "text", "name": "link-name" + addLinkCount, "id": "link-name" + addLinkCount, "placeholder": "linkedin",  "minlength": "1"});    
+    linkName.required = true;
+
+    var spanValidity1 = createSpanValidity();
+
+    linkUl.appendChild(linkUrlLi);
+    linkUl.appendChild(linkNameLi);
+
+    linkUrlLi.appendChild(linkUrlLabel);
+    linkUrlLi.appendChild(linkUrl);
+    linkUrlLi.appendChild(spanValidity0);
+
+    linkNameLi.appendChild(linkNameLabel);
+    linkNameLi.appendChild(linkName);
+    linkNameLi.appendChild(spanValidity1);
+
+
+    newSection.appendChild(linkUl);
+
+    place.parentNode.insertBefore(newSection, place.nextSibling);
+
+})
+
+window.onload = document.getElementById("deletelink").addEventListener("click", function() {
+    console.log("You clicked deletelink");
+    if(document.getElementById("link" + addLinkCount) == null){
+        console.log("all link records deleted");
+        //showLogMsg("all skill records deleted");
+        return;
+    }
+    var deleteSection = document.getElementById("link" + addLinkCount);
+    deleteSection.classList.add("deleted_element");
+    console.log("link"+addLinkCount+" deleted");
+    
+    const timer = setTimeout(console.log("Timer start"), 1000)
+    setTimeout(()=> {
+        deleteSection.remove();
+    }, 300);
+    setTimeout(()=> {
+        clearTimeout();
+    }, 1);
+    if(addLinkCount >= 0 ){
+        addLinkCount -=1;
+    };
+});
