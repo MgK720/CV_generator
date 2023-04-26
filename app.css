@@ -46,7 +46,17 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 @font-face {
     font-family: mainFontMedium;
     src: url(fonts/Roboto/Roboto-Medium.ttf);
@@ -70,6 +80,10 @@ body{
     background-color: #061735;
     color:#F9F5EB;
     font-family: mainFontMedium;
+}
+*::selection{
+  color:black;
+  background-color: white;
 }
 /*https://pl.pinterest.com/pin/597852919284156707/*/
 /*https://colorhunt.co/palette/1c3879607eaaeae3d2f9f5eb*/
@@ -117,6 +131,34 @@ input[type=date]{
   font-family: mainFontMedium;
   letter-spacing: 1px;
   padding-left:10px;
+}
+input[type="file"]::file-selector-button {
+  border: 1.7px solid white;
+  color:white;
+  font-family: mainFontMedium;
+  min-height: 40px;
+  font-size:1.2em;
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: all 0.25s;
+}
+input[type="file"]::file-selector-button:hover, select:hover{
+  background-color: transparent;
+  border-color:orangered;
+}
+
+
+.functionButtons input:nth-of-type(1):hover{
+  border-color:green;
+  box-shadow: 0 0.5em 0.5em -0.4em green;
+}
+
+input[type=submit]{
+  border:3px solid orangered;
+}
+input[type=submit]:hover{
+  box-shadow: 0 0.5em 0.5em -0.4em orangered;
+  border-color: orangered;
 }
 
 
@@ -173,7 +215,7 @@ aside p{
   flex-wrap:wrap;
 }
 /* TODO WAZNE do przerobienia */
-.education, .experience, .contact, #experience-buttons, #education-buttons,#submit-div, #name, #contact, .skill, #skill-buttons, .hobby,.hobby-buttons,.link,.link-buttons, #submit-divm .link{
+.education, .experience, .contact, #experience-buttons, #education-buttons,#submit-div, #name, #contact, .skill, #skill-buttons, .hobby,.hobby-buttons,.link,.link-buttons{
   background-color: #07264e;
   border-radius: 10px;
   border:1px solid #F9F5EB;
@@ -183,6 +225,10 @@ aside p{
   flex-wrap:wrap;
   margin:1rem;
   flex:1 1200px;
+}
+#education-buttons, #experience-buttons, #skill-buttons, #submit-div, .hobby-buttons, .link-buttons{
+  background-color: transparent;
+  border:none;
 }
 #name{
   min-width: none;
@@ -215,7 +261,19 @@ footer{
   text-align: center;
   margin-bottom:0.5em;
 }
-
+footer p{
+  margin-top:1em;
+  margin-bottom:2em;
+}
+header h1{
+  margin:0.5em 0;
+}
+select{
+  background-color: #061735;
+  color:#F9F5EB;
+  border:2px solid#F9F5EB;
+  transition: all 0.25s;
+}
 
 input[type=text],input[type=email],input[type=tel],input[type=email],input[type=url], select{
   min-height: 50px;
@@ -437,6 +495,30 @@ input[type=date]{
   flex:1;
   min-width:80px;
 }
+.link li{
+  display:flex;
+}
+
+.link ul{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin:0.5rem;
+  flex:1 1200px;
+  max-width: 700px;
+}
+.link ul li{
+  flex:1 1 400px;
+  width:100%;
+}
+.link ul li input{
+  flex:1;
+}
+.link ul li label{
+  min-width:105px;
+  max-width:105px;
+}
+
 @media (max-width:540px){
   section, div[class='education-buttons']{
     width:99%;
@@ -470,12 +552,17 @@ input[type=date]{
 input:invalid + span::after {
     
     content: "✖";
+    color:crimson;
     padding-left: 5px;
+    padding-right:1px;
   }
   
 input:valid + span::after {
     content: "✓";
+    /*color:green;*/
+    font-weight: 900;
     padding-left: 5px;
+    padding-right:1px;
   }
 .school-type-select{
     display:none;
@@ -483,10 +570,15 @@ input:valid + span::after {
 }
 select:invalid + span::after {
     content: "✖";
+    color:crimson;
     padding-left: 5px;
+    padding-right:1px;
   }
   
 select:valid + span::after {
     content: "✓";
+    /*color:green;*/
+    font-weight: 900;
     padding-left: 5px;
+    padding-right:1px;
   }
