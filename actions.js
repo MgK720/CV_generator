@@ -316,6 +316,7 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
 
     //document.getElementById("myform").appendChild(newSection);
     place.parentNode.insertBefore(newSection, place.nextSibling);
+    newSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
 
 });
 
@@ -324,13 +325,17 @@ window.onload = document.getElementById("deleteEducation").addEventListener("cli
     console.log("You clicked deleteEducation");
     if(addEducationCount != 0 ){
         var deleteSection = document.getElementById("education" + addEducationCount);
+        var previousSection = addEducationCount-1;
+        var scrollSection = document.getElementById("education" + previousSection);
         console.log("education"+addEducationCount+" deleted")
         addEducationCount -=1;
         deleteSection.remove();
     }else{
         console.log("all additional education records deleted");
+        var scrollSection = document.getElementById("education-buttons");
         //showLogMsg("all additional education records deleted");
     }
+    scrollSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
 });
 
 window.onload = document.getElementById("addjob").addEventListener("click", function() {
@@ -405,18 +410,32 @@ window.onload = document.getElementById("addjob").addEventListener("click", func
     newSection.appendChild(experienceUl);
 
     place.parentNode.insertBefore(newSection, place.nextSibling);
+    newSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
 });
 
 window.onload = document.getElementById("deletejob").addEventListener("click", function() {
         console.log("You clicked deleteJob");
         if(document.getElementById("experience" + addExperienceCount) == null){
+            var scrollSection = document.getElementById("experience-buttons");
+            scrollSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
             console.log("all experience records deleted");
             //showLogMsg("all jobs records deleted");
             return;
         }
         var deleteSection = document.getElementById("experience" + addExperienceCount);
+        var previousSection = addExperienceCount-1;
+        if(previousSection!=-1){var scrollSection = document.getElementById("experience" + previousSection);}
+        else{var scrollSection = document.getElementById("experience-buttons");}
+        deleteSection.classList.add("deleted_element");
         console.log("experience"+addExperienceCount+" deleted")
-        deleteSection.remove();
+        const timer = setTimeout(console.log("Timer start"), 1000)
+        setTimeout(function(){
+           deleteSection.remove();
+           scrollSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+        }, 300);
+        setTimeout(()=> {
+            clearTimeout();
+        }, 1);
         if(addExperienceCount >= 0 ){
             addExperienceCount -=1;
         };
@@ -482,6 +501,7 @@ window.onload = document.getElementById("addskill").addEventListener("click", fu
     newSection.appendChild(skillUl);
 
     place.parentNode.insertBefore(newSection, place.nextSibling);
+    newSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
     
 
 });
@@ -543,6 +563,7 @@ window.onload = document.getElementById("addhobby").addEventListener("click", fu
     newSection.appendChild(hobbyUl);
 
     place.parentNode.insertBefore(newSection, place.nextSibling);
+    newSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
 
 
 })
@@ -621,6 +642,7 @@ window.onload = document.getElementById("addlink").addEventListener("click", fun
     newSection.appendChild(linkUl);
 
     place.parentNode.insertBefore(newSection, place.nextSibling);
+    newSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
 
 })
 
