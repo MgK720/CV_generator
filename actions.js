@@ -329,13 +329,21 @@ window.onload = document.getElementById("deleteEducation").addEventListener("cli
         var scrollSection = document.getElementById("education" + previousSection);
         console.log("education"+addEducationCount+" deleted")
         addEducationCount -=1;
-        deleteSection.remove();
+        deleteSection.classList.add("deleted_element");
+        const timer = setTimeout(console.log("Timer start"), 1000)
+        setTimeout(function(){
+           deleteSection.remove();
+           scrollSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+        }, 300);
+        setTimeout(()=> {
+            clearTimeout();
+        }, 1);
     }else{
         console.log("all additional education records deleted");
         var scrollSection = document.getElementById("education-buttons");
+        scrollSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
         //showLogMsg("all additional education records deleted");
     }
-    scrollSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
 });
 
 window.onload = document.getElementById("addjob").addEventListener("click", function() {
@@ -509,13 +517,27 @@ window.onload = document.getElementById("addskill").addEventListener("click", fu
 window.onload = document.getElementById("deleteskill").addEventListener("click", function() {
     console.log("You clicked deleteskill");
     if(document.getElementById("skill" + addSkillCount) == null){
+        var scrollSection = document.getElementById("skill-buttons");
+        scrollSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
         console.log("all skill records deleted");
         //showLogMsg("all skill records deleted");
         return;
     }
     var deleteSection = document.getElementById("skill" + addSkillCount);
+    var previousSection = addSkillCount-1;
+    if(previousSection!=-1){var scrollSection = document.getElementById("skill" + previousSection);}
+    else{var scrollSection = document.getElementById("skill-buttons");}
+    deleteSection.classList.add("deleted_element");
     console.log("skill"+addSkillCount+" deleted")
-    deleteSection.remove();
+    const timer = setTimeout(console.log("Timer start"), 1000)
+    setTimeout(function(){
+       deleteSection.remove();
+       scrollSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+    }, 300);
+    setTimeout(()=> {
+        clearTimeout();
+    }, 1);
+
     if(addSkillCount >= 0 ){
         addSkillCount -=1;
     };
@@ -571,13 +593,27 @@ window.onload = document.getElementById("addhobby").addEventListener("click", fu
 window.onload = document.getElementById("deletehobby").addEventListener("click", function() {
     console.log("You clicked deletehobby");
     if(document.getElementById("hobby" + addHobbyCount) == null){
+        var scrollSection = document.getElementById("hobby-buttons");
+        scrollSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
         console.log("all hobby records deleted");
-        //showLogMsg("all skill records deleted");
+        //showLogMsg("all hobby records deleted");
         return;
     }
+
     var deleteSection = document.getElementById("hobby" + addHobbyCount);
+    var previousSection = addHobbyCount-1;
+    if(previousSection!=-1){var scrollSection = document.getElementById("hobby" + previousSection);}
+    else{var scrollSection = document.getElementById("hobby-buttons");}
+    deleteSection.classList.add("deleted_element");
     console.log("hobby"+addHobbyCount+" deleted")
-    deleteSection.remove();
+    const timer = setTimeout(console.log("Timer start"), 1000)
+    setTimeout(function(){
+       deleteSection.remove();
+       scrollSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+    }, 300);
+    setTimeout(()=> {
+        clearTimeout();
+    }, 1);
     if(addHobbyCount >= 0 ){
         addHobbyCount -=1;
     };
@@ -649,17 +685,23 @@ window.onload = document.getElementById("addlink").addEventListener("click", fun
 window.onload = document.getElementById("deletelink").addEventListener("click", function() {
     console.log("You clicked deletelink");
     if(document.getElementById("link" + addLinkCount) == null){
+        var scrollSection = document.getElementById("link-buttons");
+        scrollSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
         console.log("all link records deleted");
-        //showLogMsg("all skill records deleted");
+        //showLogMsg("all link records deleted");
         return;
     }
+
     var deleteSection = document.getElementById("link" + addLinkCount);
+    var previousSection = addLinkCount-1;
+    if(previousSection!=-1){var scrollSection = document.getElementById("link" + previousSection);}
+    else{var scrollSection = document.getElementById("link-buttons");}
     deleteSection.classList.add("deleted_element");
-    console.log("link"+addLinkCount+" deleted");
-    
+    console.log("link"+addLinkCount+" deleted")
     const timer = setTimeout(console.log("Timer start"), 1000)
-    setTimeout(()=> {
-        deleteSection.remove();
+    setTimeout(function(){
+       deleteSection.remove();
+       scrollSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
     }, 300);
     setTimeout(()=> {
         clearTimeout();
