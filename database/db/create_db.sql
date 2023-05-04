@@ -54,7 +54,7 @@ CREATE TABLE Job(
     endDateJob Date NOT NULL,
     CONSTRAINT jobID_pk PRIMARY KEY(jobID),
     CONSTRAINT cvID_fk FOREIGN KEY(cvID) REFERENCES CV(cvID)
-)
+);
 
 CREATE TABLE Skill(
     skillID serial,
@@ -63,7 +63,7 @@ CREATE TABLE Skill(
     level int NOT NULL, -- {1,2,3,4,5}
     CONSTRAINT skillID_pk PRIMARY KEY(skillID),
     CONSTRAINT cvID_fk FOREIGN KEY(cvID) REFERENCES CV(cvID)
-)
+);
 
 CREATE TABLE Link(
     linkID serial,
@@ -72,7 +72,7 @@ CREATE TABLE Link(
     linkName Varchar(25) NOT NULL,
     CONSTRAINT linkID_pk PRIMARY KEY(linkID),
     CONSTRAINT cvID_fk FOREIGN KEY(cvID) REFERENCES CV(cvID)
-)
+);
 
 CREATE TABLE Hobby(
     hobbyID serial,
@@ -80,7 +80,7 @@ CREATE TABLE Hobby(
     hobbyName Varchar(25) NOT NULL,
     CONSTRAINT hobbyID_pk PRIMARY KEY(hobbyID),
     CONSTRAINT cvID_fk FOREIGN KEY(cvID) REFERENCES CV(cvID)
-)
+);
 
 
 
