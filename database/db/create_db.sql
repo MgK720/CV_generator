@@ -1,7 +1,7 @@
 CREATE TABLE cv(
     cv_id serial,
     create_date Date NOT NULL, --on insert 
-    lastchange_date Date NOT NULL, --on update
+    lastchange_date Date NOT NULL, --on update (on insert set lastchange_date as create_date)
     cv_url Varchar(50) NOT NULL,
     CONSTRAINT cv_pk PRIMARY KEY(cv_id)
 );
@@ -82,5 +82,5 @@ CREATE TABLE link(
     CONSTRAINT link_cvid_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id)
 );
 
-
+--TODO rename diagram col.
 
