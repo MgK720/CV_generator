@@ -1,85 +1,85 @@
-CREATE TABLE CV(
-    cvID serial,
-    createDate Date NOT NULL, --on insert 
-    lastChangeDate Date NOT NULL, --on update
-    cvURL Varchar(50) NOT NULL,
-    CONSTRAINT cvID_pk PRIMARY KEY(cvID)
+CREATE TABLE cv(
+    cv_id serial,
+    create_date Date NOT NULL, --on insert 
+    lastchange_date Date NOT NULL, --on update
+    cv_url Varchar(50) NOT NULL,
+    CONSTRAINT cv_pk PRIMARY KEY(cv_id)
 );
 
-CREATE TABLE PersonalData(
-    personalDataID serial,
-    cvID int NOT NULL,
+CREATE TABLE personaldata(
+    personaldata_id serial,
+    cv_id int NOT NULL,
     firstname Varchar(30) NOT NULL,
     lastname Varchar(30) NOT NULL,
     email Varchar(45) NOT NULL,
-    phoneCountry int NOT NULL, --max 3 numbers
+    phone_country int NOT NULL, --max 3 numbers
     phone int NOT NULL, --max 9 numbers
-    imgDestination Varchar(50),
-    CONSTRAINT personalDataID_pk PRIMARY KEY(personalDataID),
-    CONSTRAINT cvID_fk FOREIGN KEY(cvID) REFERENCES CV(cvID)
+    img_destination Varchar(50),
+    CONSTRAINT personaldata_pk PRIMARY KEY(personaldata_id),
+    CONSTRAINT personaldata_cvid_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id)
 );
 
-CREATE TABLE KnowledgeType(
-    knowledgeTypeID serial, --{0 - course, 1 - school}
-    knowledgeTypeName Varchar(20) NOT NULL,
-    CONSTRAINT knowledgeTypeID_pk PRIMARY KEY(knowledgeTypeID)
+CREATE TABLE knowledgetype(
+    knowledgetype_id serial, --{0 - course, 1 - school}
+    knowledgetype_name Varchar(20) NOT NULL,
+    CONSTRAINT knowledgetype_pk PRIMARY KEY(knowledgetype_id)
 );
 
-CREATE TABLE SchoolType(
-    schoolTypeID serial, --{0 - primary, 1 - mid, 2 - high}
-    schoolTypeName Varchar(20) NOT NULL,
-    CONSTRAINT schoolTypeID_pk PRIMARY KEY(schoolTypeID)
+CREATE TABLE schooltype(
+    schooltype_id serial, --{0 - primary, 1 - mid, 2 - high}
+    schooltype_name Varchar(20) NOT NULL,
+    CONSTRAINT schooltype_pk PRIMARY KEY(schooltype_id)
 );
 
-CREATE TABLE Knowledge(
-    knowledgeID serial,
-    cvID int NOT NULL,
-    knowledgeName Varchar(40) NOT NULL,
-    knowledgeTypeID int NOT NULL, --max 1 number
-    schoolTypeID int, --can be null
-    startDateKnowledge Date NOT NULL,
-    endDateKnowledge Date NOT NULL,
+CREATE TABLE knowledge(
+    knowledge_id serial,
+    cv_id int NOT NULL,
+    knowledge_name Varchar(40) NOT NULL,
+    knowledgetype_id int NOT NULL, --max 1 number
+    schooltype_id int, --can be null
+    start_date_knowledge Date NOT NULL,
+    end_date_knowledge Date NOT NULL,
     description Varchar(100),
-    CONSTRAINT knowledgeID_pk PRIMARY KEY(knowledgeID),
-    CONSTRAINT cvID_fk FOREIGN KEY(cvID) REFERENCES CV(cvID),
-    CONSTRAINT knowledgeTypeID_fk FOREIGN KEY(knowledgeTypeID) REFERENCES KnowledgeType(knowledgeTypeID),
-    CONSTRAINT schoolTypeID_fk FOREIGN KEY(schoolTypeID) REFERENCES SchoolType(schoolTypeID)
+    CONSTRAINT knowledge_pk PRIMARY KEY(knowledge_id),
+    CONSTRAINT knowledge_cvid_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id),
+    CONSTRAINT knowledge_type_fk FOREIGN KEY(knowledgetype_id) REFERENCES knowledgetype(knowledgetype_id),
+    CONSTRAINT knowledge_school_fk FOREIGN KEY(schooltype_id) REFERENCES schooltype(schooltype_id)
 );
 
-CREATE TABLE Job(
-    jobID serial,
-    cvID int NOT NULL,
-    jobName Varchar(40) NOT NULL,
-    startDateJob Date NOT NULL,
-    endDateJob Date NOT NULL,
-    CONSTRAINT jobID_pk PRIMARY KEY(jobID),
-    CONSTRAINT cvID_fk FOREIGN KEY(cvID) REFERENCES CV(cvID)
+CREATE TABLE job(
+    job_id serial,
+    cv_id int NOT NULL,
+    job_name Varchar(40) NOT NULL,
+    start_date_job Date NOT NULL,
+    end_date_job Date NOT NULL,
+    CONSTRAINT job_pk PRIMARY KEY(job_id),
+    CONSTRAINT job_cvid_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id)
 );
 
-CREATE TABLE Skill(
-    skillID serial,
-    cvID int NOT NULL,
-    skillName Varchar(25) NOT NULL,
+CREATE TABLE skill(
+    skill_id serial,
+    cv_id int NOT NULL,
+    skill_name Varchar(25) NOT NULL,
     level int NOT NULL, -- {1,2,3,4,5}
-    CONSTRAINT skillID_pk PRIMARY KEY(skillID),
-    CONSTRAINT cvID_fk FOREIGN KEY(cvID) REFERENCES CV(cvID)
+    CONSTRAINT skill_pk PRIMARY KEY(skill_id),
+    CONSTRAINT skill_cvid_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id)
 );
 
-CREATE TABLE Link(
-    linkID serial,
-    cvID int NOT NULL,
-    linkURL Varchar(100) NOT NULL,
-    linkName Varchar(25) NOT NULL,
-    CONSTRAINT linkID_pk PRIMARY KEY(linkID),
-    CONSTRAINT cvID_fk FOREIGN KEY(cvID) REFERENCES CV(cvID)
+CREATE TABLE hobby(
+    hobby_id serial,
+    cv_id int NOT NULL,
+    hobby_name Varchar(25) NOT NULL,
+    CONSTRAINT hobby_pk PRIMARY KEY(hobby_id),
+    CONSTRAINT hobby_cvid_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id)
 );
 
-CREATE TABLE Hobby(
-    hobbyID serial,
-    cvID int NOT NULL,
-    hobbyName Varchar(25) NOT NULL,
-    CONSTRAINT hobbyID_pk PRIMARY KEY(hobbyID),
-    CONSTRAINT cvID_fk FOREIGN KEY(cvID) REFERENCES CV(cvID)
+CREATE TABLE link(
+    link_id serial,
+    cv_id int NOT NULL,
+    link_url Varchar(100) NOT NULL,
+    link_name Varchar(25) NOT NULL,
+    CONSTRAINT link_pk PRIMARY KEY(link_id),
+    CONSTRAINT link_cvid_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id)
 );
 
 
