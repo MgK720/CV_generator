@@ -22,7 +22,7 @@ CREATE TRIGGER CheckingPhoneCountry
 		EXECUTE PROCEDURE checking_phone_country();
 
 
---2. NOT IMPORTANT JUST INT IS ENOUGH
+--2. NOT IMPORTANT JUST INT IS ENOUGH FOR FIRST IF STATEMENT 
 SET client_encoding TO 'UTF-8';
 CREATE FUNCTION checking_phone()
     RETURNS TRIGGER
@@ -142,3 +142,6 @@ CREATE TRIGGER CheckingEducationSchoolTypeIdOptional
 		EXECUTE PROCEDURE checking_education_schooltype_id_optional();
 
 
+-- TODO :
+-- skill level
+-- startend date job

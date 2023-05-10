@@ -2,7 +2,7 @@
 INSERT INTO personaldata(personaldata_id, cv_id, firstname, lastname, email, phone_country, phone, img_destination)
 VALUES (DEFAULT, 1, 'firstname', 'lastname', 'email', 1000, 999999999, 'img-dest');
 
---2. NOT IMPORTANT JUST INT IS ENOUGH
+--2. NOT IMPORTANT JUST INT IS ENOUGH FOR NUMBERS > 999 999 999
 INSERT INTO personaldata(personaldata_id, cv_id, firstname, lastname, email, phone_country, phone, img_destination)
 VALUES (DEFAULT, 1, 'firstname', 'lastname', 'email', 999, 9999999991, 'img-dest');
 
