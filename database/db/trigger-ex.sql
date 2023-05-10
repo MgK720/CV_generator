@@ -17,3 +17,7 @@ VALUES (DEFAULT, 1, 'knowledge_name', 2, 2, '2023-03-22', '2023-03-22', 'descrip
 --5
 INSERT INTO knowledge(knowledge_id, cv_id, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description)
 VALUES (DEFAULT, 1, 'knowledge_name', 1, 3, '2023-03-22', '2023-03-22', 'description');
+
+--6
+INSERT INTO knowledge(knowledge_id, cv_id, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description)
+VALUES (DEFAULT, 1, 'knowledge_name', 0, 2, '2023-03-22', '2023-03-22', 'description');

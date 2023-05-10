@@ -120,3 +120,25 @@ CREATE TRIGGER CheckingEducationSchoolTypeId
 	FOR EACH ROW
 		EXECUTE PROCEDURE checking_education_schooltype_id();
 
+
+--6
+SET client_encoding TO 'UTF-8';
+CREATE FUNCTION checking_education_schooltype_id_optional()
+    RETURNS TRIGGER
+AS $$
+BEGIN
+    IF new.schooltype_id IS NOT NULL AND new.knowledgetype_id = 0 THEN
+        RAISE EXCEPTION 'schooltype_id must be null if knowledgetype = 0 (course)';
+    END IF;
+    RETURN new;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER CheckingEducationSchoolTypeIdOptional
+	BEFORE INSERT OR UPDATE
+	ON knowledge
+	FOR EACH ROW
+		EXECUTE PROCEDURE checking_education_schooltype_id_optional();
+
+

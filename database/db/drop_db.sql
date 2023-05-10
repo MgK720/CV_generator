@@ -26,5 +26,7 @@ DROP FUNCTION IF EXISTS checking_education_knowledgetype_id;
 
 DROP FUNCTION IF EXISTS checking_education_schooltype_id;
 
+DROP FUNCTION IF EXISTS checking_education_schooltype_id_optional
+
 
 
