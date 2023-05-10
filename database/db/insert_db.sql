@@ -1,5 +1,6 @@
 --pseudocode
 --IMPORTANT HOW TO GET SERIAL ID AND SET IT IN ANOTHER TABLE
+--prawdopodobnie lepszym wariantem będzie przechwycenie tego cv_id za pomocą php
 --With something do -> everything (all inserts)
 --WITH inserted_cvid AS (
 --    INSERT INTO cv(cv_id, create_date, lastchange_date, cv_url) 
@@ -8,8 +9,8 @@
 --INSERT INTO personaldata(personaldata_id, cv_id, firstname, lastname, email, phone_country, phone, img_destination)
 --VALUES (DEFAULT, (select cv_id from inserted_cvid), 'aaa', 'lastname', 'email', 3, 4, 'ala');
 
-INSERT INTO cv(cv_id, create_date, lastchange_date, cv_url) 
-VALUES (DEFAULT, trigg(create_date), trigg(lastchange_date), cv_url);
+INSERT INTO cv(cv_id, create_date, cv_url) 
+VALUES (DEFAULT, DEFAULT, 'cv_url');
 
 
 --trigg phone_country must be between 1-999 and phone must have 9 numbers
@@ -21,20 +22,20 @@ VALUES (DEFAULT, (select cv_id from inserted_cvid), firstname, lastname, email, 
 
 -- [*] if value == 'course' then in knowledge set knowledgetype_id = 0 else if value == 'school' set knowledgetype_id = 1
 INSERT INTO knowledgetype(knowledgetype_id, knowledgetype_name)
-VALUES (0, "course");
+VALUES (0, 'course');
 
 INSERT INTO knowledgetype(knowledgetype_id, knowledgetype_name)
-VALUES (1, "school");
+VALUES (1, 'school');
 
 -- [**] if value == 'primary' then in knowledge set schooltype_id = 0 else if value == 'mid-school' set schooltype_id = 1 else if value == "high-school" set schooltype_id = 2
 INSERT INTO schooltype(schooltype_id, schooltype_name)
-VALUES (0, "primary");
+VALUES (0, 'primary');
 
 INSERT INTO schooltype(schooltype_id, schooltype_name)
-VALUES (1, "mid-school");
+VALUES (1, 'mid-school');
 
 INSERT INTO schooltype(schooltype_id, schooltype_name)
-VALUES (2, "high-school");
+VALUES (2, 'high-school');
 
 
 INSERT INTO knowledge(knowledge_id, cv_id, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description)

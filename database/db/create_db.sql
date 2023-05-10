@@ -1,7 +1,6 @@
 CREATE TABLE cv(
     cv_id serial,
-    create_date Date NOT NULL, --on insert 
-    lastchange_date Date NOT NULL, --on update (on insert set lastchange_date as create_date)
+    create_date TIMESTAMPTZ DEFAULT Now(), --on insert DONE
     cv_url Varchar(50) NOT NULL,
     CONSTRAINT cv_pk PRIMARY KEY(cv_id)
 );
@@ -12,21 +11,21 @@ CREATE TABLE personaldata(
     firstname Varchar(30) NOT NULL,
     lastname Varchar(30) NOT NULL,
     email Varchar(45) NOT NULL,
-    phone_country int NOT NULL, --max 3 numbers
-    phone int NOT NULL, --max 9 numbers
+    phone_country int NOT NULL, --max 3 numbers DONE
+    phone int NOT NULL, --max 9 numbers DONE 
     img_destination Varchar(50),
     CONSTRAINT personaldata_pk PRIMARY KEY(personaldata_id),
     CONSTRAINT personaldata_cvid_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id)
 );
 
 CREATE TABLE knowledgetype(
-    knowledgetype_id serial, --{0 - course, 1 - school}
+    knowledgetype_id serial, --{0 - course, 1 - school} DONE
     knowledgetype_name Varchar(20) NOT NULL,
     CONSTRAINT knowledgetype_pk PRIMARY KEY(knowledgetype_id)
 );
 
 CREATE TABLE schooltype(
-    schooltype_id serial, --{0 - primary, 1 - mid, 2 - high}
+    schooltype_id serial, --{0 - primary, 1 - mid, 2 - high} DONE
     schooltype_name Varchar(20) NOT NULL,
     CONSTRAINT schooltype_pk PRIMARY KEY(schooltype_id)
 );
@@ -35,8 +34,8 @@ CREATE TABLE knowledge(
     knowledge_id serial,
     cv_id int NOT NULL,
     knowledge_name Varchar(40) NOT NULL,
-    knowledgetype_id int NOT NULL, --max 1 number
-    schooltype_id int, --can be null
+    knowledgetype_id int NOT NULL, --max 1 number - do przerobienia w html i js
+    schooltype_id int, --can be null max 1 number - do przerobienia w html i js if knowledgetype==0 then set schooltype_id as null (php)
     start_date_knowledge Date NOT NULL,
     end_date_knowledge Date NOT NULL,
     description Varchar(100),

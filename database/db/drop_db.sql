@@ -16,5 +16,15 @@ DROP TABLE IF EXISTS personaldata;
 
 DROP TABLE IF EXISTS cv;
 
+DROP FUNCTION IF EXISTS checking_phone_country;
+
+DROP FUNCTION IF EXISTS checking_phone;
+
+DROP FUNCTION IF EXISTS checking_education_startend_date;
+
+DROP FUNCTION IF EXISTS checking_education_knowledgetype_id;
+
+DROP FUNCTION IF EXISTS checking_education_schooltype_id;
+
 
 
