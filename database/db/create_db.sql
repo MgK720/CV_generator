@@ -7,7 +7,7 @@ CREATE TABLE cv(
 
 CREATE TABLE personaldata(
     personaldata_id serial,
-    cv_id int NOT NULL,
+    cv_id int NOT NULL UNIQUE,
     firstname Varchar(30) NOT NULL,
     lastname Varchar(30) NOT NULL,
     email Varchar(45) NOT NULL,

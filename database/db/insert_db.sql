@@ -55,7 +55,7 @@ INSERT INTO hobby(hobby_id, cv_id, hobby_name)
 VALUES (DEFAULT, (select cv_id from inserted_cvid), hobby_name)
 
 
-CREATE TABLE link(link_id, cv_id, link_url, link_name)
+INSERT INTO link(link_id, cv_id, link_url, link_name)
 VALUES (DEFAULT, (select cv_id from inserted_cvid), link_url, link_name)
 
 
