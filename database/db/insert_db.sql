@@ -47,7 +47,7 @@ VALUES (DEFAULT, (select cv_id from inserted_cvid), job_name, start_date_job, en
 
 
 --level <1,5>
-INSERT INTO skill(skill_id, cv_id, skill_name, level int)
+INSERT INTO skill(skill_id, cv_id, skill_name, level)
 VALUES (DEFAULT, (select cv_id from inserted_cvid), skill_name, trigg(level))
 
 

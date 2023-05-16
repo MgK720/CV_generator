@@ -1,4 +1,4 @@
---1.
+--1. phone country number validation
 SET client_encoding TO 'UTF-8';
 CREATE FUNCTION checking_phone_country()
     RETURNS TRIGGER
@@ -22,7 +22,7 @@ CREATE TRIGGER CheckingPhoneCountry
 		EXECUTE PROCEDURE checking_phone_country();
 
 
---2. NOT IMPORTANT JUST INT IS ENOUGH FOR FIRST IF STATEMENT 
+--2. phone number validation (site doesnt work for all phone numbers at this moment)
 SET client_encoding TO 'UTF-8';
 CREATE FUNCTION checking_phone()
     RETURNS TRIGGER
@@ -46,7 +46,7 @@ CREATE TRIGGER CheckingPhone
 		EXECUTE PROCEDURE checking_phone();
 
 
---3. 
+--3. start_date_knowledge and end_date_knowledge validation
 SET client_encoding TO 'UTF-8';
 CREATE FUNCTION checking_education_startend_date()
     RETURNS TRIGGER
@@ -73,7 +73,7 @@ CREATE TRIGGER CheckingEducationStartEndDate
 		EXECUTE PROCEDURE checking_education_startend_date();
 
 
---4
+--4 knowledgetype_id validation
 SET client_encoding TO 'UTF-8';
 CREATE FUNCTION checking_education_knowledgetype_id()
     RETURNS TRIGGER
@@ -97,7 +97,7 @@ CREATE TRIGGER CheckingEducationKnowledgeTypeId
 		EXECUTE PROCEDURE checking_education_knowledgetype_id();
 
 
---5
+--5 schooltype_id validation
 SET client_encoding TO 'UTF-8';
 CREATE FUNCTION checking_education_schooltype_id()
     RETURNS TRIGGER
@@ -121,7 +121,7 @@ CREATE TRIGGER CheckingEducationSchoolTypeId
 		EXECUTE PROCEDURE checking_education_schooltype_id();
 
 
---6
+--6 is schooltype_id = null if knowledgetype = 0 ('course' doesnt have schooltype input)
 SET client_encoding TO 'UTF-8';
 CREATE FUNCTION checking_education_schooltype_id_optional()
     RETURNS TRIGGER
@@ -142,6 +142,53 @@ CREATE TRIGGER CheckingEducationSchoolTypeIdOptional
 		EXECUTE PROCEDURE checking_education_schooltype_id_optional();
 
 
--- TODO :
--- skill level
--- startend date job
+--7 skill level between <1, 5> validation
+SET client_encoding TO 'UTF-8';
+CREATE FUNCTION checking_skill_level()
+    RETURNS TRIGGER
+AS $$
+BEGIN
+    IF new.level < 1 THEN
+        RAISE EXCEPTION 'skill level must be greater or equal 1';
+    END IF;
+    IF new.level > 5 THEN
+        RAISE EXCEPTION 'skill level must be lower or equal 5';
+    END IF;
+    RETURN new;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER CheckingSkillLevel
+	BEFORE INSERT OR UPDATE
+	ON skill
+	FOR EACH ROW
+		EXECUTE PROCEDURE checking_skill_level();
+
+
+--8 start_date_job and end_date_job validation
+SET client_encoding TO 'UTF-8';
+CREATE FUNCTION checking_job_startend_date()
+    RETURNS TRIGGER
+AS $$
+BEGIN
+    IF new.start_date_job > new.end_date_job THEN
+        RAISE EXCEPTION 'start_date must be < than end_date';
+    END IF;
+    IF new.start_date_job > DATE(NOW()) THEN
+        RAISE EXCEPTION 'start_date cant be future date';
+    END IF;
+    IF new.end_date_job > DATE(NOW()) THEN
+        RAISE EXCEPTION 'end_date cant be future date';
+    END IF;
+    RETURN new;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER CheckingJobStartEndDate
+	BEFORE INSERT OR UPDATE
+	ON job
+	FOR EACH ROW
+		EXECUTE PROCEDURE checking_job_startend_date();
+
