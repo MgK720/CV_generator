@@ -1,7 +1,12 @@
+CREATE DOMAIN url AS text
+CHECK (VALUE ~ '^https?:\/\/[-a-zA-Z0-9@:%._\+~#=]{2,255}\.[a-z]{2,6}(\/[-a-zA-Z0-9@:%._\+~#=]*)*(\?[-a-zA-Z0-9@:%_\+.~#()?&//=]*)?$');
+COMMENT ON DOMAIN url IS 'match URLs (http or https)';
+
+
 CREATE TABLE cv(
     cv_id serial,
     create_date TIMESTAMPTZ DEFAULT Now(), --on insert DONE
-    cv_url Varchar(50) NOT NULL,
+    cv_url url NOT NULL,
     CONSTRAINT cv_pk PRIMARY KEY(cv_id)
 );
 
@@ -75,7 +80,7 @@ CREATE TABLE hobby(
 CREATE TABLE link(
     link_id serial,
     cv_id int NOT NULL,
-    link_url Varchar(100) NOT NULL,
+    link_url url NOT NULL,
     link_name Varchar(25) NOT NULL,
     CONSTRAINT link_pk PRIMARY KEY(link_id),
     CONSTRAINT link_cvid_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id)
