@@ -192,7 +192,4 @@ CREATE TRIGGER CheckingJobStartEndDate
 	FOR EACH ROW
 		EXECUTE PROCEDURE checking_job_startend_date();
 
--- TODO
--- cv url pattern checking
--- link url pattern checking
 
