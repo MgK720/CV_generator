@@ -10,3 +10,4 @@ TODO
 5. wykonac reszte insertow do tablic z formularza
 6. upload na server pliku (zdjecie w formularzu) wraz z genaracją nazwy
 7. REFACTOR name, for, id,class itd... w index.html oraz actions.js (nazwy z bazy danych)
+8. zrobic token (email, numer lub coś w tym stylu), żeby ochronic baze przed request spamem
