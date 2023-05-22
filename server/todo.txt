@@ -3,9 +3,9 @@
 _________________________________________________________________________________
 TODO
 1. nowy package.json
-2. async/await - poprawić w pliku queries.js
+2. async/await - poprawić w pliku queries.js DONE
 3. rozdzielić do osobnych funkcji kazde zapytanie jako np addPersonalData()
-   i pozniej wywołać je w głównej funckji która wykonuje res.send
-4. zwracać uzytkownikowi na stronie informacje o bledzie
+   i pozniej wywołać je w głównej funckji która wykonuje res.send  DONE
+4. zwracać uzytkownikowi na stronie informacje o bledzie DONE
 5. wykonac reszte insertow do tablic z formularza
 6. upload na server pliku (zdjecie w formularzu) wraz z genaracją nazwy
