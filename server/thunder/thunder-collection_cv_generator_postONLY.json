@@ -1,0 +1,28 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "cv_generator",
+    "dateExported": "2023-05-24T17:57:43.053Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "c2012bb5-082c-410f-8e21-ca08832224fb",
+            "colId": "25aaa764-f400-4900-89ad-981728394bbd",
+            "containerId": "",
+            "name": "http://localhost:3000/cv",
+            "url": "http://localhost:3000/cv",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-05-24T17:56:41.115Z",
+            "modified": "2023-05-24T17:56:41.115Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"firstname\": \"KKJ\",\n    \"lastname\": \"kkflsfs\",\n    \"myimage\": \"\",\n    \"myemail\": \"igorhg72@gm.co\",\n    \"calling_code\": \"89\",\n    \"myphone_number\": \"988888888\",\n    \"school0\": \"siema\",\n    \"knowledge_type0\": \"0\",\n    \"school_type0\": \"\",\n    \"startyear0\": \"2020-03-02\",\n    \"endyear0\": \"2020-04-02\",\n    \"education_description0\": \"hhk\",\n    \"school1\": \"nara\",\n    \"knowledge_type1\": \"0\",\n    \"school_type1\": \"\",\n    \"startyear1\": \"2020-04-03\",\n    \"endyear1\": \"2021-05-04\",\n    \"education_description1\": \"\",\n    \"job0\": \"siema\",\n    \"startyear_job0\": \"2020-04-03\",\n    \"endyear_job0\": \"2021-02-01\",\n    \"skill_name0\": \"siema\",\n    \"skill_level0\": \"4\",\n    \"hobby_name0\": \"ahahah\",\n    \"link_url0\": \"https://siema.com\",\n    \"link_name0\": \"siema\"\n  }\n  ",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
