@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" type="text/css" href="app.css">
     <title>Form</title>
 </head>
 
@@ -20,7 +20,7 @@
         <p id="log">My log</p>
     </aside>-->
     <main>
-        <form action="done.html">
+        <form action="/cv" method="POST" enctype="multipart/form-data">
             <section id="myform">
                 <section id="name">
                     <ul>
@@ -45,18 +45,18 @@
                             <span class="validity"></span>
                         </li>
                         <li>
-                            <label for="myemail">Email:</label>
-                            <input type="email" id="myemail" name="myemail" required>
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
                             <span class="validity"></span>
                         </li>
                         <li>
-                            <label for="calling-code">Calling code:</label>
+                            <label for="phone_country">Calling code:</label>
                             <span>+</span>
-                            <input type="number" id="calling-code" name="calling-code" min="1" max="999"
+                            <input type="number" id="phone_country" name="phone_country" min="1" max="999"
                                 placeholder="48" required>
                             <span class="validity"></span>
-                            <label for="myphone-number">Phone</label>
-                            <input type="tel" id="myphone-number" name="myphone-number" pattern="[0-9]{9}" required>
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" pattern="[0-9]{9}" required>
                             <span class="validity"></span>
                         </li>
                     </ul>
@@ -64,23 +64,24 @@
                 <section id="education0" class="education">
                     <ul>
                         <li>
-                            <label for="school0">Knowledge:</label>
-                            <input type="text" name="school0" id="school0" class="school" minlength="1" maxlength="45"
+                            <label for="knowledge_name0">Knowledge:</label>
+                            <input type="text" name="knowledge_name0" id="knowledge_name0" class="school" minlength="1" maxlength="45"
                                 required>
                             <span class="validity"></span>
                         </li>
                         <li>
-                            <label for="knowledge-type0" class="knowledge-type">Type: </label>
-                            <select name="knowledge-type0" id="knowledge-type0"
+                            <label for="knowledge_type0" class="knowledge-type">Type: </label>
+                            <select name="knowledge_type0" id="knowledge_type0"
                                 onchange="schoolTypeShow(addEducationCount)" required>
-                                <option value="">--option--</option>
-                                <option value="0">School</option>
-                                <option value="1">Course</option>
+                                <option value="" id="blankKnowledgeOption" selected>--option--</option>
+                                <option value="1">School</option>
+                                <option value="0">Course</option>
                             </select>
                             <span class="validity"></span>
+                            <!--TODO !!! Przy odświezaniu strony dzieja sie dziwne rzeczy - po kazdym restarcie musi wrocic na "--option--"-->
                             <div id="school-type-select0" class="school-type-select">
                                 <!--<label for="school-type0" class="school-type">School:</label>-->
-                                <select name="school-type0" id="school-type0">
+                                <select name="school_type0" id="school_type0">
                                     <option value="">--option--</option>
                                     <option value="0">Primary</option>
                                     <option value="1">MidSchool</option>
@@ -90,18 +91,18 @@
                             </div>
                         </li>
                         <li>
-                            <label for="startyear0" class="startyear">From:</label>
-                            <input type="date" name="startyear0" id="startyear0" min="1900-01-01" value="2100-01-01"
+                            <label for="start_date_knowledge0" class="startyear">From:</label>
+                            <input type="date" name="start_date_knowledge0" id="start_date_knowledge0" min="1900-01-01" value="2100-01-01"
                                 onload="max='today()'" required>
                             <span class="validity"></span>
-                            <label for="endyear0" class="endyear">To:</label>
-                            <input type="date" name="endyear0" id="endyear0" min="1900-01-01" max="2023-03-27"
+                            <label for="end_date_knowledge0" class="endyear">To:</label>
+                            <input type="date" name="end_date_knowledge0" id="end_date_knowledge0" min="1900-01-01" max="2023-03-27"
                                 value="2100-01-01" required>
                             <span class="validity"></span>
                         </li>
                         <li>
-                            <label for="education-description0">Description:</label>
-                            <input type="text" name="education-description0" id="education-description0"
+                            <label for="education_description0">Description:</label>
+                            <input type="text" name="education_description0" id="education_description0"
                                 class="education-description" maxlength="100" placeholder="---Write something---">
                         </li>
                     </ul>
@@ -113,17 +114,17 @@
                 <section id="experience0" class="experience">
                     <ul>
                         <li>
-                            <label for="job0">Job:</label>
-                            <input type="text" name="job0" id="job0" minlength="1" maxlength="40" required>
+                            <label for="job_name0">Job:</label>
+                            <input type="text" name="job_name0" id="job_name0" minlength="1" maxlength="40" required>
                             <span class="validity"></span>
                         </li>
                         <li>
-                            <label for="startyear-job0" class="startyear">From:</label>
-                            <input type="date" name="startyear-job0" id="startyear-job0" min="1900-01-01"
+                            <label for="start_date_job0" class="startyear">From:</label>
+                            <input type="date" name="start_date_job0" id="start_date_job0" min="1900-01-01"
                                 max="2023-03-27" value="2100-01-01" required>
                             <span class="validity"></span>
-                            <label for="endyear-job0" class="endyear">To:</label>
-                            <input type="date" name="endyear-job0" id="endyear-job0" min="1900-01-01" max="2023-03-27"
+                            <label for="end_date_job0" class="endyear">To:</label>
+                            <input type="date" name="end_date_job0" id="end_date_job0" min="1900-01-01" max="2023-03-27"
                                 value="2100-01-01" required>
                             <span class="validity"></span>
                         </li>
@@ -133,18 +134,17 @@
                     <input type="button" id="addjob" value="+Job">
                     <input type="button" id="deletejob" value="-Job">
                 </div>
-                <!-- TODO Umiejetnosci nazwa + range; Linki do portali (input url) display as: "xxx",  -->
                 <section id="skill0" class="skill">
                     <ul>
                         <li>
-                            <label for="skill-name0">Skill:</label>
-                            <input type="text" name="skill-name0" id="skill-name0" minlength="1" maxlength="25"
+                            <label for="skill_name0">Skill:</label>
+                            <input type="text" name="skill_name0" id="skill_name0" minlength="1" maxlength="25"
                                 required>
                             <span class="validity"></span>
                         </li>
                         <li>
-                            <label for="skill-level0"></label>
-                            <input type="range" id="skill-level0" name="skill-level0" min="1" max="5" value="3"
+                            <label for="skill_level0"></label>
+                            <input type="range" id="skill_level0" name="skill_level0" min="1" max="5" value="3"
                                 step="1">
                             <p id="skill-level-value0">Medium</p>
                         </li>
@@ -154,11 +154,12 @@
                     <input type="button" id="addskill" value="+Skill">
                     <input type="button" id="deleteskill" value="-Skill">
                 </div>
+                 <!--refactored to this line--> 
                 <section id="hobby0" class="hobby">
                     <ul>
                         <li>
-                            <label for="hobby-name0">Hobby:</label>
-                            <input type="text" name="hobby-name0" id="hobby-name0" minlength="1" maxlength="25"
+                            <label for="hobby_name0">Hobby:</label>
+                            <input type="text" name="hobby_name0" id="hobby_name0" minlength="1" maxlength="25"
                                 required>
                             <span class="validity"></span>
                         </li>
@@ -171,16 +172,16 @@
                 <section id="link0" class="link">
                     <ul>
                         <li>
-                            <label for="link-url0">Link(URL):</label>
+                            <label for="link_url0">Link(URL):</label>
                             <!--db schemat do zmiany-->
-                            <input type="url" name="link-url0" id="link-url0"
+                            <input type="url" name="link_url0" id="link_url0"
                                 placeholder="https://pl.linkedin.com/in/(profile)" pattern="https://.*" maxlength="100"
                                 required>
                             <span class="validity"></span>
                         </li>
                         <li>
-                            <label for="link-name0">Display as:</label>
-                            <input type="text" name="link-name0" id="link-name0" placeholder="linkedin" minlength="1"
+                            <label for="link_name0">Display as:</label>
+                            <input type="text" name="link_name0" id="link_name0" placeholder="linkedin" minlength="1"
                                 maxlength="25" required>
                             <span class="validity"></span>
                         </li>
@@ -202,7 +203,7 @@
     <footer>
         <p>Copyright &copy Igor Ciesielski 2023</p>
     </footer>
-    <script src="actions.js"></script>
+    <script src="/actions.js"></script>
 
 </body>
 
