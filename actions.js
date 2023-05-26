@@ -9,7 +9,6 @@ var addExperienceCount = 0;
 var addSkillCount = 0;
 var addHobbyCount = 0;
 var addLinkCount = 0;
-
 window.addEventListener("load", (event) => {
     maxDate();
   });
@@ -18,6 +17,12 @@ function setAttributes(attrib, values){
         attrib.setAttribute(key,values[key]);
     }
 }
+
+//lepiej korzystać z tego zamiast - event dziala jeszcze przed pelnym zaladowaniem jsa cssa/ reszty dodatkowych plikow
+window.addEventListener("DOMContentLoaded", (event) =>{
+    SchoolTypeShowOnRefresh();
+    SkillLevelOnRefresh();
+})
 function sleep(milliseconds) {
     const date = Date.now();
     let currentDate = null;
@@ -41,10 +46,10 @@ function today(){
 
 }
 function maxDate(){
-        var myEduDateInputFrom = document.getElementById("startyear0");
-        var myEduDateInputTo = document.getElementById("endyear0");
-        var myExpDateInputFrom = document.getElementById("startyear-job0");
-        var myExpDateInputTo = document.getElementById("endyear-job0");
+        var myEduDateInputFrom = document.getElementById("start_date_knowledge0");
+        var myEduDateInputTo = document.getElementById("end_date_knowledge0");
+        var myExpDateInputFrom = document.getElementById("start_date_job0");
+        var myExpDateInputTo = document.getElementById("end_date_job0");
 
 
         myEduDateInputFrom.setAttribute("max",today());
@@ -64,7 +69,7 @@ function maxDate(){
 /* jquery CLS score of 0.1 or less - > myscore: 0.00004937*/
 $( document ).on( "click", "input[type='date']",function(event){
         var idOfClickedElement = event.target.id;
-        if(idOfClickedElement.includes("endyear")){
+        if(idOfClickedElement.includes("end_date")){
             return;
         }
         console.log(idOfClickedElement);
@@ -75,7 +80,8 @@ $( document ).on( "click", "input[type='date']",function(event){
             $("input[name='"+ idEndDate + "']").attr("min",$(this).val());
         })
     })
-$( document ).on("input", "input[type='range']", function(event){
+//input and load
+$( document ).on("input","input[type='range']", function(event){
         var idOfClickedElement = event.target.id;
         var valueOfClickedElement = event.target.value;
         console.log("my value = " + valueOfClickedElement);
@@ -89,28 +95,37 @@ $( document ).on("input", "input[type='range']", function(event){
 
         var idOfParagraphSelector = $("p[id='" + idOfParagraph + "']");
 
-        if(valueOfClickedElement == 1){
-            idOfParagraphSelector.text("Very Low");
-            idOfParagraphSelector.css("color", "#ff0000")
-        }else if(valueOfClickedElement == 2){
-            idOfParagraphSelector.text("Low");
-            idOfParagraphSelector.css("color", "#ff4d00")
-        }else if(valueOfClickedElement == 3){
-            idOfParagraphSelector.text("Medium");
-            idOfParagraphSelector.css("color", "#ffa300")
-        }else if(valueOfClickedElement == 4){
-            idOfParagraphSelector.text("High");
-            idOfParagraphSelector.css("color", "#e3ff00")
-        }else if(valueOfClickedElement == 5){
-            idOfParagraphSelector.text("Very High");
-            idOfParagraphSelector.css("color", "#a3ff00")
-        }else{
-            return;
-        }
-
-
+        SkillLevelParagraphSet(valueOfClickedElement, idOfParagraphSelector);
 
 })
+
+function SkillLevelOnRefresh(){
+    let skillLevelValue = document.getElementById("skill_level0").value;
+    var paragraphSelector = $("p[id='skill-level-value0']");
+    SkillLevelParagraphSet(skillLevelValue, paragraphSelector);
+    
+}
+
+function SkillLevelParagraphSet(skillLevelValue, paragraphSelector){
+    if(skillLevelValue == 1){
+        paragraphSelector.text("Very Low");
+        paragraphSelector.css("color", "#ff0000")
+    }else if(skillLevelValue == 2){
+        paragraphSelector.text("Low");
+        paragraphSelector.css("color", "#ff4d00")
+    }else if(skillLevelValue == 3){
+        paragraphSelector.text("Medium");
+        paragraphSelector.css("color", "#ffa300")
+    }else if(skillLevelValue == 4){
+        paragraphSelector.text("High");
+        paragraphSelector.css("color", "#e3ff00")
+    }else if(skillLevelValue == 5){
+        paragraphSelector.text("Very High");
+        paragraphSelector.css("color", "#a3ff00")
+    }else{
+        return;
+    }
+}
 /*
 --------------------LEGACY-----------------------------
 function showLogMsg(message){
@@ -131,20 +146,31 @@ window.onload = document.getElementById("remove-log").addEventListener("click", 
 function schoolTypeShow(addEducationCount) {
     console.log(addEducationCount);
     for(var x = 0; x<=addEducationCount;x+=1){
-        var knowledge = document.getElementById("knowledge-type" + x).value;
-        if (knowledge == "school") {
+        var knowledge = document.getElementById("knowledge_type" + x).value;
+        if (knowledge == 1) {
             //inline-block
-            document.getElementById("school-type" + x).required = true
+            document.getElementById("school_type" + x).required = true
             document.getElementById("school-type-select" + x).style.display = "flex";
         }
         else{
-            document.getElementById("school-type" + x).required = false;
-            document.getElementById("school-type" + x).value = "";
+            document.getElementById("school_type" + x).required = false;
+            document.getElementById("school_type" + x).value = "";
             document.getElementById("school-type-select" + x).style.display = "none";
             
     }
 }
 };
+
+function SchoolTypeShowOnRefresh(){
+    //Miałem problem z sessionStorage tego elementu podczas odswiezania strony zostawała wybrana przed refreshem wartość
+    //nie działało to prawidłowo z funkcją schoolTypeShow, dlatego teraz po refreshu jesli uzytkownik wybral opcje "school"
+    //to prawidłowo wyświetli sie select wyboru school_type
+    if(document.getElementById("knowledge_type0").value == 1){
+        document.getElementById("school_type0").required = true
+        document.getElementById("school-type-select0").style.display = "flex";
+    }
+}
+
 function createSpanValidity(){
     var spanValidity = document.createElement("span");
     spanValidity.setAttribute("class","validity");
@@ -155,7 +181,7 @@ function createSpanValidity(){
 window.onload = document.getElementById("addEducation").addEventListener("click", function() {
     if(addEducationCount == EDU_LIMIT){
         console.log("Too much education records (LIMIT IS " + EDU_LIMIT  + " )");
-        showLogMsg("Too much education records");
+        //showLogMsg("Too much education records");
         return;
     }
     console.log("You clicked addEducation");
@@ -176,11 +202,11 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
 
 
     var knowledgeLabel = document.createElement("label");
-    setAttributes(knowledgeLabel, {"for": "school" + addEducationCount})
+    setAttributes(knowledgeLabel, {"for": "knowledge_name" + addEducationCount})
     knowledgeLabel.textContent = "Knowledge:";
 
     var knowledge = document.createElement("INPUT");
-    setAttributes(knowledge, {"type": "text", "name": "school" + addEducationCount, "id" : "school" + addEducationCount, 
+    setAttributes(knowledge, {"type": "text", "name": "knowledge_name" + addEducationCount, "id" : "knowledge_name" + addEducationCount, 
     "class" : "school", "minlength" : "1", "maxlength" : "45"});
     knowledge.required = true;
 
@@ -189,11 +215,11 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
 
 
     var knowledgeTypeLabel = document.createElement("label");
-    setAttributes(knowledgeTypeLabel, {"for": "knowledge-type" + addEducationCount, "class": "knowledge-type"});
+    setAttributes(knowledgeTypeLabel, {"for": "knowledge_type" + addEducationCount, "class": "knowledge_type"});
     knowledgeTypeLabel.textContent = "Type:";
 
     var knowledgeType = document.createElement("select");
-    setAttributes(knowledgeType, {"name": "knowledge-type" + addEducationCount, "id": "knowledge-type" + addEducationCount, "onchange": "schoolTypeShow(addEducationCount)"});
+    setAttributes(knowledgeType, {"name": "knowledge_type" + addEducationCount, "id": "knowledge_type" + addEducationCount, "onchange": "schoolTypeShow(addEducationCount)"});
     knowledgeType.required = true;
 
     var blankType0 = document.createElement("option");
@@ -201,11 +227,11 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
     blankType0.textContent = "--option--";
 
     var firstKnowledgeType = document.createElement("option");
-    setAttributes(firstKnowledgeType,{"value": "school"});
+    setAttributes(firstKnowledgeType,{"value": "1"});
     firstKnowledgeType.textContent = "School";
 
     var secondKnowledgeType = document.createElement("option");
-    setAttributes(secondKnowledgeType,{"value": "course"});
+    setAttributes(secondKnowledgeType,{"value": "0"});
     secondKnowledgeType.textContent = "Course";
 
     knowledgeType.appendChild(blankType0);
@@ -224,7 +250,7 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
     schoolTypeLabel.textContent = "SchoolType:";*/
 
     var schoolType = document.createElement("select")
-    setAttributes(schoolType, {"name": "school-type" + addEducationCount, "id": "school-type" + addEducationCount});
+    setAttributes(schoolType, {"name": "school_type" + addEducationCount, "id": "school_type" + addEducationCount});
     schoolType.required = true;
 
 
@@ -233,15 +259,15 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
     blankType1.textContent = "--option--";
 
     var firstSchoolType = document.createElement("option");
-    setAttributes(firstSchoolType, {"value": "primary"});
+    setAttributes(firstSchoolType, {"value": "0"});
     firstSchoolType.textContent = "Primary";
 
     var secondSchoolType = document.createElement("option");
-    setAttributes(secondSchoolType, {"value": "mid-school"});
+    setAttributes(secondSchoolType, {"value": "1"});
     secondSchoolType.textContent = "MidSchool";
 
     var thirdSchoolType = document.createElement("option");
-    setAttributes(thirdSchoolType, {"value": "high-school"});
+    setAttributes(thirdSchoolType, {"value": "2"});
     thirdSchoolType.textContent = "HighSchool";
 
     var spanValidity2 = createSpanValidity();
@@ -258,22 +284,22 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
 
 
     var startYearLabel = document.createElement("label");
-    setAttributes(startYearLabel, {"for": "startyear" + addEducationCount, class:"startyear"});
+    setAttributes(startYearLabel, {"for": "start_date_knowledge" + addEducationCount, class:"startyear"});
     startYearLabel.textContent = "From:";
 
     var startYear = document.createElement("input");
     //TODO walidacja dat (czy data zakonczenia jest pozniej niz data rozpoczecia) "max": today()
-    setAttributes(startYear, {"type": "date", "name": "startyear" + addEducationCount, "id": "startyear" + addEducationCount, "min": "1900-01-01", "max": today(), "value": today()});
+    setAttributes(startYear, {"type": "date", "name": "start_date_knowledge" + addEducationCount, "id": "start_date_knowledge" + addEducationCount, "min": "1900-01-01", "max": today(), "value": today()});
     startYear.required = true;
 
     var spanValidity3 = createSpanValidity();
 
     var endYearLabel = document.createElement("label");
-    setAttributes(endYearLabel, {"for": "endyear" + addEducationCount,class:"endyear"});
+    setAttributes(endYearLabel, {"for": "end_date_knowledge" + addEducationCount,class:"endyear"});
     endYearLabel.textContent = "To:";
 
     var endYear = document.createElement("input");
-    setAttributes(endYear, {"type": "date", "name": "endyear" + addEducationCount, "id": "endyear" + addEducationCount, "min": "1900-01-01", "max": today(), "value": today()});
+    setAttributes(endYear, {"type": "date", "name": "end_date_knowledge" + addEducationCount, "id": "end_date_knowledge" + addEducationCount, "min": "1900-01-01", "max": today(), "value": today()});
     endYear.required = true;
 
     var spanValidity4 = createSpanValidity();
@@ -281,11 +307,11 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
 
 
     var educationDescriptionLabel = document.createElement("label");
-    setAttributes(educationDescriptionLabel, {"for": "education-description" + addEducationCount});
+    setAttributes(educationDescriptionLabel, {"for": "education_description" + addEducationCount});
     educationDescriptionLabel.textContent = "Description:";
 
     var educationDescription = document.createElement("input");
-    setAttributes(educationDescription, {"type": "text", "name": "education-description" + addEducationCount,"class": "education-description", "id": "education-description" + addEducationCount, "maxlength": "100", "placeholder": "---Write something---"});
+    setAttributes(educationDescription, {"type": "text", "name": "education_description" + addEducationCount,"class": "education-description", "id": "education_description" + addEducationCount, "maxlength": "100", "placeholder": "---Write something---"});
 
     knowledgeLi.appendChild(knowledgeLabel);
     knowledgeLi.appendChild(knowledge);
@@ -349,7 +375,7 @@ window.onload = document.getElementById("deleteEducation").addEventListener("cli
 window.onload = document.getElementById("addjob").addEventListener("click", function() {
     if(addExperienceCount == JOB_LIMIT){
         console.log("Too much experience records (LIMIT IS " + JOB_LIMIT + " )");
-        showLogMsg("Too much job records");
+        //showLogMsg("Too much job records");
         return;
     }
     console.log("You clicked addjob");
@@ -371,31 +397,31 @@ window.onload = document.getElementById("addjob").addEventListener("click", func
     var jobDateLi = document.createElement("li");
 
     var jobLabel = document.createElement("label");
-    setAttributes(jobLabel,{"for": "job"+addExperienceCount});
+    setAttributes(jobLabel,{"for": "job_name"+addExperienceCount});
     jobLabel.textContent = "Job:";
 
     var job = document.createElement("input");
-    setAttributes(job, {"type": "text", "name": "job" + addExperienceCount, "id": "job" + addExperienceCount, "minlength": "1", "maxlength": "40"});
+    setAttributes(job, {"type": "text", "name": "job_name" + addExperienceCount, "id": "job_name" + addExperienceCount, "minlength": "1", "maxlength": "40"});
     job.required = true;
 
     var spanValidity0 = createSpanValidity();
 
     var startYearJobLabel = document.createElement("label");
-    setAttributes(startYearJobLabel, {"for": "startyear-job" + addExperienceCount});
+    setAttributes(startYearJobLabel, {"for": "start_date_job" + addExperienceCount});
     startYearJobLabel.textContent = "From:";
 
     var startYearJob = document.createElement("input");
-    setAttributes(startYearJob, {"type": "date", "name": "startyear-job" + addExperienceCount, "id": "startyear-job" + addExperienceCount, "min": "1900-01-01", "max": today(), "value": today()});
+    setAttributes(startYearJob, {"type": "date", "name": "start_date_job" + addExperienceCount, "id": "start_date_job" + addExperienceCount, "min": "1900-01-01", "max": today(), "value": today()});
     startYearJob.required = true;
 
     var spanValidity1 = createSpanValidity();
 
     var endYearJobLabel = document.createElement("label");
-    setAttributes(endYearJobLabel, {"for": "endyear-job" + addExperienceCount});
+    setAttributes(endYearJobLabel, {"for": "end_date_job" + addExperienceCount});
     endYearJobLabel.textContent = "To:";
 
     var endYearJob = document.createElement("input");
-    setAttributes(endYearJob, {"type": "date", "name": "endyear-job" + addExperienceCount, "id": "endyear-job" + addExperienceCount, "min": "1900-01-01", "max": today(), "value": today()});
+    setAttributes(endYearJob, {"type": "date", "name": "end_date_job" + addExperienceCount, "id": "end_date_job" + addExperienceCount, "min": "1900-01-01", "max": today(), "value": today()});
     endYearJob.required = true;
 
     var spanValidity2 = createSpanValidity();
@@ -476,20 +502,20 @@ window.onload = document.getElementById("addskill").addEventListener("click", fu
     var skillLevelli = document.createElement("li");
 
     var skillNameLabel = document.createElement("label")
-    skillNameLabel.setAttribute("for", "skill-name" + addSkillCount);
+    skillNameLabel.setAttribute("for", "skill_name" + addSkillCount);
     skillNameLabel.textContent = "Skill:"
 
     var skillName = document.createElement("input")
-    setAttributes(skillName, {"type": "text", "name": "skill-name" + addSkillCount, "id": "skill-name" + addSkillCount, "minlength": "1", "maxlength": "25"});
+    setAttributes(skillName, {"type": "text", "name": "skill_name" + addSkillCount, "id": "skill_name" + addSkillCount, "minlength": "1", "maxlength": "25"});
     skillName.required = true;
 
     var spanValidity0 = createSpanValidity();
 
     var skillLevelLabel = document.createElement("label");
-    skillLevelLabel.setAttribute("for", "skill-level" + addSkillCount);
+    skillLevelLabel.setAttribute("for", "skill_level" + addSkillCount);
 
     var skillLevel = document.createElement("input");
-    setAttributes(skillLevel, {"type": "range","id": "skill-level" + addSkillCount, "name": "skill-level" + addSkillCount, "min": "1", "max": "5", "value": "3", "step": "1"});
+    setAttributes(skillLevel, {"type": "range","id": "skill_level" + addSkillCount, "name": "skill_level" + addSkillCount, "min": "1", "max": "5", "value": "3", "step": "1"});
 
     var skillLevelValue = document.createElement("p");
     skillLevelValue.setAttribute("id", "skill-level-value" + addSkillCount);
@@ -567,11 +593,11 @@ window.onload = document.getElementById("addhobby").addEventListener("click", fu
     var hobbyLi = document.createElement("li");
 
     var hobbyLabel = document.createElement("label");
-    setAttributes(hobbyLabel, {"for": "hobby-name" + addHobbyCount});
+    setAttributes(hobbyLabel, {"for": "hobby_name" + addHobbyCount});
     hobbyLabel.textContent = "Hobby:"
 
     var hobby = document.createElement("input");
-    setAttributes(hobby, {"type": "text", "name": "hobby-name" + addHobbyCount, "id": "hobby-name" + addHobbyCount, "minlength": "1", "maxlength": "25"});
+    setAttributes(hobby, {"type": "text", "name": "hobby_name" + addHobbyCount, "id": "hobby_name" + addHobbyCount, "minlength": "1", "maxlength": "25"});
     hobby.required = true;
 
     var spanValidity0 = createSpanValidity();
@@ -644,21 +670,21 @@ window.onload = document.getElementById("addlink").addEventListener("click", fun
     var linkNameLi = document.createElement("li");
 
     var linkUrlLabel = document.createElement("label");
-    setAttributes(linkUrlLabel, {"for": "link-url" + addLinkCount});
+    setAttributes(linkUrlLabel, {"for": "link_url" + addLinkCount});
     linkUrlLabel.textContent = "Link(URL):"
 
     var linkUrl = document.createElement("input");
-    setAttributes(linkUrl, {"type": "text", "name": "link-url" + addLinkCount, "id": "link-url" + addLinkCount, "placeholder": "https://pl.linkedin.com/in/(profile)", "pattern": "https://.*", "maxlength": "100"});
+    setAttributes(linkUrl, {"type": "text", "name": "link_url" + addLinkCount, "id": "link_url" + addLinkCount, "placeholder": "https://pl.linkedin.com/in/(profile)", "pattern": "https://.*", "maxlength": "100"});
     linkUrl.required = true;
 
     var spanValidity0 = createSpanValidity();
 
     var linkNameLabel = document.createElement("label");
-    setAttributes(linkNameLabel, {"for": "link-name" + addLinkCount});
+    setAttributes(linkNameLabel, {"for": "link_name" + addLinkCount});
     linkNameLabel.textContent = "Display as:"
 
     var linkName = document.createElement("input");
-    setAttributes(linkName, {"type": "text", "name": "link-name" + addLinkCount, "id": "link-name" + addLinkCount, "placeholder": "linkedin",  "minlength": "1"});    
+    setAttributes(linkName, {"type": "text", "name": "link_name" + addLinkCount, "id": "link_name" + addLinkCount, "placeholder": "linkedin",  "minlength": "1"});    
     linkName.required = true;
 
     var spanValidity1 = createSpanValidity();

@@ -6,9 +6,10 @@ const port = 3000
 
 app.use(bodyParser.json())
 app.use(express.urlencoded({extended: true})); 
+app.use(express.static('public'));
 
 app.get("/", (req, res) => {
-    res.sendFile(__dirname + "../index.html");
+    res.sendFile(__dirname + "/index.html");
   });
 
 app.post('/cv', db.createCv)

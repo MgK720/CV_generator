@@ -396,22 +396,22 @@ input[type=file]{
   min-width: 150px;
 
 }
-label[for=myemail]{
+label[for=email]{
   max-width:60px;
 }
-input[id=myemail]{
+input[id=email]{
   min-width: 210px;
 }
-label[for=calling-code]{
+label[for=phone_country]{
   max-width: 70px;
 }
-input[id=calling-code]{
+input[id=phone_country]{
   max-width: 50px;
 }
-label[for=myphone-number]{
+label[for=phone]{
   max-width: 60px;
 }
-input[id=calling-code]{
+input[id=phone_country]{
   min-width: 20px;
 }
 input[type=tel]{
