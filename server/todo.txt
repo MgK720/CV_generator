@@ -8,7 +8,7 @@ TODO
    i pozniej wywołać je w głównej funckji która wykonuje res.send  **DONE**
 4. zwracać uzytkownikowi na stronie informacje o bledzie **DONE**
 5. wykonac reszte insertow do tablic z formularza **DONE**
-6. upload na server pliku (zdjecie w formularzu) wraz z genaracją nazwy
+6. upload na server pliku (zdjecie w formularzu) wraz z genaracją nazwy **DONE**
 7. REFACTOR name, for, id,class itd... w index.html oraz actions.js (nazwy z bazy danych) **DONE**
 8. zrobic token (email, numer lub coś w tym stylu), żeby ochronic baze przed request spamem - LOGOWANIE
 9. READ/UPDATE/DELETE CV

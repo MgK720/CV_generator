@@ -11,24 +11,30 @@ const pool = new Pool({
 const createCv = async (request, response) => {
     let outputMessage = '';
     const cv_url = `http://cv/${Math.floor(Math.random() * 100000)}.cv`
-    //personaldata zamienic na object literal
     const personaldata = {
-         firstname : request.body.firstname,
-         lastname : request.body.lastname,
-         email : request.body.email,
-         phone_country : request.body.phone_country,
-         phone : request.body.phone,
-         img_destination : `/img/`
+        firstname : request.body.firstname,
+        lastname : request.body.lastname,
+        email : request.body.email,
+        phone_country : request.body.phone_country,
+        phone : request.body.phone,
     };
+    //personaldata zamienic na object literal
     try{
-      console.log(request.body);
+        console.log(request.body);
         //take data and insert into cv table
         const cvID = await addCv(cv_url);
         outputMessage += `Cv added with ID: ${cvID} <br>\n`;
-        //take data and insert into personaldata table
-        personaldata.img_destination += cvID; // do zmiany (rozszerzenie itp)
-        const personalDataID = await addPersonalData(cvID, personaldata.firstname, personaldata.lastname, personaldata.email, personaldata.phone_country, personaldata.phone, personaldata.img_destination);
-        outputMessage += `PersonalData added with ID: ${personalDataID} <br>\n`;
+        //take data AND picture THEN insert into personaldata table
+        let img_destination = '';
+        getFileDetails(async (fileDir, fileName) => {
+            img_destination = `${fileDir}/${fileName}`;
+            console.log("my img dest:" + img_destination)});
+        const personalDataID = await addPersonalData(cvID, personaldata.firstname, personaldata.lastname, personaldata.email, personaldata.phone_country, personaldata.phone, img_destination);
+        outputMessage += `PersonalData added with ID: ${personalDataID}, img_destination: ${img_destination} <br>\n`;
+                
+        console.log(request.body);
+        //personaldata.img_destination += cvID; // do zmiany (rozszerzenie itp)
+        
         //take data (mulltiple) and insert into knowledge table
         let numberOfKnowledge = 0;
         let knowledgeWithNumber = "knowledge_name" + numberOfKnowledge;
