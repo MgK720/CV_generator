@@ -4,10 +4,11 @@ ________________________________________________________________________________
 TODO
 1. nowy package.json
 2. async/await - poprawić w pliku queries.js **DONE**
-3. rozdzielić do osobnych funkcji kazde zapytanie jako np addPersonalData()
+3. rozdzielić do osobnych funkcji kazde zapytanie jako np addPersonalData() **DONE**
    i pozniej wywołać je w głównej funckji która wykonuje res.send  **DONE**
 4. zwracać uzytkownikowi na stronie informacje o bledzie **DONE**
-5. wykonac reszte insertow do tablic z formularza
+5. wykonac reszte insertow do tablic z formularza **DONE**
 6. upload na server pliku (zdjecie w formularzu) wraz z genaracją nazwy
-7. REFACTOR name, for, id,class itd... w index.html oraz actions.js (nazwy z bazy danych)
-8. zrobic token (email, numer lub coś w tym stylu), żeby ochronic baze przed request spamem
+7. REFACTOR name, for, id,class itd... w index.html oraz actions.js (nazwy z bazy danych) **DONE**
+8. zrobic token (email, numer lub coś w tym stylu), żeby ochronic baze przed request spamem - LOGOWANIE
+9. READ/UPDATE/DELETE CV
