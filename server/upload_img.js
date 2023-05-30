@@ -23,7 +23,6 @@ var upload = multer({
       limits: { fileSize: maxSize },
       fileFilter: function (req, file, cb){
       
-          // Set the filetypes, it is optional
           var filetypes = /jpeg|jpg|png/;
           var mimetype = filetypes.test(file.mimetype);
     
@@ -38,11 +37,21 @@ var upload = multer({
                   + "following filetypes - " + filetypes);
         } 
     
-  // mypic is the name of file attribute
   }).single("myimage");
 
+const uploadFile = (req, res, next) => {
+    upload(req,res, (err) => {
+        if(err) {
+            console.log(err);
+            res.status(500).send("Uploaded file is too large or filetype is not supported");
+        }
+        else {
+            next();
+        }
+    })
+};
 module.exports = {
-    upload,
+    uploadFile,
     getFileDetails: (callback) => {
         callback(fileDir, fileName);
       },

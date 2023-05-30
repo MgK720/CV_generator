@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const upload_img = require('./upload_img')
 const app = express()
 const db = require('./queries')
+const { getCv } = require('./get');
 const port = 3000
 
 
@@ -14,7 +15,9 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
   });
 
-app.post('/cv', upload_img.upload, db.createCv)
+app.get("/cv/:id", getCv);
+
+app.post('/cv', upload_img.uploadFile, db.createCv)
 
 app.listen(port, () => {
       console.log(`App running on port ${port}.`)
