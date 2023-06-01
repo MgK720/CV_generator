@@ -1,1 +1,3 @@
-server/process.env
+process.env
+imgs
+node_modules

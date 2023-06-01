@@ -7,7 +7,7 @@ let fileName = '';
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-         fileDir = "imgs";
+         fileDir = "public/imgs";
         cb(null, fileDir)
     },
     filename: function (req, file, cb) {
