@@ -578,6 +578,9 @@ input[type=date]{
   .education-description{
     max-width:180px;
   }
+  select option{
+    font-size:2em;
+  }
 }
 @media (min-width:1440px){
   .functionButtons{
