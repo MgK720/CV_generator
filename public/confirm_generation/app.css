@@ -1,0 +1,48 @@
+@font-face {
+    font-family: mainFontMedium;
+    src: url(/fonts/Roboto/Roboto-Medium.ttf);
+}
+body{
+    background-color: #061735;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: mainFontMedium;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:40vh;
+}
+
+#container{
+    padding:2rem;
+    border-radius: 2%;
+    background-color: white;
+}
+h1{
+    text-align: center;
+}
+a{
+    text-align: center;
+    display:block;
+    font-size:1.2rem;
+}
+.confirmed_h{
+    color: green;
+
+}
+.error_h{
+    color:crimson;
+}
+
+.confirmed_link{
+    color:green;
+}
+.confirmed_link:hover{
+    text-decoration: none;
+}
+.error_link{
+    color:crimson;
+}
+.error_link:hover{
+    text-decoration: none;
+}

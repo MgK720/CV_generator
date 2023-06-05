@@ -43,7 +43,11 @@ const uploadFile = (req, res, next) => {
     upload(req,res, (err) => {
         if(err) {
             console.log(err);
-            res.status(500).send("Uploaded file is too large or filetype is not supported");
+            //res.status(500).send("Uploaded file is too large or filetype is not supported");
+            res.render('confirm_generation/confirm', {
+                cvID: -1,
+                msg: 'Uploaded file is too large or filetype is not supported',
+            });
         }
         else {
             next();

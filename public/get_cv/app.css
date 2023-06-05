@@ -1,0 +1,113 @@
+@font-face {
+    font-family: mainFontMedium;
+    src: url(/fonts/Roboto/Roboto-Medium.ttf);
+}
+body{
+    background-color: #061735;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: mainFontMedium;
+    color:#F9F5EB;
+    font-size: 1.4rem;
+}
+main{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+section{
+    background-color: #07264e;
+    border-radius: 10px;
+    border:1px solid #F9F5EB;
+    margin:1.2rem;
+    padding:1.4rem;
+    letter-spacing: 1px;
+}
+ul{
+    display:flex;
+    flex-direction: column;
+    flex-wrap:wrap;
+    min-height:200px;
+    justify-content: center;
+    align-items: center;
+}
+p{
+    padding:0.5rem 0;
+}
+img{
+    width:250px;
+    height: 325px;
+}
+div{
+    margin-top:1rem;
+}
+footer{
+    text-align: center;
+    margin-bottom:0.5em;
+  }
+footer p{
+    margin-top:1em;
+    margin-bottom:2em;
+    font-size: 1rem;
+    text-transform: none;
+}
+header h1{
+    text-align: center;
+    font-size: 3em;
+    margin:0.5em 0;
+    text-transform: none;
+}
+h2{
+    color:orange;
+    font-size: 2rem;
+    text-align:center;
+}
+/*przerobic border i bgcolor zeby dotyczyl ul w konkretnej sekcji a nie calej sekcji ktorapo prostu przejmuje przestrzen*/
+#personaldata_section{
+    /*800px;*/
+    width:1100px;
+}
+.personaldata ul{
+    max-height:300px;
+}
+#education_section{
+    width:800px;
+}
+#experience_section{
+    width:800px;
+}
+#skill_section{
+    width:700px;
+}
+#hobby_section{
+    width:700px;
+}
+#link_section{
+    width:90%;
+}
+#link_section p{
+    text-align: center;
+}
+.link{
+    width:auto;
+}
+.link ul{
+    min-height:0;
+    height:auto;
+}
+.link_button{
+    color:orangered;
+    margin-top:0.5rem;
+    padding:0.5rem;
+    font-size: 1.5rem;
+    background-color: transparent;
+    border:2px solid white;
+    border-radius: 10px;
+    text-decoration: none;
+    cursor:pointer;
+}
+.link_button:hover{
+    color:white;
+    border-color:orangered;
+}

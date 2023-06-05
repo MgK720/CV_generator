@@ -5,21 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/get_cv/reset.css">
-    <style>
-        body section{
-            min-width:650px;
-        }
-    </style>
+    <link rel="stylesheet" href="/get_cv/app.css">
     <title>myCv</title>
 </head>
-<body style="display:flex; flex-wrap:wrap; width:100%;">
+<body>
+    <header>
+        <h1>CV Generator</h1>
+    </header>
+    <main>
     <% var personalData = JSON.parse(outputData).personaldata; %>
     <% if (personalData && personalData.length > 0) { %>
-    <div id="personaldata" style="border:1px solid black; padding:1rem; min-width: 1500px;">
+    <section id="personaldata_section">
+    <div class="personaldata">
         <ul>
             <% personalData.forEach(function(personal) { %>
                 <li>
-                    <img src="<%= '/' + personal.img_destination %>" alt="" style="width:150px; height:200px;">
+                    <img src="<%= '/' + personal.img_destination %>" alt="" >
                 </li>
                 <li>
                     <p>firstname: <%= personal.firstname %></p>
@@ -37,11 +38,13 @@
             <% } %>
         </ul>
     </div>
-    <section>
+    </section>
+    <section id="education_section">
+        <h2>education</h2>
     <% var knowledge = JSON.parse(outputData).knowledge; %>
     <% if (knowledge && knowledge.length > 0) { %>
         <% knowledge.forEach(function(knowledgeRecord) { %>
-        <div id="knowledge" style="border:1px solid black; padding:1rem;">
+        <div class="knowledge">
             <ul>
                     <li>
                         <p>knowledge_name: <%= knowledgeRecord.knowledge_name %></p>
@@ -51,8 +54,8 @@
                         <p>knowledge_name: <%= knowledgeRecord.schooltype_id %></p>
                     </li>
                     <li>
-                        <p>start_date_knowledge: <%= knowledgeRecord.start_date_knowledge %></p>
-                        <p>end_date_knowledge: <%= knowledgeRecord.end_date_knowledge %></p>
+                        <p>start_date_knowledge: <%= knowledgeRecord.start_date_knowledge.slice(0,10) %></p>
+                        <p>end_date_knowledge: <%= knowledgeRecord.end_date_knowledge.slice(0,10) %></p>
                     </li>
                     <li>
                         <p>description: <%= knowledgeRecord.description %></p>
@@ -65,18 +68,19 @@
     <% } %>
         
     </section>
-    <section>
+    <section id="experience_section">
+        <h2>experience</h2>
         <% var experience = JSON.parse(outputData).experience; %>
         <% if (experience && experience.length > 0) { %>
             <% experience.forEach(function(jobRecord) { %>
-            <div id="job" style="border:1px solid black; padding:1rem;">
+            <div class="job">
                 <ul>
                         <li>
                             <p>job_name: <%= jobRecord.job_name %></p>
                         </li>
                         <li>
-                            <p>job_start_date: <%= jobRecord.start_date_job %></p>
-                            <p>job_end_date: <%= jobRecord.end_date_job %></p>
+                            <p>job_start_date: <%= jobRecord.start_date_job.slice(0,10) %></p>
+                            <p>job_end_date: <%= jobRecord.end_date_job.slice(0,10) %></p>
                         </li>
                 </ul>
             </div>
@@ -86,11 +90,12 @@
         <% } %>
             
     </section>
-    <section>
+    <section id="skill_section">
+        <h2>skills</h2>
         <% var skill = JSON.parse(outputData).skill; %>
         <% if (skill && skill.length > 0) { %>
             <% skill.forEach(function(skillRecord) { %>
-            <div id="skill" style="border:1px solid black; padding:1rem;">
+            <div class="skill">
                 <ul>
                         <li>
                             <p>skill_name: <%= skillRecord.skill_name %></p>
@@ -106,11 +111,12 @@
         <% } %>
             
     </section>
-    <section>
+    <section id="hobby_section">
+        <h2>hobby</h2>
         <% var hobby = JSON.parse(outputData).hobby; %>
         <% if (hobby && hobby.length > 0) { %>
             <% hobby.forEach(function(hobbyRecorrd) { %>
-            <div id="hobby" style="border:1px solid black; padding:1rem;">
+            <div class="hobby">
                 <ul>
                         <li>
                             <p>hobby_name: <%= hobbyRecorrd.hobby_name %></p>
@@ -123,18 +129,16 @@
         <% } %>
             
     </section>
-    <section>
+    <section id="link_section">
+        <h2>links</h2>
         <% var link = JSON.parse(outputData).link; %>
         <% if (link && link.length > 0) { %>
             <% link.forEach(function(linkRecord) { %>
-            <div id="link" style="border:1px solid black; padding:1rem;">
+            <div class="link">
                 <ul>
                         <li>
-                            <p>link_url: <%= linkRecord.link_url %></p>
-                        </li>
+                            <button class="link_button" href="<%= linkRecord.link_url %>"><%= linkRecord.link_name%></button>
                         <li>
-                            <p>link_name: <%= linkRecord.link_name%></p>
-                        </li>
                 </ul>
             </div>
                 <% }) %>
@@ -143,5 +147,9 @@
         <% } %>
             
     </section>
+</main>
+<footer>
+    <p>Copyright &copy Igor Ciesielski 2023</p>
+</footer>
 </body>
 </html>

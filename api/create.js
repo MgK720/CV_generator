@@ -1,6 +1,6 @@
 const {upload, getFileDetails} = require('./upload_img.js')
 const Pool = require('pg').Pool
-require('dotenv').config();
+require('dotenv').config({ debug: process.env.DEBUG });
 const pool = new Pool({
     user: process.env.DB_USER,
     host: process.env.DB_HOST,
@@ -10,7 +10,7 @@ const pool = new Pool({
   })
 const createCv = async (request, response) => {
     let outputMessage = '';
-    const cv_url = `http://cv/${Math.floor(Math.random() * 100000)}.cv`
+    const cv_url = `http://cv.com/${Math.floor(Math.random() * 100000)}.cv`
     const personaldata = {
         firstname : request.body.firstname,
         lastname : request.body.lastname,
@@ -20,7 +20,7 @@ const createCv = async (request, response) => {
     };
     let img_destination = '';
     getFileDetails(async (fileDir, fileName) => {
-        img_destination = `${fileDir}/${fileName}`;
+        img_destination = `imgs/${fileName}`;
         console.log("my img dest:" + img_destination)});
     try{
         console.log(request.body);
@@ -42,10 +42,19 @@ const createCv = async (request, response) => {
         outputMessage += await addLinkEntries(cvID, request.body);
     
         console.log(outputMessage);
-        response.status(201).send(outputMessage);
+
+        response.render('confirm_generation/confirm', {
+            cvID: cvID,
+            msg: '',
+        })
+        //response.status(201).send(outputMessage);
     }catch (error){
         console.error(error);
-        response.status(500).send("Error while creating CV");
+        //response.status(500).send("Error while creating CV");
+        response.render('confirm_generation/confirm', {
+            cvID: -1,
+            msg: 'Some inputs not valid',
+        });
     }
 
   }
