@@ -365,6 +365,7 @@ span{
   width:105px;
 }
 #name ul li input{
+  min-width:120px;
   flex:1;
 }
 /*
