@@ -143,7 +143,7 @@ input[type="file"]::file-selector-button {
   transition: all 0.25s;
 }
 input[type="file"]::file-selector-button:hover, select:hover{
-  background-color: transparent;
+  background-color: #07264e;
   border-color:orangered;
 }
 
