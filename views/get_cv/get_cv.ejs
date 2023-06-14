@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,148 +9,194 @@
     <link rel="stylesheet" href="/get_cv/app.css">
     <title>myCv</title>
 </head>
+
 <body>
     <header>
         <h1>CV Generator</h1>
     </header>
     <main>
-    <% var personalData = JSON.parse(outputData).personaldata; %>
-    <% if (personalData && personalData.length > 0) { %>
-    <section id="personaldata_section">
-    <div class="personaldata">
-        <ul>
-            <% personalData.forEach(function(personal) { %>
-                <li>
-                    <img src="<%= '/' + personal.img_destination %>" alt="" >
-                </li>
-                <li>
-                    <p>firstname: <%= personal.firstname %></p>
-                    <p>lastname: <%= personal.lastname %></p>
-                </li>
-                <li>
-                    <p>Email: <%= personal.email %></p>
-                </li>
-                <li>
-                    <p>Phone: +<%= personal.phone_country  %> <%= personal.phone %></p>
-                </li>
-            <% }) %>
-            <% } else { %>
-                <p>No personal data available.</p>
-            <% } %>
-        </ul>
-    </div>
-    </section>
-    <section id="education_section">
-        <h2>education</h2>
-    <% var knowledge = JSON.parse(outputData).knowledge; %>
-    <% if (knowledge && knowledge.length > 0) { %>
-        <% knowledge.forEach(function(knowledgeRecord) { %>
-        <div class="knowledge">
-            <ul>
-                    <li>
-                        <p>knowledge_name: <%= knowledgeRecord.knowledge_name %></p>
-                    </li>
-                    <li>
-                        <p>knowledge_type: <%= knowledgeRecord.knowledgetype_id %></p>
-                        <p>knowledge_name: <%= knowledgeRecord.schooltype_id %></p>
-                    </li>
-                    <li>
-                        <p>start_date_knowledge: <%= knowledgeRecord.start_date_knowledge.slice(0,10) %></p>
-                        <p>end_date_knowledge: <%= knowledgeRecord.end_date_knowledge.slice(0,10) %></p>
-                    </li>
-                    <li>
-                        <p>description: <%= knowledgeRecord.description %></p>
-                    </li>
-            </ul>
-        </div>
-            <% }) %>
-    <% } else { %>
-                <p>No knowledge data available.</p>
-    <% } %>
-        
-    </section>
-    <section id="experience_section">
-        <h2>experience</h2>
-        <% var experience = JSON.parse(outputData).experience; %>
-        <% if (experience && experience.length > 0) { %>
-            <% experience.forEach(function(jobRecord) { %>
-            <div class="job">
-                <ul>
-                        <li>
-                            <p>job_name: <%= jobRecord.job_name %></p>
-                        </li>
-                        <li>
-                            <p>job_start_date: <%= jobRecord.start_date_job.slice(0,10) %></p>
-                            <p>job_end_date: <%= jobRecord.end_date_job.slice(0,10) %></p>
-                        </li>
-                </ul>
-            </div>
-                <% }) %>
-        <% } else { %>
-                    <p>No job data available.</p>
-        <% } %>
-            
-    </section>
-    <section id="skill_section">
-        <h2>skills</h2>
-        <% var skill = JSON.parse(outputData).skill; %>
-        <% if (skill && skill.length > 0) { %>
-            <% skill.forEach(function(skillRecord) { %>
-            <div class="skill">
-                <ul>
-                        <li>
-                            <p>skill_name: <%= skillRecord.skill_name %></p>
-                        </li>
-                        <li>
-                            <p>skill_level: <%= skillRecord.level %></p>
-                        </li>
-                </ul>
-            </div>
-                <% }) %>
-        <% } else { %>
-                    <p>No skill data available.</p>
-        <% } %>
-            
-    </section>
-    <section id="hobby_section">
-        <h2>hobby</h2>
-        <% var hobby = JSON.parse(outputData).hobby; %>
-        <% if (hobby && hobby.length > 0) { %>
-            <% hobby.forEach(function(hobbyRecorrd) { %>
-            <div class="hobby">
-                <ul>
-                        <li>
-                            <p>hobby_name: <%= hobbyRecorrd.hobby_name %></p>
-                        </li>
-                </ul>
-            </div>
-                <% }) %>
-        <% } else { %>
-                    <p>No hobby data available.</p>
-        <% } %>
-            
-    </section>
-    <section id="link_section">
-        <h2>links</h2>
-        <% var link = JSON.parse(outputData).link; %>
-        <% if (link && link.length > 0) { %>
-            <% link.forEach(function(linkRecord) { %>
-            <div class="link">
-                <ul>
-                        <li>
-                            <button class="link_button" href="<%= linkRecord.link_url %>"><%= linkRecord.link_name%></button>
-                        <li>
-                </ul>
-            </div>
-                <% }) %>
-        <% } else { %>
-                    <p>No link data available.</p>
-        <% } %>
-            
-    </section>
-</main>
-<footer>
-    <p>Copyright &copy Igor Ciesielski 2023</p>
-</footer>
+        <% const personalData=JSON.parse(outputData).personaldata; %>
+            <% if (personalData && personalData.length> 0) { %>
+                <section id="personaldata_section">
+                    <div class="personaldata">
+                        <ul>
+                            <% personalData.forEach(function(personal) { %>
+                                <li>
+                                    <img src="<%= '/' + personal.img_destination %>">
+                                </li>
+                                <div class="personaldata_text">
+                                    <li>
+                                        <p>firstname: <span>
+                                                <%= personal.firstname %>
+                                            </span></p>
+                                        <p>lastname: <span>
+                                                <%= personal.lastname %>
+                                            </span></p>
+                                    </li>
+                                    <li>
+                                        <p>Email: <span><a href="mailto:<%= personal.email %>"
+                                                    class="email_and_phone_href">
+                                                    <%= personal.email %>
+                                                </a></span></p>
+                                    </li>
+                                    <li>
+                                        <p>Phone: <span><a
+                                                    href="<%= 'tel:+' + personal.phone_country + personal.phone %>"
+                                                    class="email_and_phone_href">+<%= personal.phone_country %>
+                                                        <%= personal.phone %></a></span></p>
+                                    </li>
+                                </div>
+                                <% }) %>
+                                    <% } else { %>
+                                        <p>No personal data available.</p>
+                                        <% } %>
+                        </ul>
+                    </div>
+                </section>
+                <section id="education_section">
+                    <h2>education</h2>
+                    <% const knowledge=JSON.parse(outputData).knowledge; %>
+                        <% if (knowledge && knowledge.length> 0) { %>
+                            <% knowledge.forEach(function(knowledgeRecord) { %>
+                                <div class="knowledge">
+                                    <ul>
+                                        <li>
+                                            <p>Name: <span>
+                                                    <%= knowledgeRecord.knowledge_name %>
+                                                </span></p>
+                                        </li>
+                                        <li>
+                                            <% const schooltype=['primary', 'middleSchool' , 'highSchool' ] %>
+                                                <% if(knowledgeRecord.knowledgetype_id==0){ %>
+                                                    <p>Type: <span>Course</span></p>
+                                                    <% }else if(knowledgeRecord.knowledgetype_id==1){ %>
+                                                        <p>Type: <span>School - <%=
+                                                                    schooltype[knowledgeRecord.schooltype_id] %></span>
+                                                        </p>
+                                                        <% } %>
+                                        </li>
+                                        <li>
+                                            <p>From: <%= knowledgeRecord.start_date_knowledge.slice(0,10) %> To: <%=
+                                                        knowledgeRecord.end_date_knowledge.slice(0,10) %>
+                                            </p>
+                                        </li>
+                                        <% if(knowledgeRecord.description){ %>
+                                            <li>
+                                                <p>description: <span>
+                                                        <%= knowledgeRecord.description %>
+                                                    </span></p>
+                                            </li>
+                                            <% } %>
+                                    </ul>
+                                </div>
+                                <% }) %>
+                                    <% } else { %>
+                                        <p>No knowledge data available.</p>
+                                        <% } %>
+
+                </section>
+                <section id="experience_section">
+                    <h2>experience</h2>
+                    <% const experience=JSON.parse(outputData).experience; %>
+                        <% if (experience && experience.length> 0) { %>
+                            <% experience.forEach(function(jobRecord) { %>
+                                <div class="job">
+                                    <ul>
+                                        <li>
+                                            <p>Name: <span>
+                                                    <%= jobRecord.job_name %>
+                                                </span></p>
+                                        </li>
+                                        <li>
+                                            <p>From: <%= jobRecord.start_date_job.slice(0,10) %> To: <%=
+                                                        jobRecord.end_date_job.slice(0,10) %>
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <% }) %>
+                                    <% } else { %>
+                                        <p>No job data available.</p>
+                                        <% } %>
+
+                </section>
+                <section id="skill_section">
+                    <h2>skills</h2>
+                    <% const skill=JSON.parse(outputData).skill; %>
+                        <% if (skill && skill.length> 0) { %>
+                            <% skill.forEach(function(skillRecord) { %>
+                                <div class="skill">
+                                    <ul>
+                                        <li>
+                                            <p>Name: <span>
+                                                    <%= skillRecord.skill_name %>
+                                                </span></p>
+                                        </li>
+                                        <li class="level_container">
+                                            <p class="levelValue" style="display:none">
+                                                <%= skillRecord.level %>
+                                            </p>
+                                            <div class="level_bar">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <% }) %>
+                                    <% } else { %>
+                                        <p>No skill data available.</p>
+                                        <% } %>
+
+                </section>
+                <section id="hobby_section">
+                    <h2>hobby</h2>
+                    <% const hobby=JSON.parse(outputData).hobby; %>
+                        <% if (hobby && hobby.length> 0) { %>
+                            <% hobby.forEach(function(hobbyRecorrd) { %>
+                                <div class="hobby">
+                                    <ul>
+                                        <li>
+                                            <p>Name: <span>
+                                                    <%= hobbyRecorrd.hobby_name %>
+                                                </span></p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <% }) %>
+                                    <% } else { %>
+                                        <p>No hobby data available.</p>
+                                        <% } %>
+
+                </section>
+                <section id="link_section">
+                    <h2>links</h2>
+                    <% const link=JSON.parse(outputData).link; %>
+                        <% if (link && link.length> 0) { %>
+                            <% link.forEach(function(linkRecord) { %>
+                                <div class="link">
+                                    <ul>
+                                        <li>
+                                            <button class="link_button" href="<%= linkRecord.link_url %>">
+                                                <%= linkRecord.link_name%>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <% }) %>
+                                    <% } else { %>
+                                        <p>No link data available.</p>
+                                        <% } %>
+
+                </section>
+    </main>
+    <footer>
+        <p>Copyright &copy Igor Ciesielski 2023</p>
+    </footer>
+    <script src="/get_cv/actions.js"></script>
 </body>
+
 </html>

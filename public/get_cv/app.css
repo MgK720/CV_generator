@@ -10,6 +10,13 @@ body{
     color:#F9F5EB;
     font-size: 1.4rem;
 }
+.email_and_phone_href{
+    text-decoration: none;
+    color:orangered;
+}
+.email_and_phone_href:hover{
+    text-decoration:underline;
+}
 main{
     display:flex;
     justify-content: center;
@@ -24,23 +31,38 @@ section{
     padding:1.4rem;
     letter-spacing: 1px;
 }
+h2+p{
+    text-align: center;
+    margin-top:1rem;
+}
 ul{
     display:flex;
     flex-direction: column;
     flex-wrap:wrap;
-    min-height:200px;
     justify-content: center;
     align-items: center;
 }
+ul:not(.skill ul):not(.hobby ul){
+    min-height:200px;
+}
 p{
     padding:0.5rem 0;
+    text-align: center;
+}
+p span{
+    text-transform: none;
 }
 img{
     width:250px;
     height: 325px;
+    border:2px solid orange;
 }
-div{
+section:not(#personaldata_section):not(#link_section) div:not(.level_bar):not(.level_bar div){
+    border-bottom:1px solid orange;
+}
+section:not(#personaldata_section):not(#link_section) div:nth-of-type(1):not(.level_bar):not(.level_bar div){
     margin-top:1rem;
+    border-top:1px solid orange;
 }
 footer{
     text-align: center;
@@ -63,13 +85,14 @@ h2{
     font-size: 2rem;
     text-align:center;
 }
-/*przerobic border i bgcolor zeby dotyczyl ul w konkretnej sekcji a nie calej sekcji ktorapo prostu przejmuje przestrzen*/
 #personaldata_section{
     /*800px;*/
     width:1100px;
 }
 .personaldata ul{
-    max-height:300px;
+    max-height:none;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 #education_section{
     width:800px;
@@ -77,28 +100,43 @@ h2{
 #experience_section{
     width:800px;
 }
+.date{
+    color:orangered;
+}
 #skill_section{
     width:700px;
+}
+.skill ul{
+    min-height:150px;
+}
+.hobby ul{
+    min-height:100px;
 }
 #hobby_section{
     width:700px;
 }
 #link_section{
+    text-align:center;
     width:90%;
 }
 #link_section p{
     text-align: center;
 }
 .link{
+    display:inline;
     width:auto;
 }
 .link ul{
+    display:inline;
     min-height:0;
     height:auto;
 }
+.link ul li{
+    display:inline;
+}
 .link_button{
+    margin-top:1rem;
     color:orangered;
-    margin-top:0.5rem;
     padding:0.5rem;
     font-size: 1.5rem;
     background-color: transparent;
@@ -110,4 +148,59 @@ h2{
 .link_button:hover{
     color:white;
     border-color:orangered;
+}
+.level_container{
+    width:80%;
+}
+.level_bar{
+    height: 20px;
+    /*width: 300px;*/
+    background-color: #061735;
+    border:1px solid black;
+    display:flex;
+    flex-wrap:nowrap;
+    border-radius:15px;
+    margin-top:1rem;
+}
+.level_bar div{
+    border:0.5px solid black;
+    height:20px;
+    width:calc(250px/5);
+    flex:1;
+    display:inline-block;
+    background-color: #061735;
+    
+}
+.level_bar div:nth-of-type(1){
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+
+}
+.level_bar div:nth-of-type(5){
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.level_bar .vlow{
+    background-color:red;
+}
+.level_bar .low{
+    background-color:orange;
+}
+.level_bar .medium{
+    background-color:yellow;
+}
+.level_bar .high{
+    background-color:greenyellow;
+}
+.level_bar .vhigh{
+    background-color:green;
+}
+
+@media(max-width:420px){
+    body{
+        font-size: 1.2rem;
+    }
+    header h1{
+        font-size: 250%;
+    }
 }

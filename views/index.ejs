@@ -20,7 +20,7 @@
         <p id="log">My log</p>
     </aside>-->
     <main>
-        <form action="/cv" method="POST" enctype="multipart/form-data">
+        <form action="/cv" method="POST" enctype="multipart/form-data" formStatus="create">
             <section id="myform">
                 <section id="name">
                     <ul>
@@ -65,8 +65,8 @@
                     <ul>
                         <li>
                             <label for="knowledge_name0">Knowledge:</label>
-                            <input type="text" name="knowledge_name0" id="knowledge_name0" class="school" minlength="1" maxlength="45"
-                                required>
+                            <input type="text" name="knowledge_name0" id="knowledge_name0" class="school" minlength="1"
+                                maxlength="45" required>
                             <span class="validity"></span>
                         </li>
                         <li>
@@ -92,12 +92,12 @@
                         </li>
                         <li>
                             <label for="start_date_knowledge0" class="startyear">From:</label>
-                            <input type="date" name="start_date_knowledge0" id="start_date_knowledge0" min="1900-01-01" value="2100-01-01"
-                                onload="max='today()'" required>
+                            <input type="date" name="start_date_knowledge0" id="start_date_knowledge0" min="1900-01-01"
+                                value="2100-01-01" required>
                             <span class="validity"></span>
                             <label for="end_date_knowledge0" class="endyear">To:</label>
-                            <input type="date" name="end_date_knowledge0" id="end_date_knowledge0" min="1900-01-01" max="2023-03-27"
-                                value="2100-01-01" required>
+                            <input type="date" name="end_date_knowledge0" id="end_date_knowledge0" min="1900-01-01"
+                                max="2023-03-27" value="2100-01-01" required>
                             <span class="validity"></span>
                         </li>
                         <li>
@@ -154,7 +154,7 @@
                     <input type="button" id="addskill" value="+Skill">
                     <input type="button" id="deleteskill" value="-Skill">
                 </div>
-                 <!--refactored to this line--> 
+                <!--refactored to this line-->
                 <section id="hobby0" class="hobby">
                     <ul>
                         <li>
@@ -203,7 +203,8 @@
     <footer>
         <p>Copyright &copy Igor Ciesielski 2023</p>
     </footer>
-    <script src="/actions.js"></script>
+    <script src="/scripts/handlingFormSections.js" type="text/javascript"></script>
+    <script src="/actions.js" type="text/javascript"></script>
 
 </body>
 
