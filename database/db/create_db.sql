@@ -20,7 +20,7 @@ CREATE TABLE personaldata(
     phone int NOT NULL, --max 9 numbers DONE 
     img_destination Varchar(50),
     CONSTRAINT personaldata_pk PRIMARY KEY(personaldata_id),
-    CONSTRAINT personaldata_cvid_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id)
+    CONSTRAINT personaldata_cvid_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id) ON DELETE CASCADE
 );
 
 CREATE TABLE knowledgetype(
@@ -45,7 +45,7 @@ CREATE TABLE knowledge(
     end_date_knowledge Date NOT NULL,
     description Varchar(100),
     CONSTRAINT knowledge_pk PRIMARY KEY(knowledge_id),
-    CONSTRAINT knowledge_cvid_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id),
+    CONSTRAINT knowledge_cvid_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id) ON DELETE CASCADE,
     CONSTRAINT knowledge_type_fk FOREIGN KEY(knowledgetype_id) REFERENCES knowledgetype(knowledgetype_id),
     CONSTRAINT knowledge_school_fk FOREIGN KEY(schooltype_id) REFERENCES schooltype(schooltype_id)
 );
@@ -57,7 +57,7 @@ CREATE TABLE job(
     start_date_job Date NOT NULL,
     end_date_job Date NOT NULL,
     CONSTRAINT job_pk PRIMARY KEY(job_id),
-    CONSTRAINT job_cvid_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id)
+    CONSTRAINT job_cvid_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id) ON DELETE CASCADE
 );
 
 CREATE TABLE skill(
@@ -66,7 +66,7 @@ CREATE TABLE skill(
     skill_name Varchar(25) NOT NULL,
     level int NOT NULL, -- {1,2,3,4,5}
     CONSTRAINT skill_pk PRIMARY KEY(skill_id),
-    CONSTRAINT skill_cvid_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id)
+    CONSTRAINT skill_cvid_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id) ON DELETE CASCADE
 );
 
 CREATE TABLE hobby(
@@ -74,7 +74,7 @@ CREATE TABLE hobby(
     cv_id int NOT NULL,
     hobby_name Varchar(25) NOT NULL,
     CONSTRAINT hobby_pk PRIMARY KEY(hobby_id),
-    CONSTRAINT hobby_cvid_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id)
+    CONSTRAINT hobby_cvid_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id) ON DELETE CASCADE
 );
 
 CREATE TABLE link(
@@ -83,7 +83,7 @@ CREATE TABLE link(
     link_url url NOT NULL,
     link_name Varchar(25) NOT NULL,
     CONSTRAINT link_pk PRIMARY KEY(link_id),
-    CONSTRAINT link_cvid_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id)
+    CONSTRAINT link_cvid_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id) ON DELETE CASCADE
 );
 
 --TODO rename diagram col.
