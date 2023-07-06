@@ -14,6 +14,8 @@ DROP TABLE IF EXISTS knowledgetype;
 
 DROP TABLE IF EXISTS personaldata;
 
+DROP TABLE IF EXISTS account;
+
 DROP TABLE IF EXISTS cv;
 
 DROP FUNCTION IF EXISTS checking_phone_country;
