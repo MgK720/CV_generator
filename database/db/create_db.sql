@@ -10,6 +10,15 @@ CREATE TABLE cv(
     CONSTRAINT cv_pk PRIMARY KEY(cv_id)
 );
 
+CREATE TABLE account(
+    account_id serial,
+    cv_id int,
+    login varchar(30) not null,
+    password varchar(255) not null,
+    CONSTRAINT account_pk PRIMARY KEY(account_id),
+    CONSTRAINT account_cv_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id) ON DELETE SET NULL
+);
+
 CREATE TABLE personaldata(
     personaldata_id serial,
     cv_id int NOT NULL UNIQUE,
