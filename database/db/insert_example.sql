@@ -12,7 +12,7 @@ INSERT INTO cv(cv_id, create_date, cv_url)
 VALUES (DEFAULT, DEFAULT, 'https://example.ex/79911231');
 
 INSERT INTO account(account_id, cv_id, login, password)
-VALUES (DEFAULT, 1, thomasJohnson, ncxnkasjdal248297478293dsajdbxzi3929);
+VALUES (DEFAULT, 1, 'thomasJohnson', 'ncxnkasjdal248297478293dsajdbxzi3929');
 
 INSERT INTO personaldata(personaldata_id, cv_id, firstname, lastname, email, phone_country, phone, img_destination)
 VALUES (DEFAULT, 1, 'ExampleName', 'ExampleLastname', 'myemail@example.ex', 48, 123456789, '/img/79911231.jpg');
