@@ -43,7 +43,7 @@ VALUES (DEFAULT, 1, 'Exxample Hobby'),
 
 INSERT INTO link(link_id, cv_id, link_url, link_name)
 VALUES (DEFAULT, 1, 'https://linkedin.com/example', 'Linkedin Name'),
-       (DEFAULT, 1, 'https://example.example', 'Example Name');
+       (DEFAULT, 1, 'https://example.com/example', 'Example Name');
 
 
 
