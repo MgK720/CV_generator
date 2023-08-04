@@ -6,14 +6,14 @@ COMMENT ON DOMAIN url IS 'match URLs (http or https)';
 CREATE TABLE cv(
     cv_id serial,
     create_date TIMESTAMPTZ DEFAULT Now(), --on insert DONE
-    cv_url url NOT NULL,
+    cv_url url NOT NULL, --do usuniecia ta kolumna
     CONSTRAINT cv_pk PRIMARY KEY(cv_id)
 );
 
 CREATE TABLE account(
     account_id serial,
     cv_id int UNIQUE,
-    login varchar(30) not null UNIQUE,
+    login varchar(30) not null UNIQUE, --do zmiany 20 znaków login
     password varchar(255) not null,
     CONSTRAINT account_pk PRIMARY KEY(account_id),
     CONSTRAINT account_cv_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id) ON DELETE SET NULL
