@@ -13,8 +13,8 @@ CREATE TABLE cv(
 CREATE TABLE account(
     account_id serial,
     cv_id int UNIQUE,
-    login varchar(30) not null UNIQUE, --do zmiany 20 znaków login
-    password varchar(255) not null,
+    login varchar(30) not null UNIQUE, --do zmiany 20 znaków login i sprawdzanie minlength 8
+    password varchar(255) not null, --minlength 8
     CONSTRAINT account_pk PRIMARY KEY(account_id),
     CONSTRAINT account_cv_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id) ON DELETE SET NULL
 );
