@@ -51,7 +51,7 @@ CREATE TABLE knowledge(
     schooltype_id int, --can be null max 1 number - do przerobienia w html i js if knowledgetype==0 then set schooltype_id as null (php)
     start_date_knowledge Date NOT NULL,
     end_date_knowledge Date NOT NULL,
-    description Varchar(50),
+    description Varchar(70),
     CONSTRAINT knowledge_pk PRIMARY KEY(knowledge_id),
     CONSTRAINT knowledge_cvid_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id) ON DELETE CASCADE,
     CONSTRAINT knowledge_type_fk FOREIGN KEY(knowledgetype_id) REFERENCES knowledgetype(knowledgetype_id),
