@@ -6,14 +6,13 @@ COMMENT ON DOMAIN url IS 'match URLs (http or https)';
 CREATE TABLE cv(
     cv_id serial,
     create_date TIMESTAMPTZ DEFAULT Now(), --on insert DONE
-    cv_url url NOT NULL, --do usuniecia ta kolumna
     CONSTRAINT cv_pk PRIMARY KEY(cv_id)
 );
 
 CREATE TABLE account(
     account_id serial,
     cv_id int UNIQUE,
-    login varchar(30) not null UNIQUE, --do zmiany 20 znaków login i sprawdzanie minlength 8
+    login varchar(20) not null UNIQUE, --do zmiany 20 znaków login i sprawdzanie minlength 8
     password varchar(255) not null, --minlength 8
     CONSTRAINT account_pk PRIMARY KEY(account_id),
     CONSTRAINT account_cv_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id) ON DELETE SET NULL
@@ -52,7 +51,7 @@ CREATE TABLE knowledge(
     schooltype_id int, --can be null max 1 number - do przerobienia w html i js if knowledgetype==0 then set schooltype_id as null (php)
     start_date_knowledge Date NOT NULL,
     end_date_knowledge Date NOT NULL,
-    description Varchar(100),
+    description Varchar(50),
     CONSTRAINT knowledge_pk PRIMARY KEY(knowledge_id),
     CONSTRAINT knowledge_cvid_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id) ON DELETE CASCADE,
     CONSTRAINT knowledge_type_fk FOREIGN KEY(knowledgetype_id) REFERENCES knowledgetype(knowledgetype_id),
@@ -96,4 +95,3 @@ CREATE TABLE link(
 );
 
 --TODO rename diagram col.
-
