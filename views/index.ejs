@@ -6,206 +6,231 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="app.css">
+    <link rel="stylesheet" type="text/css" href="/app.css">
     <title>Form</title>
 </head>
 
 <body>
     <header>
-        <h1>CV Generator</h1>
+        <h1><a href="/home">CV Generator</a></h1>
     </header>
+    <!--If it is update form take data from response else set data = 0-->
+    <% if(outputData){ %>
+        <script>
+            var outputData = JSON.parse('<%- outputData %>');
+        </script>
+        <% }else{ %>
+            <script>
+                var outputData = 0;
+            </script>
+            <% }%>
 
-    <!--<aside id="log-section">
+
+                <!--<aside id="log-section">
         <button id="remove-log">X</button>
         <p id="log">My log</p>
     </aside>-->
-    <main>
-        <form action="/cv" method="POST" enctype="multipart/form-data" formStatus="create">
-            <section id="myform">
-                <section id="name">
-                    <ul>
-                        <li>
-                            <label for="firstname">Firstname:</label>
-                            <input type="text" name="firstname" id="firstname" minlength="1" maxlength="30" required>
-                            <span class="validity"></span>
-                        </li>
-                        <li>
-                            <label for="lastname">Lastname:</label>
-                            <input type="text" name="lastname" id="lastname" minlength="1" maxlength="30" required>
-                            <span class="validity"></span>
-                        </li>
-                    </ul>
-                </section>
-                <section id="contact">
-                    <ul>
-                        <li>
-                            <label for="myimage">Your image:</label>
-                            <!---TODO server side validation --->
-                            <input type="file" name="myimage" id="myimage" accept=".png, .jpg, .jpeg" />
-                            <span class="validity"></span>
-                        </li>
-                        <li>
-                            <label for="email">Email:</label>
-                            <input type="email" id="email" name="email" required>
-                            <span class="validity"></span>
-                        </li>
-                        <li>
-                            <label for="phone_country">Calling code:</label>
-                            <span>+</span>
-                            <input type="number" id="phone_country" name="phone_country" min="1" max="999"
-                                placeholder="48" required>
-                            <span class="validity"></span>
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone" name="phone" pattern="[0-9]{9}" required>
-                            <span class="validity"></span>
-                        </li>
-                    </ul>
-                </section>
-                <section id="education0" class="education">
-                    <ul>
-                        <li>
-                            <label for="knowledge_name0">Knowledge:</label>
-                            <input type="text" name="knowledge_name0" id="knowledge_name0" class="school" minlength="1"
-                                maxlength="45" required>
-                            <span class="validity"></span>
-                        </li>
-                        <li>
-                            <label for="knowledge_type0" class="knowledge-type">Type: </label>
-                            <select name="knowledge_type0" id="knowledge_type0"
-                                onchange="schoolTypeShow(addEducationCount)" required>
-                                <option value="" id="blankKnowledgeOption" selected>--option--</option>
-                                <option value="1">School</option>
-                                <option value="0">Course</option>
-                            </select>
-                            <span class="validity"></span>
-                            <!--TODO !!! Przy odświezaniu strony dzieja sie dziwne rzeczy - po kazdym restarcie musi wrocic na "--option--"-->
-                            <div id="school-type-select0" class="school-type-select">
-                                <!--<label for="school-type0" class="school-type">School:</label>-->
-                                <select name="school_type0" id="school_type0">
-                                    <option value="">--option--</option>
-                                    <option value="0">Primary</option>
-                                    <option value="1">MidSchool</option>
-                                    <option value="2">HighSchool</option>
-                                </select>
-                                <span class="validity"></span>
+                <main>
+                    <form action="/cv" method="POST" enctype="multipart/form-data" formStatus="create">
+                        <section id="myform">
+                            <input type="number" name="cv_id" id="cv_id" class="hidden_id">
+                            <section id="name">
+                                <input type="number" name="personaldata_id" id="personaldata_id" class="hidden_id">
+                                <input type="text" name="img_destination" id="img_destination" class="hidden_id">
+                                <ul>
+                                    <li>
+                                        <label for="firstname">Firstname:</label>
+                                        <input type="text" name="firstname" id="firstname" minlength="1" maxlength="30"
+                                            required>
+                                        <span class="validity"></span>
+                                    </li>
+                                    <li>
+                                        <label for="lastname">Lastname:</label>
+                                        <input type="text" name="lastname" id="lastname" minlength="1" maxlength="30"
+                                            required>
+                                        <span class="validity"></span>
+                                    </li>
+                                </ul>
+                            </section>
+                            <section id="contact">
+                                <ul>
+                                    <li>
+                                        <label for="myimage">Your image:</label>
+                                        <!---TODO server side validation --->
+                                        <input type="file" name="myimage" id="myimage" accept=".png, .jpg, .jpeg" />
+                                        <span class="validity"></span>
+                                    </li>
+                                    <li>
+                                        <label for="email">Email:</label>
+                                        <input type="email" id="email" name="email" required>
+                                        <span class="validity"></span>
+                                    </li>
+                                    <li>
+                                        <label for="phone_country">Calling code:</label>
+                                        <span>+</span>
+                                        <input type="number" id="phone_country" name="phone_country" min="1" max="999"
+                                            placeholder="48" required>
+                                        <span class="validity"></span>
+                                        <label for="phone">Phone</label>
+                                        <input type="tel" id="phone" name="phone" pattern="[0-9]{9}" required>
+                                        <span class="validity"></span>
+                                    </li>
+                                </ul>
+                            </section>
+                            <section id="education0" class="education">
+                                <input type="number" name="knowledge_id0" id="knowledge_id0" class="hidden_id">
+                                <ul>
+                                    <li>
+                                        <label for="knowledge_name0">Knowledge:</label>
+                                        <input type="text" name="knowledge_name0" id="knowledge_name0" class="school"
+                                            minlength="1" maxlength="45" required>
+                                        <span class="validity"></span>
+                                    </li>
+                                    <li>
+                                        <label for="knowledge_type0" class="knowledge-type">Type: </label>
+                                        <select name="knowledge_type0" id="knowledge_type0"
+                                            onchange="schoolTypeShow(addEducationCount)" required>
+                                            <option value="" id="blankKnowledgeOption" selected>--option--</option>
+                                            <option value="1">School</option>
+                                            <option value="0">Course</option>
+                                        </select>
+                                        <span class="validity"></span>
+                                        <!--TODO !!! Przy odświezaniu strony dzieja sie dziwne rzeczy - po kazdym restarcie musi wrocic na "--option--"-->
+                                        <div id="school-type-select0" class="school-type-select">
+                                            <!--<label for="school-type0" class="school-type">School:</label>-->
+                                            <select name="school_type0" id="school_type0">
+                                                <option value="">--option--</option>
+                                                <option value="0">Primary</option>
+                                                <option value="1">MidSchool</option>
+                                                <option value="2">HighSchool</option>
+                                            </select>
+                                            <span class="validity"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <label for="start_date_knowledge0" class="startyear">From:</label>
+                                        <input type="date" name="start_date_knowledge0" id="start_date_knowledge0"
+                                            min="1900-01-01"  required>
+                                        <span class="validity"></span>
+                                        <label for="end_date_knowledge0" class="endyear">To:</label>
+                                        <input type="date" name="end_date_knowledge0" id="end_date_knowledge0"
+                                            min="1900-01-01"  required>
+                                        <span class="validity"></span>
+                                    </li>
+                                    <li>
+                                        <label for="education_description0">Description:</label>
+                                        <input type="text" name="education_description0" id="education_description0"
+                                            class="education-description" maxlength="100"
+                                            placeholder="---Write something---">
+                                    </li>
+                                </ul>
+                            </section>
+                            <div id="education-buttons" class="education-buttons functionButtons">
+                                <input type="button" id="addEducation" value="+Knowledge">
+                                <input type="button" id="deleteEducation" value="-Knowledge">
                             </div>
-                        </li>
-                        <li>
-                            <label for="start_date_knowledge0" class="startyear">From:</label>
-                            <input type="date" name="start_date_knowledge0" id="start_date_knowledge0" min="1900-01-01"
-                                value="2100-01-01" required>
-                            <span class="validity"></span>
-                            <label for="end_date_knowledge0" class="endyear">To:</label>
-                            <input type="date" name="end_date_knowledge0" id="end_date_knowledge0" min="1900-01-01"
-                                max="2023-03-27" value="2100-01-01" required>
-                            <span class="validity"></span>
-                        </li>
-                        <li>
-                            <label for="education_description0">Description:</label>
-                            <input type="text" name="education_description0" id="education_description0"
-                                class="education-description" maxlength="100" placeholder="---Write something---">
-                        </li>
-                    </ul>
-                </section>
-                <div id="education-buttons" class="education-buttons functionButtons">
-                    <input type="button" id="addEducation" value="+Knowledge">
-                    <input type="button" id="deleteEducation" value="-Knowledge">
-                </div>
-                <section id="experience0" class="experience">
-                    <ul>
-                        <li>
-                            <label for="job_name0">Job:</label>
-                            <input type="text" name="job_name0" id="job_name0" minlength="1" maxlength="40" required>
-                            <span class="validity"></span>
-                        </li>
-                        <li>
-                            <label for="start_date_job0" class="startyear">From:</label>
-                            <input type="date" name="start_date_job0" id="start_date_job0" min="1900-01-01"
-                                max="2023-03-27" value="2100-01-01" required>
-                            <span class="validity"></span>
-                            <label for="end_date_job0" class="endyear">To:</label>
-                            <input type="date" name="end_date_job0" id="end_date_job0" min="1900-01-01" max="2023-03-27"
-                                value="2100-01-01" required>
-                            <span class="validity"></span>
-                        </li>
-                    </ul>
-                </section>
-                <div id="experience-buttons" class="experience-buttons functionButtons">
-                    <input type="button" id="addjob" value="+Job">
-                    <input type="button" id="deletejob" value="-Job">
-                </div>
-                <section id="skill0" class="skill">
-                    <ul>
-                        <li>
-                            <label for="skill_name0">Skill:</label>
-                            <input type="text" name="skill_name0" id="skill_name0" minlength="1" maxlength="25"
-                                required>
-                            <span class="validity"></span>
-                        </li>
-                        <li>
-                            <label for="skill_level0"></label>
-                            <input type="range" id="skill_level0" name="skill_level0" min="1" max="5" value="3"
-                                step="1">
-                            <p id="skill-level-value0">Medium</p>
-                        </li>
-                    </ul>
-                </section>
-                <div id="skill-buttons" class="skill-buttons functionButtons">
-                    <input type="button" id="addskill" value="+Skill">
-                    <input type="button" id="deleteskill" value="-Skill">
-                </div>
-                <!--refactored to this line-->
-                <section id="hobby0" class="hobby">
-                    <ul>
-                        <li>
-                            <label for="hobby_name0">Hobby:</label>
-                            <input type="text" name="hobby_name0" id="hobby_name0" minlength="1" maxlength="25"
-                                required>
-                            <span class="validity"></span>
-                        </li>
-                    </ul>
-                </section>
-                <div id="hobby-buttons" class="hobby-buttons functionButtons">
-                    <input type="button" id="addhobby" value="+Hobby">
-                    <input type="button" id="deletehobby" value="-Hobby">
-                </div>
-                <section id="link0" class="link">
-                    <ul>
-                        <li>
-                            <label for="link_url0">Link(URL):</label>
-                            <!--db schemat do zmiany-->
-                            <input type="url" name="link_url0" id="link_url0"
-                                placeholder="https://pl.linkedin.com/in/(profile)" pattern="https://.*" maxlength="100"
-                                required>
-                            <span class="validity"></span>
-                        </li>
-                        <li>
-                            <label for="link_name0">Display as:</label>
-                            <input type="text" name="link_name0" id="link_name0" placeholder="linkedin" minlength="1"
-                                maxlength="25" required>
-                            <span class="validity"></span>
-                        </li>
-                    </ul>
-                </section>
-                <div id="link-buttons" class="link-buttons functionButtons">
-                    <input type="button" id="addlink" value="+Link">
-                    <input type="button" id="deletelink" value="-Link">
-                </div>
-                <!-- <section id="NEXT"></section> -->
-                <section id="submit-div">
-                    <!--<label for="validationCheckbox">DONE</label>
+                            <section id="experience0" class="experience">
+                                <input type="number" name="job_id0" id="job_id0" class="hidden_id">
+                                <ul>
+                                    <li>
+                                        <label for="job_name0">Job:</label>
+                                        <input type="text" name="job_name0" id="job_name0" minlength="1" maxlength="40"
+                                            required>
+                                        <span class="validity"></span>
+                                    </li>
+                                    <li>
+                                        <label for="start_date_job0" class="startyear">From:</label>
+                                        <input type="date" name="start_date_job0" id="start_date_job0" min="1900-01-01"
+                                             required>
+                                        <span class="validity"></span>
+                                        <label for="end_date_job0" class="endyear">To:</label>
+                                        <input type="date" name="end_date_job0" id="end_date_job0" min="1900-01-01"
+                                          required>
+                                        <span class="validity"></span>
+                                    </li>
+                                </ul>
+                            </section>
+                            <div id="experience-buttons" class="experience-buttons functionButtons">
+                                <input type="button" id="addjob" value="+Job">
+                                <input type="button" id="deletejob" value="-Job">
+                            </div>
+                            <section id="skill0" class="skill">
+                                <input type="number" name="skill_id0" id="skill_id0" class="hidden_id">
+                                <ul>
+                                    <li>
+                                        <label for="skill_name0">Skill:</label>
+                                        <input type="text" name="skill_name0" id="skill_name0" minlength="1"
+                                            maxlength="25" onkeypress="return /[0-9a-zA-Z]/i.test(event.key)" required>
+                                        <span class="validity"></span>
+                                    </li>
+                                    <li>
+                                        <label for="skill_level0"></label>
+                                        <input type="range" id="skill_level0" name="skill_level0" min="1" max="5"
+                                            value="3" step="1">
+                                        <p id="skill-level-value0">Medium</p>
+                                    </li>
+                                </ul>
+                            </section>
+                            <div id="skill-buttons" class="skill-buttons functionButtons">
+                                <input type="button" id="addskill" value="+Skill">
+                                <input type="button" id="deleteskill" value="-Skill">
+                            </div>
+                            <!--refactored to this line-->
+                            <section id="hobby0" class="hobby">
+                                <input type="number" name="hobby_id0" id="hobby_id0" class="hidden_id">
+                                <ul>
+                                    <li>
+                                        <label for="hobby_name0">Hobby:</label>
+                                        <input type="text" name="hobby_name0" id="hobby_name0" minlength="1"
+                                            maxlength="25" required>
+                                        <span class="validity"></span>
+                                    </li>
+                                </ul>
+                            </section>
+                            <div id="hobby-buttons" class="hobby-buttons functionButtons">
+                                <input type="button" id="addhobby" value="+Hobby">
+                                <input type="button" id="deletehobby" value="-Hobby">
+                            </div>
+                            <section id="link0" class="link">
+                                <input type="number" name="link_id0" id="link_id0" class="hidden_id">
+                                <ul>
+                                    <li>
+                                        <label for="link_url0">Link(URL):</label>
+                                        <!--db schemat do zmiany-->
+                                        <input type="url" name="link_url0" id="link_url0"
+                                            placeholder="https://pl.linkedin.com/in/(profile)" pattern="https://.*"
+                                            maxlength="100" required>
+                                        <span class="validity"></span>
+                                    </li>
+                                    <li>
+                                        <label for="link_name0">Display as:</label>
+                                        <input type="text" name="link_name0" id="link_name0" placeholder="linkedin"
+                                            minlength="1" maxlength="25" required>
+                                        <span class="validity"></span>
+                                    </li>
+                                </ul>
+                            </section>
+                            <div id="link-buttons" class="link-buttons functionButtons">
+                                <input type="button" id="addlink" value="+Link">
+                                <input type="button" id="deletelink" value="-Link">
+                            </div>
+                            <!-- <section id="NEXT"></section> -->
+                            <section id="submit-div">
+                                <!--<label for="validationCheckbox">DONE</label>
                     <input type="checkbox" id="validationCheckbox" name="validationCheckbox" required>-->
-                    <input type="submit" id="submit" value="SUBMIT">
-                </section>
-            </section>
-        </form>
-    </main>
-    <footer>
-        <p>Copyright &copy Igor Ciesielski 2023</p>
-    </footer>
-    <script src="/scripts/handlingFormSections.js" type="text/javascript"></script>
-    <script src="/actions.js" type="text/javascript"></script>
-
+                                <input type="submit" id="submit" value="SUBMIT">
+                            </section>
+                        </section>
+                    </form>
+                </main>
+                <footer>
+                    <p>Copyright &copy Igor Ciesielski 2023</p>
+                </footer>
+                <script src="/scripts/handlingFormSections.js" type="text/javascript"></script>
+                <script src="/actions.js" type="text/javascript"></script>
+                <% if(outputData){ %>
+                    <script src="/scripts/handlingUpdateForm.js" text="type/javascript"></script>
+                    <% } %>
 </body>
 
 </html>

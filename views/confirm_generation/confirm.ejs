@@ -1,21 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="confirm_generation/app.css">
+    <link rel="stylesheet" href="/confirm_generation/app.css">
     <title>Document</title>
 </head>
+
 <body>
     <div id="container">
-        <% if(cvID > -1) {%>
-            <h1 class="confirmed_h">successfully generated </h1>
+        <% if(cvID> -1 && !errorDelete && !errorUpdate) {%>
+            <h1 class="confirmed_h">
+                <%= msg %>
+            </h1>
             <a href="<%= '/cv/' + cvID %>" class="confirmed_link">click here to see your cv</a>
-        <% }else{  %>
-            <h1 class="error_h"><%= msg %></h1>
-            <a href="/" class="error_link">click here to go back</a>
-        <% } %>
+            <% }else if(cvID==-1){ %>
+                <h1 class="error_h">
+                    <%= msg %>
+                </h1>
+                <a href="/home" class="error_link">click here to go back</a>
+                <% }else if(errorUpdate){%>
+                    <h1 class="error_h">
+                        <%= msg %>
+                    </h1>
+                    <a href="<%= '/cv/' + cvID + '/update'%>" class="error_link">click here to go back</a>
+                    <% }else if(errorDelete){%>
+                        <h1 class="error_h">
+                            <%= msg %>
+                        </h1>
+                        <a href="<%= '/cv/' + cvID %>" class="error_link">click here to go back</a>
+                        <% } %>
     </div>
-    </body>
+</body>
+
 </html>

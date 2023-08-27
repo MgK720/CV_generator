@@ -29,3 +29,7 @@ VALUES (DEFAULT, 1, 'skill_name', 6);
 --8. start_date_job and end_date_job validation
 INSERT INTO job(job_id, cv_id, job_name, start_date_job, end_date_job)
 VALUES (DEFAULT, 1, 'job_name', '2024-06-22', '2023-03-22');
+
+--9 skill_name must not contain comma
+INSERT INTO skill(skill_id, cv_id, skill_name, level)
+VALUES (DEFAULT, 1, 'example1, example2, example3', 4);

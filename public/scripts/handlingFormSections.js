@@ -5,11 +5,11 @@ let addHobbyCount = 0;
 let addLinkCount = 0;
 
 //for create form all variables = 0 (1 for education - default 1 section created all time [not removable])
-const educationDataFromDbCount = 1; 
-const experienceDataFromDbCount = 0;
-const skillDataFromDbCount = 0;
-const hobbyDataFromDbCount = 0;
-const linkDataFromDbCount = 0;
+let educationDataFromDbCount = 1; 
+let experienceDataFromDbCount = 0;
+let skillDataFromDbCount = 0;
+let hobbyDataFromDbCount = 0;
+let linkDataFromDbCount = 0;
 
 function validateFile(){
     console.log('file changed');
@@ -29,6 +29,7 @@ function validateFile(){
         }
     }
 }
+validateFile();
 
 function createEducationSection(place, data={}){
     const newSection = document.createElement("section");
@@ -62,7 +63,7 @@ function createEducationSection(place, data={}){
     knowledgeTypeLabel.textContent = "Type:";
 
     const knowledgeType = document.createElement("select");
-    setAttributes(knowledgeType, {"name": "knowledge_type" + addEducationCount, "id": "knowledge_type" + addEducationCount, "onchange": "schoolTypeShow(addEducationCount)"});
+    setAttributes(knowledgeType, {"name": "knowledge_type" + addEducationCount, "id": "knowledge_type" + addEducationCount, "onchange": "schoolTypeShow(addEducationCount)", });
     knowledgeType.required = true;
 
     const blankType0 = document.createElement("option");
@@ -131,7 +132,7 @@ function createEducationSection(place, data={}){
     startYearLabel.textContent = "From:";
 
     const startYear = document.createElement("input");
-    setAttributes(startYear, {"type": "date", "name": "start_date_knowledge" + addEducationCount, "id": "start_date_knowledge" + addEducationCount, "min": "1900-01-01", "max": today(), "value": today()});
+    setAttributes(startYear, {"type": "date", "name": "start_date_knowledge" + addEducationCount, "id": "start_date_knowledge" + addEducationCount, "min": "1900-01-01", "max": today()});
     startYear.required = true;
 
     const spanValidity3 = createSpanValidity();
@@ -141,7 +142,7 @@ function createEducationSection(place, data={}){
     endYearLabel.textContent = "To:";
 
     const endYear = document.createElement("input");
-    setAttributes(endYear, {"type": "date", "name": "end_date_knowledge" + addEducationCount, "id": "end_date_knowledge" + addEducationCount, "min": "1900-01-01", "max": today(), "value": today()});
+    setAttributes(endYear, {"type": "date", "name": "end_date_knowledge" + addEducationCount, "id": "end_date_knowledge" + addEducationCount, "min": "1900-01-01", "max": today()});
     endYear.required = true;
 
     const spanValidity4 = createSpanValidity();
@@ -247,7 +248,7 @@ function createExperienceSection(place, data={}){
     startYearJobLabel.textContent = "From:";
 
     const startYearJob = document.createElement("input");
-    setAttributes(startYearJob, {"type": "date", "name": "start_date_job" + addExperienceCount, "id": "start_date_job" + addExperienceCount, "min": "1900-01-01", "max": today(), "value": today()});
+    setAttributes(startYearJob, {"type": "date", "name": "start_date_job" + addExperienceCount, "id": "start_date_job" + addExperienceCount, "min": "1900-01-01", "max": today()});
     startYearJob.required = true;
 
     const spanValidity1 = createSpanValidity();
@@ -257,7 +258,7 @@ function createExperienceSection(place, data={}){
     endYearJobLabel.textContent = "To:";
 
     const endYearJob = document.createElement("input");
-    setAttributes(endYearJob, {"type": "date", "name": "end_date_job" + addExperienceCount, "id": "end_date_job" + addExperienceCount, "min": "1900-01-01", "max": today(), "value": today()});
+    setAttributes(endYearJob, {"type": "date", "name": "end_date_job" + addExperienceCount, "id": "end_date_job" + addExperienceCount, "min": "1900-01-01", "max": today()});
     endYearJob.required = true;
 
     const spanValidity2 = createSpanValidity();
@@ -334,7 +335,7 @@ function createSkillSection(place, data={}){
     skillNameLabel.textContent = "Skill:"
 
     const skillName = document.createElement("input")
-    setAttributes(skillName, {"type": "text", "name": "skill_name" + addSkillCount, "id": "skill_name" + addSkillCount, "minlength": "1", "maxlength": "25"});
+    setAttributes(skillName, {"type": "text", "name": "skill_name" + addSkillCount, "id": "skill_name" + addSkillCount, "minlength": "1", "maxlength": "25", "onkeypress": "return /[0-9a-zA-Z]/i.test(event.key)"});
     skillName.required = true;
 
     const spanValidity0 = createSpanValidity();

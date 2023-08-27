@@ -191,5 +191,23 @@ CREATE TRIGGER CheckingJobStartEndDate
 	ON job
 	FOR EACH ROW
 		EXECUTE PROCEDURE checking_job_startend_date();
+--9 skill_name in skill table w/o " , " char
+SET client_encoding TO 'UTF-8';
+CREATE FUNCTION check_comma_in_skill_name()
+    RETURNS TRIGGER
+AS $$
+BEGIN
+    IF new.skill_name LIKE '%,%' THEN
+        RAISE EXCEPTION 'skill_name must not contain comma';
+    END IF;
+    RETURN new;
+END;
+$$
+LANGUAGE plpgsql;
 
+CREATE TRIGGER CheckingCommaInSkillName
+	BEFORE INSERT OR UPDATE
+	ON skill
+	FOR EACH ROW
+		EXECUTE PROCEDURE check_comma_in_skill_name();
 

@@ -1,0 +1,174 @@
+@font-face {
+    font-family: mainFontMedium;
+    src: url(/fonts/Roboto/Roboto-Medium.ttf);
+}
+body{
+    background-color: #061735;
+    letter-spacing: 1px;
+    font-family: mainFontMedium;
+    color:#F9F5EB;
+    font-size: 1.4rem;
+}
+footer{
+    text-align: center;
+    margin-bottom:0.5em;
+  }
+footer p{
+    margin-top:1em;
+    margin-bottom:2em;
+    font-size: 1rem;
+    text-transform: none;
+}
+header h1{
+    text-align: center;
+    font-size: 3em;
+    margin:0.5em 0;
+    text-transform: none;
+}
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#player_container{
+    width:70%;
+}
+#player{
+    aspect-ratio: 16/9;
+    height:auto;
+    width:100%;
+}
+nav{
+    background-color: #07264e;
+    border-bottom: 1px solid white;
+    height:90px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    text-transform: uppercase;
+    font-size:1.5rem;
+}
+nav a{
+    color:orangered;
+}
+nav a:hover{
+    color:orange;
+}
+nav ul{
+    width:95%;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+nav ul #account_section{
+    position: relative;
+    /* max-width:250px; */
+    width:250px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+nav ul #account_section div a{
+    font-size: 1.6rem;
+    text-transform: none;
+}
+.login_logout{
+    width:100%; 
+    text-align:center;
+    font-size: 0.9rem;
+    margin-top:0.5rem;
+}
+#dropdownbtn{
+    cursor: pointer;
+}
+#dropdown_content{
+    margin-top:0.1rem;
+    display:none;
+    position:absolute;
+    background-color: #061735;
+    width:200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    /* z-index: 1; */
+    left:10%;
+}
+#dropdown_content li .function_button{
+    background-color: #061735;
+    padding:0;
+    height:60px;
+    width:100%;
+    text-decoration: none;
+    display:flex;
+    cursor:pointer;
+}
+#dropdown_content li .function_button a{
+    padding:0.4rem;
+    border:1px solid gray;
+    padding-top:0.8rem;
+    display:block;
+    width: 100%;
+    height: 100%;
+    color:orangered;
+}
+.function_button:hover{
+    border-color: white;
+}
+#dropdown_content li .function_button a:hover{
+    color:orange;
+ }
+#account_section div:hover #dropdown_content{
+    display:block;
+}
+#account_section div:hover #dropdownbtn{
+    color:orange;
+}
+
+
+
+.modal_buttons{
+    font-family: mainFontMedium;
+    font-size:1.4em;
+    background-color: #061735;
+    color:white;
+    border:3px solid white;
+    margin-top:1rem;
+    margin-right:2px;
+    width:49%;
+    height:50px;
+    transition: all 0.25s;
+}
+#delete_cv:hover, .modal_buttons:hover{
+    background-color: #07264e;
+    color:#F9F5EB;
+    border-color:green;
+    box-shadow: 0 0.5em 0.5em -0.4em green;
+    transform: translateY(-0.24em);
+    cursor:pointer;
+}
+#delete_cv:hover{
+    border-color: #AF0000;
+    box-shadow: 0 0.5em 0.5em -0.4em #AF0000;
+}
+#delete_modal{
+    width:800px;
+    text-align: center;
+    padding:2rem;
+    border:3px solid white;
+    background-color: #07264e;
+}
+#delete_modal::backdrop{
+    background-color: rgba(255,255,255,0.2)
+}
+#delete_modal h2{
+    font-size: 2rem;
+    text-align:center;
+    color:red;
+}
+#delete_modal h2+p{
+    color:red;
+    margin-top:1rem;
+    font-size: 1rem;
+    text-align:center;
+}

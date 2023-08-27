@@ -12,7 +12,7 @@
 
 <body>
     <header>
-        <h1>CV Generator</h1>
+        <h1><a href="/home">CV Generator</a></h1>
     </header>
     <main>
         <% const personalData=JSON.parse(outputData).personaldata; %>
@@ -76,8 +76,8 @@
                                                         <% } %>
                                         </li>
                                         <li>
-                                            <p>From: <%= knowledgeRecord.start_date_knowledge.slice(0,10) %> To: <%=
-                                                        knowledgeRecord.end_date_knowledge.slice(0,10) %>
+                                            <p>From: <span><%= knowledgeRecord.start_date_knowledge %></span> To: <span><%=
+                                                        knowledgeRecord.end_date_knowledge %></span>   
                                             </p>
                                         </li>
                                         <% if(knowledgeRecord.description){ %>
@@ -108,8 +108,7 @@
                                                 </span></p>
                                         </li>
                                         <li>
-                                            <p>From: <%= jobRecord.start_date_job.slice(0,10) %> To: <%=
-                                                        jobRecord.end_date_job.slice(0,10) %>
+                                            <p>From: <span><%= jobRecord.start_date_job %></span> To: <span><%= jobRecord.end_date_job %></span>
                                             </p>
                                         </li>
                                     </ul>
@@ -180,9 +179,9 @@
                                 <div class="link">
                                     <ul>
                                         <li>
-                                            <button class="link_button" href="<%= linkRecord.link_url %>">
-                                                <%= linkRecord.link_name%>
-                                            </button>
+                                            <a href="<%= linkRecord.link_url %>"><button class="link_button">
+                                                    <%= linkRecord.link_name%>
+                                                </button></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -192,6 +191,21 @@
                                         <% } %>
 
                 </section>
+                <% if(isOwner){ %>
+                    <section id="cv_actions_buttons">
+                        <h2>what you want to do?</h2>
+                        <a href="<%= '/cv/' + personalData[0].cv_id + '/update' %>"><button
+                                id="update_cv">update</button></a>
+                        <dialog id="delete_modal">
+                            <h2>Are you sure?</h2>
+                            <p>(this will result in loss of all data)</p>
+                            <button class="modal_buttons" id="hide_modal">Cancel</button>
+                            <a href="<%= '/cv/' + personalData[0].cv_id + '/delete' + '?_method=DELETE' %>"
+                                id="delete_cv_href"><button id="delete_cv" class="modal_buttons">delete</button></a>
+                        </dialog>
+                        <button id="show_delete_modal" class="modal_buttons">delete</button>
+                    </section>
+                    <% } %>
     </main>
     <footer>
         <p>Copyright &copy Igor Ciesielski 2023</p>

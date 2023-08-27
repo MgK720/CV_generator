@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/get_cv/reset.css">
+    <link rel="stylesheet" href="/home/app.css">
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <title>Cv Generator </title>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li>
+                <a href="/talentfinder">talentfinder</a>
+            </li>
+            <% if(user){ %>
+                <li id="account_section">
+                    <div>
+                        <a id="dropdownbtn">
+                            <%= user.login %>
+                        </a>
+                        <ul id="dropdown_content">
+                            <%if(!hasCv){%>
+                                <li>
+                                    <button class="function_button">
+                                        <a href="/">Create CV</a>
+                                    </button>
+                                </li>
+                                <% }else{%>
+                                    <li>
+                                        <button class="function_button">
+                                            <a href="<%= '/cv/' + cv_id  %>">Show my CV</a>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="function_button">
+                                            <a href="<%= '/cv/' + cv_id + '/update' %>">Update my CV</a>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <dialog id="delete_modal">
+                                            <h2>Are you sure?</h2>
+                                            <p>(this will result in loss of all data)</p>
+                                            <button class="modal_buttons" id="hide_modal">Cancel</button>
+                                            <a href="<%= '/cv/' + cv_id + '/delete' + '?_method=DELETE' %>"
+                                                id="delete_cv_href"><button id="delete_cv"
+                                                    class="modal_buttons">delete</button></a>
+                                        </dialog>
+                                        <button id="show_delete_modal" class="function_button"><a>Delete my
+                                                CV</a></button>
+                                    </li>
+                                    <%} %>
+                    </div>
+                    <a href="/logout?_method=POST" class="login_logout">logout</a>
+                </li>
+                <% }else{ %>
+                    <li>
+                        <a href="/register">register</a>
+                        <a href="/login" class="login_logout">login</a>
+                    </li>
+                    <% } %>
+
+        </ul>
+    </nav>
+    <header>
+        <h1>CV Generator</h1>
+    </header>
+    <main>
+        <div id="player_container">
+            <div id="player"></div>
+        </div>
+    </main>
+    <footer>
+        <p>Copyright &copy Igor Ciesielski 2023</p>
+    </footer>
+    <script src="/home/app.js"></script>
+    <script src="/account/actions.js"></script>
+</body>
+
+</html>

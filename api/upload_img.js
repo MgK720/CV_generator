@@ -1,5 +1,6 @@
 const multer = require("multer")
 const path = require("path")
+const fs = require('fs');
 
 
 let fileDir = '';
@@ -13,8 +14,10 @@ const storage = multer.diskStorage({
     filename: function (req, file, cb) {
         fileName = "cv_image" + "-" + Date.now()+".jpg";
         cb(null, fileName)
-    }
+    },
   })
+
+
 
 const maxSize = 10 * 1000 * 1000;
     
@@ -47,6 +50,8 @@ const uploadFile = (req, res, next) => {
             res.render('confirm_generation/confirm', {
                 cvID: -1,
                 msg: 'Uploaded file is too large or filetype is not supported',
+                errorUpdate: false,
+                errorDelete: false
             });
         }
         else {
@@ -54,10 +59,22 @@ const uploadFile = (req, res, next) => {
         }
     })
 };
+
+var deleteFile = (fileName) =>{
+    pathToFile = "public/" + fileName;
+    try{
+        fs.unlink(pathToFile, (error)=>{
+            if(error){
+                throw error;
+            }
+        })
+        return `${fileName} deleted <br>\n`;
+    }catch (error){
+        throw error;
+    }
+}
 module.exports = {
     uploadFile,
-    getFileDetails: (callback) => {
-        callback(fileDir, fileName);
-      },
+    deleteFile,
     
 }

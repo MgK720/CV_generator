@@ -1,4 +1,4 @@
-const {upload, getFileDetails} = require('./upload_img.js')
+//const {upload} = require('./upload_img.js')
 const Pool = require('pg').Pool
 require('dotenv').config({ debug: process.env.DEBUG });
 const pool = new Pool({
@@ -10,7 +10,9 @@ const pool = new Pool({
   })
 const createCv = async (request, response) => {
     let outputMessage = '';
-    const cv_url = `http://cv.com/${Math.floor(Math.random() * 100000)}.cv`
+    let img_destination = null;
+    //TODO DO ZMIANY - USUNIETA KOLUMNA CV_URL
+    //const cv_url = `http://cv.com/${Math.floor(Math.random() * 100000)}.cv`
     const personaldata = {
         firstname : request.body.firstname,
         lastname : request.body.lastname,
@@ -18,15 +20,18 @@ const createCv = async (request, response) => {
         phone_country : request.body.phone_country,
         phone : request.body.phone,
     };
-    let img_destination = '';
-    getFileDetails(async (fileDir, fileName) => {
-        img_destination = `imgs/${fileName}`;
-        console.log("my img dest:" + img_destination)});
+    if(request.file){
+        img_destination =`imgs/${request.file.filename}`;
+    }
+    const {login} = request.user;
     try{
         console.log(request.body);
 
-        const cvID = await addCv(cv_url);
+        //TODO DO ZMIANY - USUNIETA KOLUMNA CV_URL
+        const cvID = await addCv();
         outputMessage += `Cv added with ID: ${cvID} <br>\n`;
+
+        outputMessage += await assignCvToAccount(cvID, login);
 
         const personalDataID = await addPersonalData(cvID, personaldata.firstname, personaldata.lastname, personaldata.email, personaldata.phone_country, personaldata.phone, img_destination);
         outputMessage += `PersonalData added with ID: ${personalDataID}, img_destination: ${img_destination} <br>\n`;
@@ -40,12 +45,15 @@ const createCv = async (request, response) => {
         outputMessage += await addHobbyEntries(cvID, request.body);
 
         outputMessage += await addLinkEntries(cvID, request.body);
+
     
         console.log(outputMessage);
 
         response.render('confirm_generation/confirm', {
             cvID: cvID,
-            msg: '',
+            msg: 'successfully generated',
+            errorUpdate: false,
+            errorDelete: false
         })
         //response.status(201).send(outputMessage);
     }catch (error){
@@ -54,13 +62,30 @@ const createCv = async (request, response) => {
         response.render('confirm_generation/confirm', {
             cvID: -1,
             msg: 'Some inputs not valid',
+            errorUpdate: false,
+            errorDelete: false
         });
     }
 
   }
-const addCv = async (cv_url) =>{
+
+const assignCvToAccount = async (cvID, login) =>{
     try{
-        const cvResult = await pool.query('INSERT INTO cv(cv_id, create_date, cv_url) VALUES (DEFAULT, DEFAULT, $1) RETURNING *', [cv_url]);
+        const resultAccountHasCvAssigned = await pool.query('Select cv_id from account where login=$1', [login]);
+        if(resultAccountHasCvAssigned.rows[0].cv_id === null){
+            const assignResult = await pool.query('Update Account Set cv_id=$1 where login=$2', [cvID, login]);
+            return `${cvID} assigned to ${login}`;
+        }else{
+            throw 'This account has cv already!!!';
+        }
+    }catch (e){
+        throw e;
+    }
+}
+const addCv = async () =>{
+    try{
+        //TODO DO ZMIANY - USUNIETA KOLUMNA CV_URL
+        const cvResult = await pool.query('INSERT INTO cv(cv_id, create_date) VALUES (DEFAULT, DEFAULT) RETURNING *');
         console.log(`cv_id = ${cvResult.rows[0].cv_id}`)
         return cvResult.rows[0].cv_id;
     }catch (error){
@@ -84,6 +109,7 @@ const addPersonalData = async (cvID, firstname, lastname, email, phone_country, 
 
 const addKnowledge = async (cvID, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description) =>{
     if(schooltype_id == false) {schooltype_id = null};
+    console.log(start_date_knowledge);
     const knowledgeResult = await pool.query(`INSERT INTO knowledge(knowledge_id, cv_id, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description)
           VALUES (DEFAULT, $1, $2, $3, $4, $5, $6, $7) RETURNING *`,
           [cvID, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description]);
@@ -251,4 +277,10 @@ const addLinkEntries = async (cvID, data) => {
 }
 module.exports = {
   createCv,
+  addKnowledge,
+  addExperience,
+  addSkill,
+  addHobby,
+  addLink,
+
 }

@@ -57,11 +57,19 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
 @font-face {
     font-family: mainFontMedium;
     src: url(fonts/Roboto/Roboto-Medium.ttf);
 }
-
+header a{
+	text-decoration: none;
+    color:white;
+}
+header a:hover{
+    color:orange;
+    text-decoration: underline;
+}
 h1{
   font-size:3em;
   text-align: center;
@@ -620,4 +628,8 @@ select:valid + span::after {
     font-weight: 900;
     padding-left: 5px;
     padding-right:1px;
+  }
+
+  .hidden_id{
+    display:none;
   }

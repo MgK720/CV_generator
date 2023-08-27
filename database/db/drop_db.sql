@@ -34,6 +34,8 @@ DROP FUNCTION IF EXISTS checking_skill_level;
 
 DROP FUNCTION IF EXISTS checking_job_startend_date;
 
+DROP FUNCTION IF EXISTS check_comma_in_skill_name;
+
 DROP DOMAIN IF EXISTS url;
 
 

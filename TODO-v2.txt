@@ -1,0 +1,35 @@
+1.update DONE
+2.delete DONE
+3.register DONE (w przyszlosci nakazywanie używania bardziej skomplikowanych haseł)
+4.login DONE 
+5.search DONE
+    (najprawdopodobniej wszystko w jednym ejs - input i pod lista wszystkich skilli ktora sie generuje dynamicznie jesli wyszukamy frazy)
+    A | skill input ejs + get route
+    B | in route ---> select * from skill 
+    C | allSkills.forEach( skillRecord => {
+        if(skillRecord.tolower().contains('input')){ 
+            print(cvID, allSKills)
+        }
+    })
+6.main page w ktorym opcje : zaloguj(4. login), zarejestruj(3. register), wyszukaj(5.search) + na srodku wyjaśniony projekt - filmik z prezentacją oraz niżej wyjaśnione krok po kroku co robi ta strona  DONE
+7.Po zalogowaniu opcje: wyszukaj(5. search), utworz_cv(create), pokaz_cv(get), aktualizuj_cv(1. update), usuń_cv(2. delete)  DONE
+
+
+TODO 14.07
+1.modal dla delete (proces bedzie nie do odwrócenia) DONE 
+2.powrót do home page pod każdym h1 (cv generator) anchor tag DONE (jeszcze register i login) DONE
+3.handling errorów w login formie (tak jak w register - krotka informacja, nie zgadza sie login/ haslo) DONE 
+4.logout DONE 
+5.delete (wtedy update account set null where cv_id=id) DONE
+6. Prawdopodobnie rezygnacja z account podstrony -> elementy tej podstrony umieszczone w liscie do wysuniecia na homepage-u w navbarze/aside (jesli zalogowany) DONE
+
+7. VALIDACJA PO STRONIE DB - + poprawka schematu DONE
+ - minlength dla loginu i hasla DONE
+ - brak znaku przecinka w skill_name DONE 
+    VALIDACJA PO STRONIE "JS" - W PRZYSZŁEj WERSJI (problem z update formem - musiałbym sprawdzać ile jest aktualnie danych przypisanych do dodanego id i ile uzytkownik wstawił poza limit - dodatkowe selecty dluzsza praca update'a)
+                                                    [ pomysł - przechowywanie ilosci rekordów knowledge, job itd... w tabeli cv - wtedy nie trzeba robić selecta do kazdej tabeli tylko do jednej - 2/10]
+                 - sprawdzać limit entries dla kazdej tabeli ( sprawdzanie limitów konkretnych danych  - jesli powyzej limitu (ominięcie client side limit check) to throw error )
+7a. Poprawka cssa w homepage - nie działa pawidłowo na małych ekranach
+8. Testy (jednostkowe + postman)
+9. Ostatnie poprawki
+10. Prezentacja projektu (gify i video)

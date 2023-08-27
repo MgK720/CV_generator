@@ -4,7 +4,7 @@ COMMENT ON DOMAIN url IS 'match URLs (http or https)';
 
 
 CREATE TABLE cv(
-    cv_id serial,
+    cv_id serial, 
     create_date TIMESTAMPTZ DEFAULT Now(), --on insert DONE
     CONSTRAINT cv_pk PRIMARY KEY(cv_id)
 );
@@ -12,8 +12,8 @@ CREATE TABLE cv(
 CREATE TABLE account(
     account_id serial,
     cv_id int UNIQUE,
-    login varchar(20) not null UNIQUE, --do zmiany 20 znaków login i sprawdzanie minlength 8
-    password varchar(255) not null, --minlength 8
+    login varchar(20) not null UNIQUE CHECK (LENGTH(login) > 7), 
+    password varchar(255) not null CHECK (LENGTH(password) > 7),
     CONSTRAINT account_pk PRIMARY KEY(account_id),
     CONSTRAINT account_cv_fk FOREIGN KEY(cv_id) REFERENCES cv(cv_id) ON DELETE SET NULL
 );

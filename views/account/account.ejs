@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cv Generator - <%= user.login %></title>
+</head>
+<body>
+    <header>
+        <h1><a href="/home">CV Generator</a></h1>
+    </header>
+    <main>
+        <h2>Hello <%= user.login %> !!!</h2>
+        <ul>
+                <%if(!hasCv){%>
+                    <li>
+                        <a href="/">Create</a>
+                    </li>
+                <% }else{%>
+                    <li>
+                        <button>
+                            <a href="<%= '/cv/' + cv_id  %>">Show my CV</a>
+                        </button>
+                    </li>
+                    <li>
+                        <button>
+                            <a href="<%= '/cv/' + cv_id + '/update' %>">Update my CV</a>
+                        </button>
+                    </li>
+                    <li>
+                        <dialog id="delete_modal">
+                            <h2>Are you sure? (this will result in loss of all data)</h2>
+                            <button class="modal_buttons" id="hide_modal">Cancel</button>
+                            <a href="<%= '/cv/' + cv_id + '/delete' + '?_method=DELETE' %>" id="delete_cv_href"><button
+                                id="delete_cv" class="modal_buttons">delete</button></a>
+                        </dialog>
+                        <button id="show_delete_modal" class="modal_buttons">Delete my CV</button>
+                    </li>
+                <%} %>
+        </ul>
+    </main>
+    <footer>
+        <p>Copyright &copy Igor Ciesielski 2023</p>
+    </footer>
+    <script src="/account/actions.js"></script>
+</body>
+</html>
